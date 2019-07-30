@@ -68,7 +68,11 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     return idx;
   }
 
-  Path path(Size size, {zoomLevel = 1.0, int fromFrame = 0}) {
+  Path path(
+    Size size, {
+    zoomLevel = 1.0,
+    int fromFrame = 0,
+  }) {
     if (!_isDataScaled()) {
       _scaleData();
     }
@@ -80,23 +84,27 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     }
 
     if (zoomLevel == 1.0 && fromFrame == 0) {
-      return _path(_scaledData, size);
+      return _path(_scaledData().toList(), size);
     }
 
     // buffer so we can't start too far in the waveform, 90% max
     if (fromFrame * 2 > (data.length * 0.98).floor()) {
-      debugPrint("from frame is too far at $fromFrame");
+      print("from frame is too far at $fromFrame");
       fromFrame = ((data.length / 2) * 0.98).floor();
     }
 
     int endFrame = (fromFrame * 2 +
-            ((_scaledData.length - fromFrame * 2) * (1.0 - (zoomLevel / 100))))
+            ((_scaledData().length - fromFrame * 2) *
+                (1.0 - (zoomLevel / 100))))
         .floor();
-
-    return _path(_scaledData.sublist(fromFrame * 2, endFrame), size);
+    final list = _scaledData().toList();
+    return _path(list.sublist(fromFrame * 2, endFrame), size);
   }
 
-  Path _path(List<double> samples, Size size) {
+  Path _path(
+    List<double> samples,
+    Size size,
+  ) {
     final middle = size.height / 2;
     var i = 0;
 
@@ -130,7 +138,7 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
   }
 
   bool _isDataScaled() {
-    return _scaledData != null && _scaledData.length == data.length;
+    return _scaledData != null && _scaledData().length == data.length;
   }
 
   // scale the data from int values to float
@@ -138,9 +146,11 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     final max = pow(2, bits - 1).toDouble();
 
     final dataSize = data.length;
-    _scaledData = List<double>(dataSize);
+    // _scaledData = List<double>(dataSize);
+    // final fff = BuiltList.of(dataSize);
     for (var i = 0; i < dataSize; i++) {
       _scaledData[i] = data[i].toDouble() / max;
+
       if (_scaledData[i] > 1.0) {
         _scaledData[i] = 1.0;
       }
