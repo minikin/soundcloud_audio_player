@@ -22,3 +22,10 @@ Audio to json
 ```sh
 audiowaveform -i acid.mp3 -o acid.json
 ```
+
+
+## License 
+
+Audio assets are distribute under [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)
+
+The source code distribute under MIT
