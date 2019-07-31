@@ -26,6 +26,6 @@ audiowaveform -i acid.mp3 -o acid.json
 
 ## License 
 
-Audio assets are distribute under [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)
+This project is licensed under the MIT.
 
-The source code distribute under MIT
+Audio assets are distribute under [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)
