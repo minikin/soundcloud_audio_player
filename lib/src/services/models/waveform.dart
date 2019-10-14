@@ -146,18 +146,18 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     final max = pow(2, bits - 1).toDouble();
     final dataSize = data.length;
 
-    _scaledData = List<double>(dataSize);
+    // _scaledData = List<double>(dataSize);
 
-    for (var i = 0; i < dataSize; i++) {
-      _scaledData[i] = data[i].toDouble() / max;
+    // for (var i = 0; i < dataSize; i++) {
+    //   _scaledData[i] = data[i].toDouble() / max;
 
-      if (_scaledData[i] > 1.0) {
-        _scaledData[i] = 1.0;
-      }
+    //   if (_scaledData[i] > 1.0) {
+    //     _scaledData[i] = 1.0;
+    //   }
 
-      if (_scaledData[i] < -1.0) {
-        _scaledData[i] = -1.0;
-      }
-    }
+    //   if (_scaledData[i] < -1.0) {
+    //     _scaledData[i] = -1.0;
+    //   }
+    // }
   }
 }
