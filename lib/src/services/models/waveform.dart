@@ -12,38 +12,21 @@ import 'package:flutter/painting.dart';
 part 'waveform.g.dart';
 
 abstract class Waveform implements Built<Waveform, WaveformBuilder> {
-  int get version;
-  int get channels;
-  int get sampleRate;
-  int get sampleSize;
-  int get bits;
-  int get length;
-  BuiltList<int> get data;
-  BuiltList<double> get scaledData;
-
-  Waveform._();
+  static Serializer<Waveform> get serializer => _$waveformSerializer;
 
   factory Waveform([updates(WaveformBuilder b)]) = _$Waveform;
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(Waveform.serializer, this));
-  }
+  Waveform._();
 
-  static Waveform fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Waveform.serializer, json.decode(jsonString));
-  }
+  int get bits;
+  int get channels;
+  List<int> get data;
+  int get length;
+  int get sampleRate;
+  int get sampleSize;
+  List<double> get scaledData;
+  int get version;
 
-  static Serializer<Waveform> get serializer => _$waveformSerializer;
-
-  BuiltList<double> _scaledData() {
-    if (!_isDataScaled()) {
-      _scaleData();
-    }
-    return scaledData;
-  }
-
-  // get the frame position at a specific percent of the waveform. Can use a 0-1 or 0-100 range.
   int frameIdxFromPercent(double percent) {
     if (percent == null) {
       return 0;
@@ -74,7 +57,7 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     int fromFrame = 0,
   }) {
     if (!_isDataScaled()) {
-      _scaleData();
+      //scaleData();
     }
 
     if (zoomLevel == null || zoomLevel < 1.0) {
@@ -84,7 +67,7 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     }
 
     if (zoomLevel == 1.0 && fromFrame == 0) {
-      return _path(_scaledData().toList(), size);
+      return _path(scaledData, size);
     }
 
     // buffer so we can't start too far in the waveform, 90% max
@@ -94,11 +77,26 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     }
 
     int endFrame = (fromFrame * 2 +
-            ((_scaledData().length - fromFrame * 2) *
-                (1.0 - (zoomLevel / 100))))
+            ((scaledData.length - fromFrame * 2) * (1.0 - (zoomLevel / 100))))
         .floor();
-    final list = _scaledData().toList();
+    final list = scaledData;
     return _path(list.sublist(fromFrame * 2, endFrame), size);
+  }
+
+  // List<double> scaledData() {
+  //   if (!_isDataScaled()) {
+  //     scaledData();
+  //   }
+  //   return scaledData;
+  // }
+
+  // get the frame position at a specific percent of the waveform. Can use a 0-1 or 0-100 range.
+  String toJson() {
+    return json.encode(serializers.serializeWith(Waveform.serializer, this));
+  }
+
+  bool _isDataScaled() {
+    return scaledData != null && scaledData.length == data.length;
   }
 
   Path _path(
@@ -137,27 +135,30 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     return path;
   }
 
-  bool _isDataScaled() {
-    return _scaledData != null && _scaledData().length == data.length;
+  static Waveform fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        Waveform.serializer, json.decode(jsonString));
   }
 
   // scale the data from int values to float
-  _scaleData() {
-    final max = pow(2, bits - 1).toDouble();
-    final dataSize = data.length;
+  // scaleData() {
+  //   final max = pow(2, bits - 1).toDouble();
+  //   final dataSize = data.length;
 
-    // _scaledData = List<double>(dataSize);
+  //   _scaledData = _scaledData.rebuild((b) => b
+  //     ..clear()
+  //     ..addAll([dataSize as double]));
 
-    // for (var i = 0; i < dataSize; i++) {
-    //   _scaledData[i] = data[i].toDouble() / max;
+  //   for (var i = 0; i < dataSize; i++) {
+  //     _scaledData.elementAt(i) = data[i].toDouble() / max;
 
-    //   if (_scaledData[i] > 1.0) {
-    //     _scaledData[i] = 1.0;
-    //   }
+  //     if (_scaledData[i] > 1.0) {
+  //       _scaledData[i] = 1.0;
+  //     }
 
-    //   if (_scaledData[i] < -1.0) {
-    //     _scaledData[i] = -1.0;
-    //   }
-    // }
-  }
+  //     if (_scaledData[i] < -1.0) {
+  //       _scaledData[i] = -1.0;
+  //     }
+  //   }
+  // }
 }
