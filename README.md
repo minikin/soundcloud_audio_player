@@ -1,6 +1,6 @@
-# Audio/ Audio Waveform with Flutter Demo Project
+# Audio/ Audio Waveforms with Flutter Demo Project
 
-- [Flutter Web App Demo](#flutter-web-app-demo)
+- [Audio/ Audio Waveforms with Flutter Demo Project](#audio-with-flutter-demo-project)
   - [Features](#features)
   - [Requirements](#requirements)
   - [Develop](#develop)
