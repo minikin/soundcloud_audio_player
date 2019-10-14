@@ -1,19 +1,36 @@
-# audio
+# Audio/ Audio Waveform with Flutter Demo Project
 
-A new Flutter project.
+- [Flutter Web App Demo](#flutter-web-app-demo)
+  - [Features](#features)
+  - [Requirements](#requirements)
+  - [Develop](#develop)
+  - [FAQ](#faq)
+  - [Helpers](#helpers)
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+_WIP_
 
-A few resources to get you started if this is your first Flutter project:
+## Requirements
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Flutter: the latest version on `flutter stable channel`
+- Dart: 2.5.0+
+- Xcode: 11.0+
+- Androind Studio 3.3.1+
+- Ruby: 2.4+
+- CocoaPods: 1.8.0+
+- Flutter & Dart plugins:
+  - [Visual Studio Code](https://flutter.dev/docs/get-started/editor?tab=androidstudio)
+  - [Android Studio / IntelliJ](https://flutter.dev/docs/get-started/editor?tab=vscode)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Develop
+
+_WIP_
+
+## FAQ
+
+If you have any questions ping me on twitter: [@minikin](https://twitter.com/minikin)
+
 
 ## Helpers
 
@@ -22,7 +39,6 @@ Audio to json
 ```sh
 audiowaveform -i acid.mp3 -o acid.json
 ```
-
 
 ## License 
 
