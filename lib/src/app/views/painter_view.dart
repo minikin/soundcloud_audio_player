@@ -11,18 +11,18 @@ class PainterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: sharedAppBar(context, "Waveform Painter"),
+      appBar: sharedAppBar(context, 'Waveform Painter'),
       //
       bottomNavigationBar: sharedBottomAppBar(context),
       //
       body: Center(
         child: FutureBuilder<Waveform>(
-          future: loadWaveformData("oneshot.json"),
+          future: loadWaveformData('minikin_acid.json'),
           builder: (context, AsyncSnapshot<Waveform> snapshot) {
             if (snapshot.hasData) {
               return PaintedWaveform(sampleData: snapshot.data);
             } else if (snapshot.hasError) {
-              return Text("Error ${snapshot.error}",
+              return Text('Error ${snapshot.error}',
                   style: TextStyle(color: Colors.red));
             }
             return CircularProgressIndicator();

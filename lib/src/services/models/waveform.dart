@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:audio/src/services/serializers/serializers.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter/painting.dart';
@@ -24,6 +23,8 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
   int get length;
   int get sampleRate;
   int get sampleSize;
+
+  @memoized
   List<double> get scaledData;
   int get version;
 
@@ -43,7 +44,7 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
       return ((data.length.toDouble() / 2) * percent).floor();
     }
 
-    int idx = ((data.length.toDouble() / 2) * (percent / 100)).floor();
+    var idx = ((data.length.toDouble() / 2) * (percent / 100)).floor();
     final maxIdx = (data.length.toDouble() / 2 * 0.98).floor();
     if (idx > maxIdx) {
       idx = maxIdx;
@@ -53,7 +54,7 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
 
   Path path(
     Size size, {
-    zoomLevel = 1.0,
+    double zoomLevel = 1.0,
     int fromFrame = 0,
   }) {
     if (!_isDataScaled()) {
@@ -72,11 +73,11 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
 
     // buffer so we can't start too far in the waveform, 90% max
     if (fromFrame * 2 > (data.length * 0.98).floor()) {
-      print("from frame is too far at $fromFrame");
+      print('from frame is too far at $fromFrame');
       fromFrame = ((data.length / 2) * 0.98).floor();
     }
 
-    int endFrame = (fromFrame * 2 +
+    final endFrame = (fromFrame * 2 +
             ((scaledData.length - fromFrame * 2) * (1.0 - (zoomLevel / 100))))
         .floor();
     final list = scaledData;
@@ -90,7 +91,8 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     return scaledData;
   }
 
-  // get the frame position at a specific percent of the waveform. Can use a 0-1 or 0-100 range.
+  // get the frame position at a specific percent of the waveform.
+  // Can use a 0-1 or 0-100 range.
   String toJson() {
     return json.encode(serializers.serializeWith(Waveform.serializer, this));
   }
@@ -106,14 +108,14 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     final middle = size.height / 2;
     var i = 0;
 
-    List<Offset> minPoints = [];
-    List<Offset> maxPoints = [];
+    final minPoints = [];
+    final maxPoints = [];
 
     final t = size.width / samples.length;
-    for (var _i = 0, _len = samples.length; _i < _len; _i++) {
-      var d = samples[_i];
+    for (var j = 0; j < samples.length; j++) {
+      final d = samples[j];
 
-      if (_i % 2 != 0) {
+      if (j % 2 != 0) {
         minPoints.add(Offset(t * i, middle - middle * d));
       } else {
         maxPoints.add(Offset(t * i, middle - middle * d));
@@ -141,7 +143,7 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
   }
 
   // scale the data from int values to float
-  _scaleData() {
+  void _scaleData() {
     final max = pow(2, bits - 1).toDouble();
     final dataSize = data.length;
 

@@ -9,9 +9,9 @@ class ClipperView extends StatelessWidget {
   const ClipperView({Key key}) : super(key: key);
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: sharedAppBar(context, "Waveform Clipper"),
+      appBar: sharedAppBar(context, 'Waveform Clipper'),
       bottomNavigationBar: sharedBottomAppBar(context),
       body: Center(
         child: Column(
@@ -21,14 +21,14 @@ class ClipperView extends StatelessWidget {
               child: Container(
                 color: Colors.grey[900],
                 child: FutureBuilder<Waveform>(
-                  future: loadWaveformData("loop.json"),
+                  future: loadWaveformData('minikin_acid'),
                   builder: (context, AsyncSnapshot<Waveform> snapshot) {
                     if (snapshot.hasData) {
                       return LayoutBuilder(
                           builder: (context, BoxConstraints constraints) {
                         // adjust the shape based on parent's orientation/shape
                         // the waveform should always be wider than taller
-                        var height;
+                        double height;
                         if (constraints.maxWidth < constraints.maxHeight) {
                           height = constraints.maxWidth;
                         } else {
@@ -55,7 +55,7 @@ class ClipperView extends StatelessWidget {
                         );
                       });
                     } else if (snapshot.hasError) {
-                      return Text("Error ${snapshot.error}",
+                      return Text('Error ${snapshot.error}',
                           style: TextStyle(color: Colors.red));
                     }
                     return CircularProgressIndicator();

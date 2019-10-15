@@ -15,11 +15,11 @@ class PaintedWaveform extends StatefulWidget {
 }
 
 class _PaintedWaveformState extends State<PaintedWaveform> {
-  var startPosition = 1.0;
-  var zoomLevel = 1.0;
+  var _startPosition = 1.0;
+  var _zoomLevel = 1.0;
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return Container(
       color: Colors.black87,
       child: Column(
@@ -31,7 +31,7 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
               builder: (context, BoxConstraints constraints) {
                 // adjust the shape based on parent's orientation/shape
                 // the waveform should always be wider than taller
-                var height;
+                double height;
                 if (constraints.maxWidth < constraints.maxHeight) {
                   height = constraints.maxWidth;
                 } else {
@@ -50,9 +50,9 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
                           color: Color(
                             0xff3994DB,
                           ),
-                          zoomLevel: zoomLevel,
+                          zoomLevel: _zoomLevel,
                           startingFrame: widget.sampleData
-                              .frameIdxFromPercent(startPosition),
+                              .frameIdxFromPercent(_startPosition),
                           data: widget.sampleData,
                         ),
                       ),
@@ -69,9 +69,9 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
               max: 95.0,
               divisions: 42,
               onChanged: (newzoomLevel) {
-                setState(() => zoomLevel = newzoomLevel);
+                setState(() => _zoomLevel = newzoomLevel);
               },
-              value: zoomLevel,
+              value: _zoomLevel,
             ),
           ),
           Flexible(
@@ -81,9 +81,9 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
               max: 95.0,
               divisions: 42,
               onChanged: (newstartPosition) {
-                setState(() => startPosition = newstartPosition);
+                setState(() => _startPosition = newstartPosition);
               },
-              value: startPosition,
+              value: _startPosition,
             ),
           )
         ],

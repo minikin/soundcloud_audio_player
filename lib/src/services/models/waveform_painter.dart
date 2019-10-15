@@ -42,7 +42,7 @@ class WaveformPainter extends CustomPainter {
   @override
   bool shouldRepaint(WaveformPainter oldDelegate) {
     if (oldDelegate.data != data) {
-      debugPrint("Redrawing");
+      debugPrint('Redrawing');
       return true;
     }
     return false;
