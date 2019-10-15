@@ -1,5 +1,7 @@
 # SoundCloud style audio player in Flutter
 
+[![Build Status](https://app.bitrise.io/app/474b5771151802eb/status.svg?token=4s7obPnI_yciJHHVwQG_Bg&branch=develop)](https://app.bitrise.io/app/474b5771151802eb)
+
 - [SoundCloud style audio player in Flutter](#soundcloud-style-audio-player-in-flutter)
   - [Features](#features)
   - [Requirements](#requirements)
