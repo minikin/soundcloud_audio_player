@@ -25,7 +25,8 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
   int get sampleSize;
 
   @memoized
-  List<double> get scaledData;
+  List<double> scaledData;
+
   int get version;
 
   int frameIdxFromPercent(double percent) {
@@ -91,8 +92,6 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     return scaledData;
   }
 
-  // get the frame position at a specific percent of the waveform.
-  // Can use a 0-1 or 0-100 range.
   String toJson() {
     return json.encode(serializers.serializeWith(Waveform.serializer, this));
   }
@@ -137,12 +136,6 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     return path;
   }
 
-  static Waveform fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Waveform.serializer, json.decode(jsonString));
-  }
-
-  // scale the data from int values to float
   void _scaleData() {
     final max = pow(2, bits - 1).toDouble();
     final dataSize = data.length;
@@ -160,5 +153,10 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
         scaledData[i] = -1.0;
       }
     }
+  }
+
+  static Waveform fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        Waveform.serializer, json.decode(jsonString));
   }
 }
