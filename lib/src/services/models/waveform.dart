@@ -57,7 +57,7 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     int fromFrame = 0,
   }) {
     if (!_isDataScaled()) {
-      //scaleData();
+      _scaleData();
     }
 
     if (zoomLevel == null || zoomLevel < 1.0) {
@@ -83,12 +83,12 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     return _path(list.sublist(fromFrame * 2, endFrame), size);
   }
 
-  // List<double> scaledData() {
-  //   if (!_isDataScaled()) {
-  //     scaledData();
-  //   }
-  //   return scaledData;
-  // }
+  List<double> scaledData1() {
+    if (!_isDataScaled()) {
+      _scaleData();
+    }
+    return scaledData;
+  }
 
   // get the frame position at a specific percent of the waveform. Can use a 0-1 or 0-100 range.
   String toJson() {
@@ -141,24 +141,22 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
   }
 
   // scale the data from int values to float
-  // scaleData() {
-  //   final max = pow(2, bits - 1).toDouble();
-  //   final dataSize = data.length;
+  _scaleData() {
+    final max = pow(2, bits - 1).toDouble();
+    final dataSize = data.length;
 
-  //   _scaledData = _scaledData.rebuild((b) => b
-  //     ..clear()
-  //     ..addAll([dataSize as double]));
+    scaledData = List<double>(dataSize);
 
-  //   for (var i = 0; i < dataSize; i++) {
-  //     _scaledData.elementAt(i) = data[i].toDouble() / max;
+    for (var i = 0; i < dataSize; i++) {
+      scaledData[i] = data[i].toDouble() / max;
 
-  //     if (_scaledData[i] > 1.0) {
-  //       _scaledData[i] = 1.0;
-  //     }
+      if (scaledData[i] > 1.0) {
+        scaledData[i] = 1.0;
+      }
 
-  //     if (_scaledData[i] < -1.0) {
-  //       _scaledData[i] = -1.0;
-  //     }
-  //   }
-  // }
+      if (scaledData[i] < -1.0) {
+        scaledData[i] = -1.0;
+      }
+    }
+  }
 }
