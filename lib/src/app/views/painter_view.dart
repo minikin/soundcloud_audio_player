@@ -1,5 +1,7 @@
 import 'package:audio/src/app/widgets/app_bar.dart';
 import 'package:audio/src/app/widgets/bottom_app_bar.dart';
+import 'package:audio/src/app/widgets/painted_waveform.dart';
+import 'package:audio/src/services/models/waveform.dart';
 import 'package:audio/src/services/utils/waveform_loader.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +16,7 @@ class PainterView extends StatelessWidget {
       bottomNavigationBar: sharedBottomAppBar(context),
       //
       body: Center(
-        child: FutureBuilder<WaveformData>(
+        child: FutureBuilder<Waveform>(
           future: loadWaveformData("oneshot.json"),
           builder: (context, AsyncSnapshot<Waveform> snapshot) {
             if (snapshot.hasData) {

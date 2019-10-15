@@ -3,21 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class WaveformPainter extends CustomPainter {
-  static const _defaultColor = Color.fromRGBO(69, 162, 158, 1);
-  final Waveform data;
-  final int startingFrame;
-  final double zoomLevel;
   final Color color;
   final double strokeWidth;
-
+  final double zoomLevel;
+  final int startingFrame;
+  final Waveform data;
   Paint painter;
+  static const _defaultColor = Color.fromRGBO(69, 162, 158, 1);
 
   WaveformPainter({
-    this.data,
-    this.strokeWidth = 1,
-    this.startingFrame = 0,
-    this.zoomLevel = 1,
     this.color = _defaultColor,
+    this.strokeWidth = 1,
+    this.zoomLevel = 1,
+    this.startingFrame = 0,
+    this.data,
   }) {
     painter = Paint()
       ..style = PaintingStyle.fill
