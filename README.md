@@ -40,7 +40,7 @@ If you have any questions ping me on twitter: [@minikin](https://twitter.com/min
 Audio to json
 
 ```sh
-audiowaveform -i acid.mp3 -o acid.json
+audiowaveform -i acid.mp3 -o acid.json -z 128
 ```
 
 ## License
