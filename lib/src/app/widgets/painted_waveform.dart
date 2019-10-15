@@ -24,7 +24,7 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
       color: Colors.black87,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
+        children: [
           Flexible(
             flex: 4,
             child: LayoutBuilder(

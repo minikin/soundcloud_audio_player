@@ -2,7 +2,6 @@ import 'package:audio/src/app/widgets/app_bar.dart';
 import 'package:audio/src/app/widgets/bottom_app_bar.dart';
 import 'package:audio/src/services/models/waveform.dart';
 import 'package:audio/src/services/models/waveform_clipper.dart';
-import 'package:audio/src/services/utils/waveform_loader.dart';
 import 'package:flutter/material.dart';
 
 class ClipperView extends StatelessWidget {
@@ -16,14 +15,15 @@ class ClipperView extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Flexible(
               child: Container(
                 color: Colors.grey[900],
                 child: FutureBuilder<Waveform>(
-                  future: loadWaveformData('minikin_acid'),
+                  future: Waveform.loadWaveformData('minikin_acid.json'),
                   builder: (context, AsyncSnapshot<Waveform> snapshot) {
                     if (snapshot.hasData) {
+                      print(snapshot);
                       return LayoutBuilder(
                           builder: (context, BoxConstraints constraints) {
                         // adjust the shape based on parent's orientation/shape

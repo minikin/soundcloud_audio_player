@@ -9,7 +9,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Waveform',
+      title: 'SoundCloud Player in Flutter/Dart',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

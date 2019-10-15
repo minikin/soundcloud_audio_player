@@ -4,28 +4,38 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:audio/src/services/serializers/serializers.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 
 part 'waveform.g.dart';
 
 abstract class Waveform implements Built<Waveform, WaveformBuilder> {
   static Serializer<Waveform> get serializer => _$waveformSerializer;
 
-  factory Waveform([updates(WaveformBuilder b)]) = _$Waveform;
+  factory Waveform([void Function(WaveformBuilder) updates]) = _$Waveform;
 
   Waveform._();
 
   int get bits;
+
   int get channels;
-  List<int> get data;
+
+  @nullable
+  BuiltList<int> get data;
+
   int get length;
+
+  @BuiltValueField(wireName: 'sample_rate')
   int get sampleRate;
+
+  @BuiltValueField(wireName: 'samples_per_pixel')
   int get sampleSize;
 
-  @memoized
-  List<double> scaledData;
+  @nullable
+  List<double> get scaledData;
 
   int get version;
 
@@ -35,13 +45,13 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     }
 
     // if the scale is 0-1.0
-    if (percent < 0.0) {
-      percent = 0.0;
-    } else if (percent > 100.0) {
-      percent = 100.0;
+    if (percent < 0) {
+      percent = 0;
+    } else if (percent > 100) {
+      percent = 100;
     }
 
-    if (percent > 0.0 && percent < 1.0) {
+    if (percent > 0 && percent < 1) {
       return ((data.length.toDouble() / 2) * percent).floor();
     }
 
@@ -55,17 +65,17 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
 
   Path path(
     Size size, {
-    double zoomLevel = 1.0,
+    double zoomLevel = 1,
     int fromFrame = 0,
   }) {
     if (!_isDataScaled()) {
       _scaleData();
     }
 
-    if (zoomLevel == null || zoomLevel < 1.0) {
-      zoomLevel = 1.0;
-    } else if (zoomLevel > 100.0) {
-      zoomLevel = 100.0;
+    if (zoomLevel == null || zoomLevel < 1) {
+      zoomLevel = 1;
+    } else if (zoomLevel > 100) {
+      zoomLevel = 100;
     }
 
     if (zoomLevel == 1.0 && fromFrame == 0) {
@@ -83,13 +93,6 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
         .floor();
     final list = scaledData;
     return _path(list.sublist(fromFrame * 2, endFrame), size);
-  }
-
-  List<double> scaledData1() {
-    if (!_isDataScaled()) {
-      _scaleData();
-    }
-    return scaledData;
   }
 
   String toJson() {
@@ -139,24 +142,29 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
   void _scaleData() {
     final max = pow(2, bits - 1).toDouble();
     final dataSize = data.length;
-
-    scaledData = List<double>(dataSize);
+    final preScaledData = List<double>(dataSize);
 
     for (var i = 0; i < dataSize; i++) {
-      scaledData[i] = data[i].toDouble() / max;
+      preScaledData[i] = data[i].toDouble() / max;
 
-      if (scaledData[i] > 1.0) {
-        scaledData[i] = 1.0;
+      if (preScaledData[i] > 1) {
+        preScaledData[i] = 1;
       }
 
-      if (scaledData[i] < -1.0) {
-        scaledData[i] = -1.0;
+      if (preScaledData[i] < -1) {
+        preScaledData[i] = -1;
       }
     }
+    this.rebuild((b) => b.scaledData = preScaledData);
   }
 
   static Waveform fromJson(String jsonString) {
     return serializers.deserializeWith(
         Waveform.serializer, json.decode(jsonString));
+  }
+
+  static Future<Waveform> loadWaveformData(String filename) async {
+    final data = await rootBundle.loadString('assets/waveforms/$filename');
+    return Waveform.fromJson(data);
   }
 }

@@ -7,7 +7,7 @@ BottomAppBar sharedBottomAppBar(
     child: Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
+      children: [
         IconButton(
           icon: Icon(Icons.content_cut),
           onPressed: () {
