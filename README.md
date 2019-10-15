@@ -1,11 +1,12 @@
-# Audio/ Audio Waveforms with Flutter Demo Project
+# SoundCloud style audio player in Flutter
 
-- [Audio/ Audio Waveforms with Flutter Demo Project](#audio-with-flutter-demo-project)
+- [SoundCloud style audio player in Flutter](#soundcloud-style-audio-player-in-flutter)
   - [Features](#features)
   - [Requirements](#requirements)
   - [Develop](#develop)
   - [FAQ](#faq)
   - [Helpers](#helpers)
+  - [License](#license)
 
 ## Features
 
@@ -40,7 +41,7 @@ Audio to json
 audiowaveform -i acid.mp3 -o acid.json
 ```
 
-## License 
+## License
 
 This project is licensed under the MIT.
 
