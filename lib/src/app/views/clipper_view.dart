@@ -5,13 +5,6 @@ import 'package:flutter/material.dart';
 
 final _files = [
   'minikin_past.json',
-  'minikin_past.json',
-  'minikin_past.json',
-  'minikin_past.json',
-  'minikin_past.json',
-  'minikin_past.json',
-  'minikin_past.json',
-  'minikin_past.json',
 ];
 
 class ClipperView extends StatelessWidget {
@@ -54,22 +47,118 @@ class ClipperView extends StatelessWidget {
   }
 
   Widget _listItem(Waveform waveform) {
+    return Container(
+      color: Colors.grey[300],
+      padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+      width: double.infinity,
+      height: 300,
+      child: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            child: Container(
+              width: 330,
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _playButtom(),
+                  Container(
+                    width: 230,
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Artist Name',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            _actionButtom(icon: Icon(Icons.cloud_download)),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'Tune Name',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                            _actionButtom(icon: Icon(Icons.share)),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Positioned(
+          //   child: _waveformItem(waveform),
+          // ),
+        ],
+      ),
+    );
+  }
+
+  Widget _playButtom() {
+    return Center(
+      child: Container(
+        // child: Ink(
+        //   decoration: ShapeDecoration(
+        //     color: Colors.lightBlue,
+        //     shape: CircleBorder(),
+        //   ),
+        child: IconButton(
+          iconSize: 80,
+          icon: Icon(Icons.play_circle_filled),
+          color: Colors.grey,
+          splashColor: Colors.red,
+          onPressed: () {
+            print('filled background');
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _actionButtom({
+    @required Icon icon,
+  }) {
+    return Center(
+      child: Container(
+        child: Ink(
+          decoration: ShapeDecoration(
+            color: Colors.lightBlue,
+            shape: CircleBorder(),
+          ),
+          child: IconButton(
+            icon: icon,
+            color: Colors.grey,
+            onPressed: () {
+              print('filled background');
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _waveformItem(Waveform waveform) {
     return ClipPath(
       clipper: WaveformClipper(waveform),
       child: Container(
+        margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
         height: 100,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.1, 0.3, 0.9],
-            colors: [
-              Color(0xffFEAC5E),
-              Color(0xffC779D0),
-              Color(0xff4BC0C8),
-            ],
-          ),
-        ),
+        color: Colors.grey[600],
       ),
     );
   }

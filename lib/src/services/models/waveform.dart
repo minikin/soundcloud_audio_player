@@ -46,7 +46,9 @@ class Waveform {
         length: json['length'] == null ? null : json['length'],
         data: json['data'] == null
             ? null
-            : List<int>.from(json['data'].map((x) => x)),
+            : List<int>.from(
+                json['data'].map((x) => x),
+              ),
       );
 
   Map<String, dynamic> toMap() => {
@@ -64,14 +66,13 @@ class Waveform {
       return 0;
     }
 
-    // if the scale is 0-1.0
-    if (percent < 0.0) {
-      percent = 0.0;
-    } else if (percent > 100.0) {
-      percent = 100.0;
+    if (percent < 0) {
+      percent = 0;
+    } else if (percent > 100) {
+      percent = 100;
     }
 
-    if (percent > 0.0 && percent < 1.0) {
+    if (percent > 0.0 && percent < 1) {
       return ((data.length.toDouble() / 2) * percent).floor();
     }
 
@@ -88,24 +89,23 @@ class Waveform {
       _scaleData();
     }
 
-    if (zoomLevel == null || zoomLevel < 1.0) {
+    if (zoomLevel == null || zoomLevel < 1) {
       zoomLevel = 1.0;
-    } else if (zoomLevel > 100.0) {
-      zoomLevel = 100.0;
+    } else if (zoomLevel > 100) {
+      zoomLevel = 100;
     }
 
     if (zoomLevel == 1.0 && fromFrame == 0) {
       return _path(_scaledData, size);
     }
 
-    // buffer so we can't start too far in the waveform, 90% max
     if (fromFrame * 2 > (data.length * 0.98).floor()) {
       debugPrint('from frame is too far at $fromFrame');
       fromFrame = ((data.length / 2) * 0.98).floor();
     }
 
     final endFrame = (fromFrame * 2 +
-            ((_scaledData.length - fromFrame * 2) * (1.0 - (zoomLevel / 100))))
+            ((_scaledData.length - fromFrame * 2) * (1 - (zoomLevel / 100))))
         .floor();
 
     return _path(_scaledData.sublist(fromFrame * 2, endFrame), size);
@@ -153,11 +153,11 @@ class Waveform {
     _scaledData = List<double>(dataSize);
     for (var i = 0; i < dataSize; i++) {
       _scaledData[i] = data[i].toDouble() / max;
-      if (_scaledData[i] > 1.0) {
-        _scaledData[i] = 1.0;
+      if (_scaledData[i] > 1) {
+        _scaledData[i] = 1;
       }
-      if (_scaledData[i] < -1.0) {
-        _scaledData[i] = -1.0;
+      if (_scaledData[i] < -1) {
+        _scaledData[i] = -1;
       }
     }
   }
@@ -169,11 +169,10 @@ class Waveform {
 
   static Future<List<Waveform>> loadWaveformDataList(
       List<String> fileList) async {
-    final waveformList = [];
+    List<Waveform> waveformList = [];
 
     for (final fileName in fileList) {
-      final item = loadWaveformDataItem(fileName);
-
+      final item = await loadWaveformDataItem(fileName);
       waveformList.add(item);
     }
 
