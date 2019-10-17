@@ -14,6 +14,8 @@ AppBar sharedAppBar(
   }
   return AppBar(
     backgroundColor: backgroundColor,
+    brightness: Brightness.light,
+    elevation: 1,
     title: Text(
       title,
       style: Theme.of(context).textTheme.title.copyWith(color: textColor),

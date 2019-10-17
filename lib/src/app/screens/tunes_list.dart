@@ -1,31 +1,29 @@
 import 'package:audio/src/app/widgets/app_bar.dart';
+import 'package:audio/src/services/models/tune.dart';
 import 'package:audio/src/services/models/waveform.dart';
 import 'package:audio/src/services/models/waveform_clipper.dart';
+import 'package:audio/src/services/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-final _files = [
-  'minikin_past.json',
-];
-
-class ClipperView extends StatelessWidget {
-  const ClipperView({Key key}) : super(key: key);
+class TunesList extends StatelessWidget {
+  const TunesList({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: sharedAppBar(context, 'Waveform'),
+      appBar: sharedAppBar(context, 'Music'),
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(8),
           color: Colors.grey[100],
           child: FutureBuilder<List<Waveform>>(
-            future: Waveform.loadWaveformDataList(_files),
+            future: Waveform.loadWaveformDataList(files),
             builder: (context, AsyncSnapshot<List<Waveform>> snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
-                  itemCount: _files.length,
+                  itemCount: files.length,
                   itemBuilder: (context, index) {
-                    return _listItem(snapshot.data[index]);
+                    return _listItem(snapshot.data[index], tunes[index]);
                   },
                 );
               } else if (snapshot.hasError) {
@@ -46,14 +44,24 @@ class ClipperView extends StatelessWidget {
     );
   }
 
-  Widget _listItem(Waveform waveform) {
+  Widget _listItem(
+    Waveform waveform,
+    Tune tune,
+  ) {
     return Container(
-      color: Colors.grey[300],
       padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
       width: double.infinity,
       height: 300,
       child: Stack(
         children: [
+          Image.network(
+            tune.artwork,
+            fit: BoxFit.cover,
+            height: 300,
+            width: double.infinity,
+            color: Colors.black38,
+            colorBlendMode: BlendMode.hardLight,
+          ),
           Positioned(
             top: 0,
             child: Container(
@@ -69,14 +77,14 @@ class ClipperView extends StatelessWidget {
                           height: 30,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Artist Name',
+                                  tune.artist,
                                   style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
                               ),
@@ -88,13 +96,13 @@ class ClipperView extends StatelessWidget {
                           height: 30,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Expanded(
                                 child: Text(
-                                  'Tune Name',
+                                  tune.title,
                                   style: TextStyle(
                                     fontSize: 16,
+                                    color: Colors.grey[300],
                                   ),
                                 ),
                               ),
@@ -110,12 +118,9 @@ class ClipperView extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 5,
-            left: 25,
-            child: Text('demo'),
-          ),
-          Positioned(
-            bottom: 5,
+            bottom: -45,
+            left: 8,
+            right: 8,
             child: _waveformItem(waveform),
           ),
         ],
@@ -129,8 +134,7 @@ class ClipperView extends StatelessWidget {
         child: IconButton(
           iconSize: 80,
           icon: Icon(Icons.play_circle_filled),
-          color: Colors.grey,
-          splashColor: Colors.red,
+          color: Colors.orange,
           onPressed: () {
             print('filled background');
           },
@@ -146,12 +150,12 @@ class ClipperView extends StatelessWidget {
       child: Container(
         child: Ink(
           decoration: ShapeDecoration(
-            color: Colors.lightBlue,
+            color: Colors.orange,
             shape: CircleBorder(),
           ),
           child: IconButton(
             icon: icon,
-            color: Colors.grey,
+            color: Colors.orange,
             onPressed: () {
               print('filled background');
             },
@@ -165,9 +169,19 @@ class ClipperView extends StatelessWidget {
     return ClipPath(
       clipper: WaveformClipper(waveform),
       child: Container(
-        margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-        height: 100,
-        color: Colors.grey[600],
+        height: 200,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            stops: [0.1, 0.5],
+            colors: [
+              Colors.orange,
+              Colors.grey,
+            ],
+            tileMode: TileMode.mirror,
+          ),
+        ),
       ),
     );
   }
