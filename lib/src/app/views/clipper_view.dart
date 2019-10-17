@@ -58,41 +58,49 @@ class ClipperView extends StatelessWidget {
             top: 0,
             child: Container(
               width: 330,
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _playButtom(),
                   Container(
                     width: 230,
                     child: Column(
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Artist Name',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
+                        Container(
+                          height: 30,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Artist Name',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
-                            ),
-                            _actionButtom(icon: Icon(Icons.cloud_download)),
-                          ],
+                              _actionButtom(icon: Icon(Icons.cloud_download)),
+                            ],
+                          ),
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Tune Name',
-                              style: TextStyle(
-                                fontSize: 18,
+                        Container(
+                          height: 30,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Expanded(
+                                child: Text(
+                                  'Tune Name',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
                               ),
-                            ),
-                            _actionButtom(icon: Icon(Icons.share)),
-                          ],
+                              _actionButtom(icon: Icon(Icons.share)),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -101,9 +109,15 @@ class ClipperView extends StatelessWidget {
               ),
             ),
           ),
-          // Positioned(
-          //   child: _waveformItem(waveform),
-          // ),
+          Positioned(
+            bottom: 5,
+            left: 25,
+            child: Text('demo'),
+          ),
+          Positioned(
+            bottom: 5,
+            child: _waveformItem(waveform),
+          ),
         ],
       ),
     );
@@ -112,11 +126,6 @@ class ClipperView extends StatelessWidget {
   Widget _playButtom() {
     return Center(
       child: Container(
-        // child: Ink(
-        //   decoration: ShapeDecoration(
-        //     color: Colors.lightBlue,
-        //     shape: CircleBorder(),
-        //   ),
         child: IconButton(
           iconSize: 80,
           icon: Icon(Icons.play_circle_filled),
