@@ -1,3 +1,4 @@
+// ignore_for_file: omit_local_variable_types
 library waveform_response;
 
 import 'dart:convert';
@@ -53,7 +54,7 @@ abstract class WaveformResponse
 
   static Future<List<WaveformResponse>> loadWaveformDataList(
       List<String> fileList) async {
-    List<WaveformResponse> waveformList = [];
+    final List<WaveformResponse> waveformList = [];
 
     for (final fileName in fileList) {
       final item = await loadWaveformDataItem(fileName);

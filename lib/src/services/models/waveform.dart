@@ -84,7 +84,11 @@ class Waveform {
     return idx;
   }
 
-  Path path(Size size, {zoomLevel = 1.0, int fromFrame = 0}) {
+  Path path(
+    Size size, {
+    double zoomLevel = 1.0,
+    int fromFrame = 0,
+  }) {
     if (!_isDataScaled()) {
       _scaleData();
     }
