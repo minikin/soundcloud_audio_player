@@ -2,6 +2,7 @@ import 'package:audio/src/app/widgets/app_bar.dart';
 import 'package:audio/src/services/models/tune.dart';
 import 'package:audio/src/services/models/waveform.dart';
 import 'package:audio/src/services/models/waveform_clipper.dart';
+import 'package:audio/src/services/models/waveform_response.dart';
 import 'package:audio/src/services/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -16,14 +17,15 @@ class TunesList extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(8),
           color: Colors.grey[100],
-          child: FutureBuilder<List<Waveform>>(
-            future: Waveform.loadWaveformDataList(files),
-            builder: (context, AsyncSnapshot<List<Waveform>> snapshot) {
+          child: FutureBuilder<List<WaveformResponse>>(
+            future: WaveformResponse.loadWaveformDataList(files),
+            builder: (context, AsyncSnapshot<List<WaveformResponse>> snapshot) {
               if (snapshot.hasData) {
+                final waveforms = Waveform.toWaveformList(snapshot.data);
                 return ListView.builder(
                   itemCount: files.length,
                   itemBuilder: (context, index) {
-                    return _listItem(snapshot.data[index], tunes[index]);
+                    return _listItem(waveforms[index], tunes[index]);
                   },
                 );
               } else if (snapshot.hasError) {
