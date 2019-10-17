@@ -29,8 +29,6 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
             flex: 4,
             child: LayoutBuilder(
               builder: (context, BoxConstraints constraints) {
-                // adjust the shape based on parent's orientation/shape
-                // the waveform should always be wider than taller
                 double height;
                 if (constraints.maxWidth < constraints.maxHeight) {
                   height = constraints.maxWidth;
@@ -65,8 +63,8 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
           Flexible(
             child: Slider(
               activeColor: Colors.indigoAccent,
-              min: 1.0,
-              max: 95.0,
+              min: 1,
+              max: 95,
               divisions: 42,
               onChanged: (newzoomLevel) {
                 setState(() => _zoomLevel = newzoomLevel);
@@ -77,8 +75,8 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
           Flexible(
             child: Slider(
               activeColor: Colors.indigoAccent,
-              min: 1.0,
-              max: 95.0,
+              min: 1,
+              max: 95,
               divisions: 42,
               onChanged: (newstartPosition) {
                 setState(() => _startPosition = newstartPosition);
