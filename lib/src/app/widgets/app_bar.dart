@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
-AppBar sharedAppBar(BuildContext context, String title,
-    {Color backgroundColor, Color textColor}) {
+AppBar sharedAppBar(
+  BuildContext context,
+  String title, {
+  Color backgroundColor,
+  Color textColor,
+}) {
   if (backgroundColor == null) {
-    backgroundColor = Color(0xff4BC0C8);
+    backgroundColor = Colors.white;
   }
   if (textColor == null) {
-    textColor = Colors.grey[900];
+    textColor = Colors.black;
   }
   return AppBar(
     backgroundColor: backgroundColor,

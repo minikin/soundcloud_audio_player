@@ -134,9 +134,7 @@ class Waveform {
     final path = Path();
     path.moveTo(0, middle);
     maxPoints.forEach((o) => path.lineTo(o.dx, o.dy));
-    // back to zero
     path.lineTo(size.width, middle);
-    // draw the minimums backwards so we can fill the shape when done.
     minPoints.reversed
         .forEach((o) => path.lineTo(o.dx, middle - (middle - o.dy)));
 
@@ -164,9 +162,22 @@ class Waveform {
     }
   }
 
-  static Future<Waveform> loadWaveformData(String filename) async {
+  static Future<Waveform> loadWaveformDataItem(String filename) async {
     final data = await rootBundle.loadString('assets/waveforms/$filename');
     return Waveform.fromJson(data);
+  }
+
+  static Future<List<Waveform>> loadWaveformDataList(
+      List<String> fileList) async {
+    final waveformList = [];
+
+    for (final fileName in fileList) {
+      final item = loadWaveformDataItem(fileName);
+
+      waveformList.add(item);
+    }
+
+    return waveformList;
   }
 }
 

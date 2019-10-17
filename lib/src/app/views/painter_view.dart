@@ -14,7 +14,7 @@ class PainterView extends StatelessWidget {
       bottomNavigationBar: sharedBottomAppBar(context),
       body: Center(
         child: FutureBuilder<Waveform>(
-          future: Waveform.loadWaveformData('minikin_acid.json'),
+          future: Waveform.loadWaveformDataItem('minikin_acid.json'),
           builder: (context, AsyncSnapshot<Waveform> snapshot) {
             if (snapshot.hasData) {
               return PaintedWaveform(sampleData: snapshot.data);
