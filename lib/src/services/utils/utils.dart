@@ -6,7 +6,7 @@ final List<Tune> tunes = [
       ..artist = 'Minikin'
       ..title = 'Acid Rain'
       ..artwork = 'assets/artworks/1.jpeg'
-      ..waveformDataPath = 'minikin_past.json',
+      ..waveformDataPath = 'minikin_raw.json',
   ),
   Tune(
     (b) => b
@@ -20,6 +20,6 @@ final List<Tune> tunes = [
       ..artist = 'Minikin'
       ..title = 'Brng4'
       ..artwork = 'assets/artworks/3.jpeg'
-      ..waveformDataPath = 'minikin_acid.json',
+      ..waveformDataPath = 'minikin_past.json',
   ),
 ];

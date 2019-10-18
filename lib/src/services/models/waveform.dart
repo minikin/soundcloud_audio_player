@@ -35,17 +35,12 @@ class Waveform {
     return idx;
   }
 
-  bool jsDataScaled() {
-    return _scaledData != null &&
-        _scaledData.length == waveformResponse.data.length;
-  }
-
   Path path(
     Size size, {
     double zoomLevel = 1,
     int fromFrame = 0,
   }) {
-    if (!jsDataScaled()) {
+    if (!_isDataScaled()) {
       _scaleData();
     }
 
@@ -69,6 +64,11 @@ class Waveform {
         .floor();
 
     return _path(_scaledData.sublist(fromFrame * 2, endFrame), size);
+  }
+
+  bool _isDataScaled() {
+    return _scaledData != null &&
+        _scaledData.length == waveformResponse.data.length;
   }
 
   Path _path(List<double> samples, Size size) {

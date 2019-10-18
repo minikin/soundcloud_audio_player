@@ -43,6 +43,10 @@ audiowaveform -i acid.mp3 -o acid.json -z 128
 ```
 
 ```sh
+audiowaveform -i raw.mp3 -o raw.json -z 512
+```
+
+```sh
 flutter create --org me.minikin.flutter .
 ```
 
