@@ -1,4 +1,3 @@
-import 'package:audio/src/app/screens/painter_view.dart';
 import 'package:audio/src/app/screens/tunes_list.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,6 @@ class MainScreen extends StatelessWidget {
       ),
       routes: {
         '/': (context) => TunesList(),
-        '/painter': (context) => PainterView(),
       },
     );
   }
