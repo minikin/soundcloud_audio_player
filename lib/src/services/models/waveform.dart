@@ -28,10 +28,13 @@ class Waveform {
 
     var idx = ((waveformResponse.data.length.toDouble() / 2) * (percent / 100))
         .floor();
+
     final maxIdx = (waveformResponse.data.length.toDouble() / 2 * 0.98).floor();
+
     if (idx > maxIdx) {
       idx = maxIdx;
     }
+
     return idx;
   }
 

@@ -15,7 +15,7 @@ class TunesList extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             color: Colors.grey[100],
             child: FutureBuilder<List<WaveformResponse>>(
               future: WaveformResponse.loadWaveformDataList(
@@ -43,7 +43,7 @@ class TunesList extends StatelessWidget {
                     ),
                   );
                 } else {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }
               },
             ),

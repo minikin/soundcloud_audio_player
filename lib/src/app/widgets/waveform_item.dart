@@ -25,7 +25,6 @@ class WaveFormItem extends StatelessWidget {
               Colors.orange,
               Colors.grey,
             ],
-            tileMode: TileMode.mirror,
           ),
         ),
       ),

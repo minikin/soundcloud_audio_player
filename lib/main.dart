@@ -1,4 +1,4 @@
 import 'package:audio/src/app/app.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(App());
+void main() => runApp(const App());
