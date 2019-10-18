@@ -20,7 +20,7 @@ class WaveFormItem extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            stops: [0.1, 0.5],
+            stops: [0.34, 0],
             colors: [
               Colors.orange,
               Colors.grey,
