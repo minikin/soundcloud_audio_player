@@ -106,6 +106,12 @@ class _PlayerItemState extends State<PlayerItem> {
   }
 
   @override
+  void initState() {
+    _onProgress();
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _audioPlayer.dispose();
     _playerIsPlaying = false;
@@ -175,5 +181,11 @@ class _PlayerItemState extends State<PlayerItem> {
       _playerIsPlaying = false;
       _pauseAudio();
     }
+  }
+
+  void _onProgress() {
+    _audioPlayer.onAudioPositionChanged.listen(
+      (Duration p) => {print('Current position: $p')},
+    );
   }
 }
