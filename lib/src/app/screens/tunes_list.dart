@@ -59,7 +59,7 @@ class TunesList extends StatelessWidget {
       height: 300,
       child: Stack(
         children: [
-          Image.network(
+          Image.asset(
             tune.artwork,
             fit: BoxFit.cover,
             height: 300,
