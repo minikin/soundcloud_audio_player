@@ -10,9 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^0.1.2
+  audioplayers: ^0.13.2
   built_collection: ^4.2.2
   built_value: ^6.7.1
+  cupertino_icons: ^0.1.2
 
 dev_dependencies:
   flutter_test:
