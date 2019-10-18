@@ -1,5 +1,4 @@
-import 'package:audio/src/app/views/clipper_view.dart';
-import 'package:audio/src/app/views/painter_view.dart';
+import 'package:audio/src/app/screens/tunes_list.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
@@ -14,8 +13,7 @@ class MainScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => ClipperView(),
-        '/painter': (context) => PainterView(),
+        '/': (context) => TunesList(),
       },
     );
   }

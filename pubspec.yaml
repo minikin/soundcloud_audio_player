@@ -4,7 +4,7 @@ description: SoundCloud style audio player in Flutter.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.5.0 <3.0.0'
+  sdk: ">=2.5.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -26,3 +26,4 @@ flutter:
   assets:
     - assets/waveforms/minikin_acid.json
     - assets/waveforms/minikin_past.json
+    - assets/waveforms/minikin_background.json

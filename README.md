@@ -34,13 +34,16 @@ _WIP_
 
 If you have any questions ping me on twitter: [@minikin](https://twitter.com/minikin)
 
-
 ## Helpers
 
 Audio to json
 
 ```sh
 audiowaveform -i acid.mp3 -o acid.json -z 128
+```
+
+```sh
+flutter create --org me.minikin.flutter .
 ```
 
 ## License

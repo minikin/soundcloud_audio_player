@@ -1,21 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of waveform;
+part of waveform_response;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Waveform> _$waveformSerializer = new _$WaveformSerializer();
+Serializer<WaveformResponse> _$waveformResponseSerializer =
+    new _$WaveformResponseSerializer();
 
-class _$WaveformSerializer implements StructuredSerializer<Waveform> {
+class _$WaveformResponseSerializer
+    implements StructuredSerializer<WaveformResponse> {
   @override
-  final Iterable<Type> types = const [Waveform, _$Waveform];
+  final Iterable<Type> types = const [WaveformResponse, _$WaveformResponse];
   @override
-  final String wireName = 'Waveform';
+  final String wireName = 'WaveformResponse';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Waveform object,
+  Iterable<Object> serialize(Serializers serializers, WaveformResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'bits',
@@ -23,6 +25,10 @@ class _$WaveformSerializer implements StructuredSerializer<Waveform> {
       'channels',
       serializers.serialize(object.channels,
           specifiedType: const FullType(int)),
+      'data',
+      serializers.serialize(object.data,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(int)])),
       'length',
       serializers.serialize(object.length, specifiedType: const FullType(int)),
       'sample_rate',
@@ -34,27 +40,15 @@ class _$WaveformSerializer implements StructuredSerializer<Waveform> {
       'version',
       serializers.serialize(object.version, specifiedType: const FullType(int)),
     ];
-    if (object.data != null) {
-      result
-        ..add('data')
-        ..add(serializers.serialize(object.data,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(int)])));
-    }
-    if (object.scaledData != null) {
-      result
-        ..add('scaledData')
-        ..add(serializers.serialize(object.scaledData,
-            specifiedType:
-                const FullType(List, const [const FullType(double)])));
-    }
+
     return result;
   }
 
   @override
-  Waveform deserialize(Serializers serializers, Iterable<Object> serialized,
+  WaveformResponse deserialize(
+      Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new WaveformBuilder();
+    final result = new WaveformResponseBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -88,12 +82,6 @@ class _$WaveformSerializer implements StructuredSerializer<Waveform> {
           result.sampleSize = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'scaledData':
-          result.scaledData = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(double)]))
-              as List<double>;
-          break;
         case 'version':
           result.version = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
@@ -105,7 +93,7 @@ class _$WaveformSerializer implements StructuredSerializer<Waveform> {
   }
 }
 
-class _$Waveform extends Waveform {
+class _$WaveformResponse extends WaveformResponse {
   @override
   final int bits;
   @override
@@ -119,61 +107,62 @@ class _$Waveform extends Waveform {
   @override
   final int sampleSize;
   @override
-  final List<double> scaledData;
-  @override
   final int version;
 
-  factory _$Waveform([void Function(WaveformBuilder) updates]) =>
-      (new WaveformBuilder()..update(updates)).build();
+  factory _$WaveformResponse(
+          [void Function(WaveformResponseBuilder) updates]) =>
+      (new WaveformResponseBuilder()..update(updates)).build();
 
-  _$Waveform._(
+  _$WaveformResponse._(
       {this.bits,
       this.channels,
       this.data,
       this.length,
       this.sampleRate,
       this.sampleSize,
-      this.scaledData,
       this.version})
       : super._() {
     if (bits == null) {
-      throw new BuiltValueNullFieldError('Waveform', 'bits');
+      throw new BuiltValueNullFieldError('WaveformResponse', 'bits');
     }
     if (channels == null) {
-      throw new BuiltValueNullFieldError('Waveform', 'channels');
+      throw new BuiltValueNullFieldError('WaveformResponse', 'channels');
+    }
+    if (data == null) {
+      throw new BuiltValueNullFieldError('WaveformResponse', 'data');
     }
     if (length == null) {
-      throw new BuiltValueNullFieldError('Waveform', 'length');
+      throw new BuiltValueNullFieldError('WaveformResponse', 'length');
     }
     if (sampleRate == null) {
-      throw new BuiltValueNullFieldError('Waveform', 'sampleRate');
+      throw new BuiltValueNullFieldError('WaveformResponse', 'sampleRate');
     }
     if (sampleSize == null) {
-      throw new BuiltValueNullFieldError('Waveform', 'sampleSize');
+      throw new BuiltValueNullFieldError('WaveformResponse', 'sampleSize');
     }
     if (version == null) {
-      throw new BuiltValueNullFieldError('Waveform', 'version');
+      throw new BuiltValueNullFieldError('WaveformResponse', 'version');
     }
   }
 
   @override
-  Waveform rebuild(void Function(WaveformBuilder) updates) =>
+  WaveformResponse rebuild(void Function(WaveformResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  WaveformBuilder toBuilder() => new WaveformBuilder()..replace(this);
+  WaveformResponseBuilder toBuilder() =>
+      new WaveformResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Waveform &&
+    return other is WaveformResponse &&
         bits == other.bits &&
         channels == other.channels &&
         data == other.data &&
         length == other.length &&
         sampleRate == other.sampleRate &&
         sampleSize == other.sampleSize &&
-        scaledData == other.scaledData &&
         version == other.version;
   }
 
@@ -183,33 +172,31 @@ class _$Waveform extends Waveform {
         $jc(
             $jc(
                 $jc(
-                    $jc(
-                        $jc($jc($jc(0, bits.hashCode), channels.hashCode),
-                            data.hashCode),
-                        length.hashCode),
-                    sampleRate.hashCode),
-                sampleSize.hashCode),
-            scaledData.hashCode),
+                    $jc($jc($jc(0, bits.hashCode), channels.hashCode),
+                        data.hashCode),
+                    length.hashCode),
+                sampleRate.hashCode),
+            sampleSize.hashCode),
         version.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Waveform')
+    return (newBuiltValueToStringHelper('WaveformResponse')
           ..add('bits', bits)
           ..add('channels', channels)
           ..add('data', data)
           ..add('length', length)
           ..add('sampleRate', sampleRate)
           ..add('sampleSize', sampleSize)
-          ..add('scaledData', scaledData)
           ..add('version', version))
         .toString();
   }
 }
 
-class WaveformBuilder implements Builder<Waveform, WaveformBuilder> {
-  _$Waveform _$v;
+class WaveformResponseBuilder
+    implements Builder<WaveformResponse, WaveformResponseBuilder> {
+  _$WaveformResponse _$v;
 
   int _bits;
   int get bits => _$this._bits;
@@ -235,17 +222,13 @@ class WaveformBuilder implements Builder<Waveform, WaveformBuilder> {
   int get sampleSize => _$this._sampleSize;
   set sampleSize(int sampleSize) => _$this._sampleSize = sampleSize;
 
-  List<double> _scaledData;
-  List<double> get scaledData => _$this._scaledData;
-  set scaledData(List<double> scaledData) => _$this._scaledData = scaledData;
-
   int _version;
   int get version => _$this._version;
   set version(int version) => _$this._version = version;
 
-  WaveformBuilder();
+  WaveformResponseBuilder();
 
-  WaveformBuilder get _$this {
+  WaveformResponseBuilder get _$this {
     if (_$v != null) {
       _bits = _$v.bits;
       _channels = _$v.channels;
@@ -253,7 +236,6 @@ class WaveformBuilder implements Builder<Waveform, WaveformBuilder> {
       _length = _$v.length;
       _sampleRate = _$v.sampleRate;
       _sampleSize = _$v.sampleSize;
-      _scaledData = _$v.scaledData;
       _version = _$v.version;
       _$v = null;
     }
@@ -261,40 +243,39 @@ class WaveformBuilder implements Builder<Waveform, WaveformBuilder> {
   }
 
   @override
-  void replace(Waveform other) {
+  void replace(WaveformResponse other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Waveform;
+    _$v = other as _$WaveformResponse;
   }
 
   @override
-  void update(void Function(WaveformBuilder) updates) {
+  void update(void Function(WaveformResponseBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Waveform build() {
-    _$Waveform _$result;
+  _$WaveformResponse build() {
+    _$WaveformResponse _$result;
     try {
       _$result = _$v ??
-          new _$Waveform._(
+          new _$WaveformResponse._(
               bits: bits,
               channels: channels,
-              data: _data?.build(),
+              data: data.build(),
               length: length,
               sampleRate: sampleRate,
               sampleSize: sampleSize,
-              scaledData: scaledData,
               version: version);
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'data';
-        _data?.build();
+        data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'Waveform', _$failedField, e.toString());
+            'WaveformResponse', _$failedField, e.toString());
       }
       rethrow;
     }

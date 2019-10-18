@@ -1,62 +1,34 @@
-library waveform;
-
-import 'dart:convert';
+// ignore_for_file: omit_local_variable_types
 import 'dart:math';
 
-import 'package:audio/src/services/serializers/serializers.dart';
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/services.dart';
+import 'package:audio/src/services/models/waveform_response.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
 
-part 'waveform.g.dart';
+class Waveform {
+  final WaveformResponse waveformResponse;
+  List<double> _scaledData;
 
-abstract class Waveform implements Built<Waveform, WaveformBuilder> {
-  static Serializer<Waveform> get serializer => _$waveformSerializer;
-
-  factory Waveform([void Function(WaveformBuilder) updates]) = _$Waveform;
-
-  Waveform._();
-
-  int get bits;
-
-  int get channels;
-
-  @nullable
-  BuiltList<int> get data;
-
-  int get length;
-
-  @BuiltValueField(wireName: 'sample_rate')
-  int get sampleRate;
-
-  @BuiltValueField(wireName: 'samples_per_pixel')
-  int get sampleSize;
-
-  @nullable
-  List<double> get scaledData;
-
-  int get version;
+  Waveform(this.waveformResponse, this._scaledData);
 
   int frameIdxFromPercent(double percent) {
     if (percent == null) {
       return 0;
     }
 
-    // if the scale is 0-1.0
     if (percent < 0) {
       percent = 0;
     } else if (percent > 100) {
       percent = 100;
     }
 
-    if (percent > 0 && percent < 1) {
-      return ((data.length.toDouble() / 2) * percent).floor();
+    if (percent > 0.0 && percent < 1) {
+      return ((waveformResponse.data.length.toDouble() / 2) * percent).floor();
     }
 
-    var idx = ((data.length.toDouble() / 2) * (percent / 100)).floor();
-    final maxIdx = (data.length.toDouble() / 2 * 0.98).floor();
+    var idx = ((waveformResponse.data.length.toDouble() / 2) * (percent / 100))
+        .floor();
+    final maxIdx = (waveformResponse.data.length.toDouble() / 2 * 0.98).floor();
     if (idx > maxIdx) {
       idx = maxIdx;
     }
@@ -65,7 +37,7 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
 
   Path path(
     Size size, {
-    double zoomLevel = 1,
+    double zoomLevel = 1.0,
     int fromFrame = 0,
   }) {
     if (!_isDataScaled()) {
@@ -79,34 +51,27 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     }
 
     if (zoomLevel == 1.0 && fromFrame == 0) {
-      return _path(scaledData, size);
+      return _path(_scaledData, size);
     }
 
-    // buffer so we can't start too far in the waveform, 90% max
-    if (fromFrame * 2 > (data.length * 0.98).floor()) {
-      print('from frame is too far at $fromFrame');
-      fromFrame = ((data.length / 2) * 0.98).floor();
+    if (fromFrame * 2 > (waveformResponse.data.length * 0.98).floor()) {
+      debugPrint('from frame is too far at $fromFrame');
+      fromFrame = ((waveformResponse.data.length / 2) * 0.98).floor();
     }
 
     final endFrame = (fromFrame * 2 +
-            ((scaledData.length - fromFrame * 2) * (1.0 - (zoomLevel / 100))))
+            ((_scaledData.length - fromFrame * 2) * (1 - (zoomLevel / 100))))
         .floor();
-    final list = scaledData;
-    return _path(list.sublist(fromFrame * 2, endFrame), size);
-  }
 
-  String toJson() {
-    return json.encode(serializers.serializeWith(Waveform.serializer, this));
+    return _path(_scaledData.sublist(fromFrame * 2, endFrame), size);
   }
 
   bool _isDataScaled() {
-    return scaledData != null && scaledData.length == data.length;
+    return _scaledData != null &&
+        _scaledData.length == waveformResponse.data.length;
   }
 
-  Path _path(
-    List<double> samples,
-    Size size,
-  ) {
+  Path _path(List<double> samples, Size size) {
     final middle = size.height / 2;
     var i = 0;
 
@@ -114,24 +79,21 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
     final maxPoints = [];
 
     final t = size.width / samples.length;
-    for (var j = 0; j < samples.length; j++) {
-      final d = samples[j];
+    for (var _i = 0; _i < samples.length; _i++) {
+      final d = samples[_i];
 
-      if (j % 2 != 0) {
+      if (_i % 2 != 0) {
         minPoints.add(Offset(t * i, middle - middle * d));
       } else {
         maxPoints.add(Offset(t * i, middle - middle * d));
       }
-
       i++;
     }
 
     final path = Path();
     path.moveTo(0, middle);
     maxPoints.forEach((o) => path.lineTo(o.dx, o.dy));
-    // back to zero
     path.lineTo(size.width, middle);
-    // draw the minimums backwards so we can fill the shape when done.
     minPoints.reversed
         .forEach((o) => path.lineTo(o.dx, middle - (middle - o.dy)));
 
@@ -140,31 +102,29 @@ abstract class Waveform implements Built<Waveform, WaveformBuilder> {
   }
 
   void _scaleData() {
-    final max = pow(2, bits - 1).toDouble();
-    final dataSize = data.length;
-    final preScaledData = List<double>(dataSize);
+    final max = pow(2, waveformResponse.bits - 1).toDouble();
+    final dataSize = waveformResponse.data.length;
+    _scaledData = List<double>(dataSize);
 
     for (var i = 0; i < dataSize; i++) {
-      preScaledData[i] = data[i].toDouble() / max;
-
-      if (preScaledData[i] > 1) {
-        preScaledData[i] = 1;
+      _scaledData[i] = waveformResponse.data[i].toDouble() / max;
+      if (_scaledData[i] > 1) {
+        _scaledData[i] = 1;
       }
-
-      if (preScaledData[i] < -1) {
-        preScaledData[i] = -1;
+      if (_scaledData[i] < -1) {
+        _scaledData[i] = -1;
       }
     }
-    this.rebuild((b) => b.scaledData = preScaledData);
   }
 
-  static Waveform fromJson(String jsonString) {
-    return serializers.deserializeWith(
-        Waveform.serializer, json.decode(jsonString));
-  }
+  static List<Waveform> toWaveformList(List<WaveformResponse> items) {
+    final List<Waveform> waveformList = [];
 
-  static Future<Waveform> loadWaveformData(String filename) async {
-    final data = await rootBundle.loadString('assets/waveforms/$filename');
-    return Waveform.fromJson(data);
+    for (final item in items) {
+      final waveform = Waveform(item, []);
+      waveformList.add(waveform);
+    }
+
+    return waveformList;
   }
 }
