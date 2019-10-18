@@ -50,4 +50,6 @@ flutter create --org me.minikin.flutter .
 
 This project is licensed under the MIT.
 
-Audio assets are distribute under [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode)
+Audio assets are distribute under [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+
+Images for artworks are from [Unsplash](https://unsplash.com).
