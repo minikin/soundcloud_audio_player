@@ -1,13 +1,16 @@
-import 'package:flutter/foundation.dart';
+library tune;
 
-class Tune {
-  final String artist;
-  final String title;
-  final String artwork;
+import 'package:built_value/built_value.dart';
 
-  Tune({
-    @required this.artist,
-    @required this.title,
-    @required this.artwork,
-  });
+part 'tune.g.dart';
+
+abstract class Tune implements Built<Tune, TuneBuilder> {
+  String get artist;
+  String get title;
+  String get artwork;
+  String get waveformDataPath;
+
+  Tune._();
+
+  factory Tune([void Function(TuneBuilder) updates]) = _$Tune;
 }

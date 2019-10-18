@@ -17,7 +17,7 @@ abstract class WaveformResponse
   static Serializer<WaveformResponse> get serializer =>
       _$waveformResponseSerializer;
 
-  factory WaveformResponse([updates(WaveformResponseBuilder b)]) =
+  factory WaveformResponse([void Function(WaveformResponseBuilder) updates]) =
       _$WaveformResponse;
 
   WaveformResponse._();
@@ -46,6 +46,10 @@ abstract class WaveformResponse
   static WaveformResponse fromJson(String jsonString) {
     return serializers.deserializeWith(
         WaveformResponse.serializer, json.decode(jsonString));
+  }
+
+  static Future<WaveformResponse> fromJsonItem(String jsonString) async {
+    return compute(WaveformResponse.fromJson, jsonString);
   }
 
   static Future<String> loadWaveformDataItem(String filename) async {

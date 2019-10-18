@@ -19,13 +19,15 @@ class TunesList extends StatelessWidget {
             padding: EdgeInsets.all(8),
             color: Colors.grey[100],
             child: FutureBuilder<List<WaveformResponse>>(
-              future: WaveformResponse.loadWaveformDataList(files),
+              future: WaveformResponse.loadWaveformDataList(
+                tunes.map((item) => item.waveformDataPath).toList(),
+              ),
               builder:
                   (context, AsyncSnapshot<List<WaveformResponse>> snapshot) {
                 if (snapshot.hasData) {
                   final waveforms = Waveform.toWaveformList(snapshot.data);
                   return ListView.builder(
-                    itemCount: files.length,
+                    itemCount: tunes.length,
                     itemBuilder: (context, index) {
                       return _listItem(waveforms[index], tunes[index]);
                     },
