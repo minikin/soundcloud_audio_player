@@ -9,14 +9,17 @@ import 'package:built_value/serializer.dart';
 part 'tune.g.dart';
 
 abstract class Tune implements Built<Tune, TuneBuilder> {
+  static Serializer<Tune> get serializer => _$tuneSerializer;
+  factory Tune([updates(TuneBuilder b)]) = _$Tune;
+  Tune._();
   String get artist;
-  String get title;
   String get artwork;
+
   AudioFile get audioFile;
 
-  Tune._();
+  String get id;
 
-  factory Tune([updates(TuneBuilder b)]) = _$Tune;
+  String get title;
 
   String toJson() {
     return json.encode(serializers.serializeWith(Tune.serializer, this));
@@ -26,6 +29,4 @@ abstract class Tune implements Built<Tune, TuneBuilder> {
     return serializers.deserializeWith(
         Tune.serializer, json.decode(jsonString));
   }
-
-  static Serializer<Tune> get serializer => _$tuneSerializer;
 }

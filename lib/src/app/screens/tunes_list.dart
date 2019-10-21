@@ -16,21 +16,20 @@ class TunesList extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(8),
             color: Colors.grey[100],
-            child: FutureBuilder<List<WaveformResponse>>(
-              future: WaveformResponse.loadWaveformDataList(
-                tunes.map((item) => item.waveformDataPath).toList(),
-              ),
+            child: FutureBuilder<List<Tune>>(
+              future: ,
+              // future: WaveformResponse.loadWaveformDataList(
+              //   tunes.map((item) => item.waveformDataPath).toList(),
+              // ),
               builder:
-                  (context, AsyncSnapshot<List<WaveformResponse>> snapshot) {
+                  (context, AsyncSnapshot<List<Tune>> snapshot) {
                 if (snapshot.hasData) {
-                  final waveforms = Waveform.toWaveformList(snapshot.data);
+                  // final waveforms = Waveform.toWaveformList(snapshot.data);
                   return ListView.builder(
                     itemCount: tunes.length,
                     itemBuilder: (context, index) {
                       return PlayerItem(
-                        tune: tunes[index],
-                        waveform: waveforms[index],
-                      );
+                        tune: tunes[index]);
                     },
                   );
                 } else if (snapshot.hasError) {

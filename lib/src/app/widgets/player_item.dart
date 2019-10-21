@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 
 class PlayerItem extends StatefulWidget {
   final Tune tune;
-  final Waveform waveform;
 
   const PlayerItem({
     @required this.tune,
-    @required this.waveform,
     Key key,
   }) : super(key: key);
 
@@ -97,7 +95,8 @@ class _PlayerItemState extends State<PlayerItem> {
             bottom: -45,
             left: 8,
             right: 8,
-            child: WaveFormItem(waveform: widget.waveform),
+            child: WaveFormItem(
+                waveform: Waveform(widget.tune.audioFile.waveformResponse, [])),
           ),
         ],
       ),

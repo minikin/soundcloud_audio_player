@@ -1,12 +1,12 @@
-import 'package:audio/src/app/bloc/player_state.dart';
+// import 'package:audio/src/app/bloc/player_state.dart';
 
-class PlayerBloc {
-  final Stream<PlayerState> playerState;
-  final Stream<double> position;
+// class PlayerBloc {
+//   final Stream<PlayerState> playerState;
+//   final Stream<double> position;
 
-  void dispose() {}
+//   void dispose() {}
 
-  factory PlayerBloc() {}
+//   factory PlayerBloc() {}
 
-  static Stream<PlayerState> _play() async* {}
-}
+//   static Stream<PlayerState> _play() async* {}
+// }

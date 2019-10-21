@@ -21,15 +21,17 @@ class _$TuneSerializer implements StructuredSerializer<Tune> {
       'artist',
       serializers.serialize(object.artist,
           specifiedType: const FullType(String)),
-      'title',
-      serializers.serialize(object.title,
-          specifiedType: const FullType(String)),
       'artwork',
       serializers.serialize(object.artwork,
           specifiedType: const FullType(String)),
       'audioFile',
       serializers.serialize(object.audioFile,
           specifiedType: const FullType(AudioFile)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -50,10 +52,6 @@ class _$TuneSerializer implements StructuredSerializer<Tune> {
           result.artist = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'title':
-          result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
         case 'artwork':
           result.artwork = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
@@ -61,6 +59,14 @@ class _$TuneSerializer implements StructuredSerializer<Tune> {
         case 'audioFile':
           result.audioFile.replace(serializers.deserialize(value,
               specifiedType: const FullType(AudioFile)) as AudioFile);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -73,28 +79,33 @@ class _$Tune extends Tune {
   @override
   final String artist;
   @override
-  final String title;
-  @override
   final String artwork;
   @override
   final AudioFile audioFile;
+  @override
+  final String id;
+  @override
+  final String title;
 
   factory _$Tune([void Function(TuneBuilder) updates]) =>
       (new TuneBuilder()..update(updates)).build();
 
-  _$Tune._({this.artist, this.title, this.artwork, this.audioFile})
+  _$Tune._({this.artist, this.artwork, this.audioFile, this.id, this.title})
       : super._() {
     if (artist == null) {
       throw new BuiltValueNullFieldError('Tune', 'artist');
-    }
-    if (title == null) {
-      throw new BuiltValueNullFieldError('Tune', 'title');
     }
     if (artwork == null) {
       throw new BuiltValueNullFieldError('Tune', 'artwork');
     }
     if (audioFile == null) {
       throw new BuiltValueNullFieldError('Tune', 'audioFile');
+    }
+    if (id == null) {
+      throw new BuiltValueNullFieldError('Tune', 'id');
+    }
+    if (title == null) {
+      throw new BuiltValueNullFieldError('Tune', 'title');
     }
   }
 
@@ -110,25 +121,30 @@ class _$Tune extends Tune {
     if (identical(other, this)) return true;
     return other is Tune &&
         artist == other.artist &&
-        title == other.title &&
         artwork == other.artwork &&
-        audioFile == other.audioFile;
+        audioFile == other.audioFile &&
+        id == other.id &&
+        title == other.title;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, artist.hashCode), title.hashCode), artwork.hashCode),
-        audioFile.hashCode));
+        $jc(
+            $jc($jc($jc(0, artist.hashCode), artwork.hashCode),
+                audioFile.hashCode),
+            id.hashCode),
+        title.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Tune')
           ..add('artist', artist)
-          ..add('title', title)
           ..add('artwork', artwork)
-          ..add('audioFile', audioFile))
+          ..add('audioFile', audioFile)
+          ..add('id', id)
+          ..add('title', title))
         .toString();
   }
 }
@@ -140,10 +156,6 @@ class TuneBuilder implements Builder<Tune, TuneBuilder> {
   String get artist => _$this._artist;
   set artist(String artist) => _$this._artist = artist;
 
-  String _title;
-  String get title => _$this._title;
-  set title(String title) => _$this._title = title;
-
   String _artwork;
   String get artwork => _$this._artwork;
   set artwork(String artwork) => _$this._artwork = artwork;
@@ -153,14 +165,23 @@ class TuneBuilder implements Builder<Tune, TuneBuilder> {
       _$this._audioFile ??= new AudioFileBuilder();
   set audioFile(AudioFileBuilder audioFile) => _$this._audioFile = audioFile;
 
+  String _id;
+  String get id => _$this._id;
+  set id(String id) => _$this._id = id;
+
+  String _title;
+  String get title => _$this._title;
+  set title(String title) => _$this._title = title;
+
   TuneBuilder();
 
   TuneBuilder get _$this {
     if (_$v != null) {
       _artist = _$v.artist;
-      _title = _$v.title;
       _artwork = _$v.artwork;
       _audioFile = _$v.audioFile?.toBuilder();
+      _id = _$v.id;
+      _title = _$v.title;
       _$v = null;
     }
     return this;
@@ -186,9 +207,10 @@ class TuneBuilder implements Builder<Tune, TuneBuilder> {
       _$result = _$v ??
           new _$Tune._(
               artist: artist,
-              title: title,
               artwork: artwork,
-              audioFile: audioFile.build());
+              audioFile: audioFile.build(),
+              id: id,
+              title: title);
     } catch (_) {
       String _$failedField;
       try {
