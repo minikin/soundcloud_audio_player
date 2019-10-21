@@ -39,7 +39,7 @@ If you have any questions ping me on twitter: [@minikin](https://twitter.com/min
 Audio to json
 
 ```sh
-audiowaveform -i acid.mp3 -o acid.json -z 128
+audiowaveform -i minikin_raw.mp3 -o minikin_raw.json -z 2028
 ```
 
 ```sh

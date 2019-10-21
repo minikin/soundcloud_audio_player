@@ -45,9 +45,7 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
                           height,
                         ),
                         foregroundPainter: WaveformPainter(
-                          color: Color(
-                            0xff3994DB,
-                          ),
+                          color: const Color(0xff3994DB),
                           zoomLevel: _zoomLevel,
                           startingFrame: widget.sampleData
                               .frameIdxFromPercent(_startPosition),

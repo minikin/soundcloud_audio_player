@@ -28,10 +28,13 @@ class Waveform {
 
     var idx = ((waveformResponse.data.length.toDouble() / 2) * (percent / 100))
         .floor();
+
     final maxIdx = (waveformResponse.data.length.toDouble() / 2 * 0.98).floor();
+
     if (idx > maxIdx) {
       idx = maxIdx;
     }
+
     return idx;
   }
 
@@ -95,7 +98,8 @@ class Waveform {
     maxPoints.forEach((point) => path.lineTo(point.dx, point.dy));
     path.lineTo(size.width, middle);
     minPoints.reversed.forEach(
-        (point) => path.lineTo(point.dx, middle - (middle - point.dy)));
+      (point) => path.lineTo(point.dx, middle - (middle - point.dy)),
+    );
     path.close();
     return path;
   }
