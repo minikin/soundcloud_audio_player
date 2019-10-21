@@ -19,6 +19,8 @@ abstract class AudioFile implements Built<AudioFile, AudioFileBuilder> {
 
   String get audioUrl;
 
+  int get duration;
+
   WaveformResponse get waveformResponse;
 
   String toJson() {

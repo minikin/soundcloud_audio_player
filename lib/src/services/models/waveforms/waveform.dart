@@ -7,9 +7,11 @@ import 'package:flutter/rendering.dart';
 
 class Waveform {
   final WaveformResponse waveformResponse;
-  List<double> _scaledData;
+  List<double> _scaledData = [];
 
-  Waveform(this.waveformResponse, this._scaledData);
+  Waveform(
+    this.waveformResponse,
+  );
 
   int frameIdxFromPercent(double percent) {
     if (percent == null) {

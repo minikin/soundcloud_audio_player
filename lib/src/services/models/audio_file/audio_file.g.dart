@@ -25,6 +25,9 @@ class _$AudioFileSerializer implements StructuredSerializer<AudioFile> {
       'audioUrl',
       serializers.serialize(object.audioUrl,
           specifiedType: const FullType(String)),
+      'duration',
+      serializers.serialize(object.duration,
+          specifiedType: const FullType(int)),
       'waveformResponse',
       serializers.serialize(object.waveformResponse,
           specifiedType: const FullType(WaveformResponse)),
@@ -56,6 +59,10 @@ class _$AudioFileSerializer implements StructuredSerializer<AudioFile> {
           result.audioUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'duration':
+          result.duration = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'waveformResponse':
           result.waveformResponse.replace(serializers.deserialize(value,
                   specifiedType: const FullType(WaveformResponse))
@@ -76,12 +83,15 @@ class _$AudioFile extends AudioFile {
   @override
   final String audioUrl;
   @override
+  final int duration;
+  @override
   final WaveformResponse waveformResponse;
 
   factory _$AudioFile([void Function(AudioFileBuilder) updates]) =>
       (new AudioFileBuilder()..update(updates)).build();
 
-  _$AudioFile._({this.id, this.name, this.audioUrl, this.waveformResponse})
+  _$AudioFile._(
+      {this.id, this.name, this.audioUrl, this.duration, this.waveformResponse})
       : super._() {
     if (id == null) {
       throw new BuiltValueNullFieldError('AudioFile', 'id');
@@ -91,6 +101,9 @@ class _$AudioFile extends AudioFile {
     }
     if (audioUrl == null) {
       throw new BuiltValueNullFieldError('AudioFile', 'audioUrl');
+    }
+    if (duration == null) {
+      throw new BuiltValueNullFieldError('AudioFile', 'duration');
     }
     if (waveformResponse == null) {
       throw new BuiltValueNullFieldError('AudioFile', 'waveformResponse');
@@ -111,13 +124,15 @@ class _$AudioFile extends AudioFile {
         id == other.id &&
         name == other.name &&
         audioUrl == other.audioUrl &&
+        duration == other.duration &&
         waveformResponse == other.waveformResponse;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, id.hashCode), name.hashCode), audioUrl.hashCode),
+        $jc($jc($jc($jc(0, id.hashCode), name.hashCode), audioUrl.hashCode),
+            duration.hashCode),
         waveformResponse.hashCode));
   }
 
@@ -127,6 +142,7 @@ class _$AudioFile extends AudioFile {
           ..add('id', id)
           ..add('name', name)
           ..add('audioUrl', audioUrl)
+          ..add('duration', duration)
           ..add('waveformResponse', waveformResponse))
         .toString();
   }
@@ -147,6 +163,10 @@ class AudioFileBuilder implements Builder<AudioFile, AudioFileBuilder> {
   String get audioUrl => _$this._audioUrl;
   set audioUrl(String audioUrl) => _$this._audioUrl = audioUrl;
 
+  int _duration;
+  int get duration => _$this._duration;
+  set duration(int duration) => _$this._duration = duration;
+
   WaveformResponseBuilder _waveformResponse;
   WaveformResponseBuilder get waveformResponse =>
       _$this._waveformResponse ??= new WaveformResponseBuilder();
@@ -160,6 +180,7 @@ class AudioFileBuilder implements Builder<AudioFile, AudioFileBuilder> {
       _id = _$v.id;
       _name = _$v.name;
       _audioUrl = _$v.audioUrl;
+      _duration = _$v.duration;
       _waveformResponse = _$v.waveformResponse?.toBuilder();
       _$v = null;
     }
@@ -188,6 +209,7 @@ class AudioFileBuilder implements Builder<AudioFile, AudioFileBuilder> {
               id: id,
               name: name,
               audioUrl: audioUrl,
+              duration: duration,
               waveformResponse: waveformResponse.build());
     } catch (_) {
       String _$failedField;
