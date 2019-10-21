@@ -126,7 +126,7 @@ class Waveform {
     final List<Waveform> waveformList = [];
 
     for (final item in items) {
-      final waveform = Waveform(item, []);
+      final waveform = Waveform(item);
       waveformList.add(waveform);
     }
 

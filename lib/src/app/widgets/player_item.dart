@@ -144,8 +144,7 @@ class _PlayerItemState extends State<PlayerItem> {
   }
 
   void _playAudio() async {
-    await _audioPlayer
-        .play('https://luan.xyz/files/audio/ambient_c_motion.mp3');
+    await _audioPlayer.play(widget.tune.audioFile.audioUrl);
     _isFirstStrast = false;
   }
 
