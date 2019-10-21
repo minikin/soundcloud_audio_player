@@ -170,7 +170,6 @@ class _PlayerItemState extends State<PlayerItem> {
   }
 
   void _togglePlayerMode() {
-    print('_playerIsPlaying: $_playerIsPlaying');
     if (_isFirstStrast) {
       _playerIsPlaying = true;
       _playAudio();
