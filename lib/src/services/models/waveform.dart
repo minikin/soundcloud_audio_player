@@ -37,7 +37,7 @@ class Waveform {
 
   Path path(
     Size size, {
-    double zoomLevel = 1.0,
+    double zoomLevel = 1,
     int fromFrame = 0,
   }) {
     if (!_isDataScaled()) {
@@ -79,10 +79,10 @@ class Waveform {
     final maxPoints = [];
 
     final t = size.width / samples.length;
-    for (var _i = 0; _i < samples.length; _i++) {
-      final d = samples[_i];
+    for (var j = 0; j < samples.length; j++) {
+      final d = samples[j];
 
-      if (_i % 2 != 0) {
+      if (j % 2 != 0) {
         minPoints.add(Offset(t * i, middle - middle * d));
       } else {
         maxPoints.add(Offset(t * i, middle - middle * d));
@@ -92,11 +92,10 @@ class Waveform {
 
     final path = Path();
     path.moveTo(0, middle);
-    maxPoints.forEach((o) => path.lineTo(o.dx, o.dy));
+    maxPoints.forEach((point) => path.lineTo(point.dx, point.dy));
     path.lineTo(size.width, middle);
-    minPoints.reversed
-        .forEach((o) => path.lineTo(o.dx, middle - (middle - o.dy)));
-
+    minPoints.reversed.forEach(
+        (point) => path.lineTo(point.dx, middle - (middle - point.dy)));
     path.close();
     return path;
   }
