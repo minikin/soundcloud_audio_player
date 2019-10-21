@@ -1,6 +1,6 @@
 import 'package:audio/src/app/widgets/waveform_item.dart';
+import 'package:audio/src/services/audio_player_service.dart';
 import 'package:audio/src/services/models/models.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class PlayerItem extends StatefulWidget {
@@ -16,9 +16,9 @@ class PlayerItem extends StatefulWidget {
 }
 
 class _PlayerItemState extends State<PlayerItem> {
-  static final _audioPlayer = AudioPlayer();
-  var _playerIsPlaying = false;
-  var _isFirstStrast = true;
+  AudioPlayerService _audioPlayer;
+  bool _playerIsPlaying = false;
+  bool _isFirstStrast = true;
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,8 @@ class _PlayerItemState extends State<PlayerItem> {
 
   @override
   void initState() {
-    _onProgress();
+    _audioPlayer = AudioPlayerService(tune: widget.tune);
+    _audioPlayer.onProgress();
     super.initState();
   }
 
@@ -131,21 +132,12 @@ class _PlayerItemState extends State<PlayerItem> {
             icon: icon,
             color: Colors.orange,
             onPressed: () {
-              print('filled background');
+              print('actionButtom was pressed');
             },
           ),
         ),
       ),
     );
-  }
-
-  void _pauseAudio() async {
-    await _audioPlayer.pause();
-  }
-
-  void _playAudio() async {
-    await _audioPlayer.play(widget.tune.audioFile.audioUrl);
-    _isFirstStrast = false;
   }
 
   Widget _playButtom() {
@@ -163,26 +155,17 @@ class _PlayerItemState extends State<PlayerItem> {
     );
   }
 
-  void _resumeAudio() async {
-    await _audioPlayer.resume();
-  }
-
   void _togglePlayerMode() {
     if (_isFirstStrast) {
       _playerIsPlaying = true;
-      _playAudio();
+      _isFirstStrast = false;
+      _audioPlayer.playAudio();
     } else if (!_isFirstStrast && !_playerIsPlaying) {
       _playerIsPlaying = true;
-      _resumeAudio();
+      _audioPlayer.resumeAudio();
     } else {
       _playerIsPlaying = false;
-      _pauseAudio();
+      _audioPlayer.pauseAudio();
     }
-  }
-
-  void _onProgress() {
-    _audioPlayer.onAudioPositionChanged.listen(
-      (Duration p) => {print('Current position: $p')},
-    );
   }
 }
