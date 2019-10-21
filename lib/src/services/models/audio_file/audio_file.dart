@@ -2,8 +2,7 @@ library audio_file;
 
 import 'dart:convert';
 
-import 'package:audio/src/services/models/waveform_response.dart';
-import 'package:audio/src/services/serializers/serializers.dart';
+import 'package:audio/src/services/models/models.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 

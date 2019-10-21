@@ -1,6 +1,5 @@
 import 'package:audio/src/app/widgets/waveform_item.dart';
-import 'package:audio/src/services/models/tune.dart';
-import 'package:audio/src/services/models/waveform.dart';
+import 'package:audio/src/services/models/models.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 

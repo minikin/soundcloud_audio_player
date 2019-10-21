@@ -1,7 +1,7 @@
 // ignore_for_file: omit_local_variable_types
 import 'dart:math';
 
-import 'package:audio/src/services/models/waveform_response.dart';
+import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 

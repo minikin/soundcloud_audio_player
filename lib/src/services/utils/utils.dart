@@ -1,4 +1,4 @@
-import 'package:audio/src/services/models/tune.dart';
+import 'package:audio/src/services/models/models.dart';
 
 final List<Tune> tunes = [
   Tune(
