@@ -30,9 +30,9 @@ flutter:
     - assets/artworks/2.jpeg
     - assets/artworks/3.jpeg
     - assets/audio/minikin_raw.mp3
+    - assets/data/tunes.json
     - assets/waveforms/ambient_c_motion.json
     - assets/waveforms/minikin_acid.json
     - assets/waveforms/minikin_background.json
     - assets/waveforms/minikin_past.json
     - assets/waveforms/minikin_raw.json
-    - assets/waveforms/tunes.json
