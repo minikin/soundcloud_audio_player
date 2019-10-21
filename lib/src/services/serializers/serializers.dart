@@ -1,5 +1,6 @@
 library serializers;
 
+import 'package:audio/src/services/models/audio_file.dart';
 import 'package:audio/src/services/models/waveform_response.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
@@ -9,6 +10,7 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   WaveformResponse,
+  AudioFile,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(StandardJsonPlugin())

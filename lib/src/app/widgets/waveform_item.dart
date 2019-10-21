@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class WaveFormItem extends StatelessWidget {
   final Waveform waveform;
+  final _waveformContainerKey = GlobalKey();
 
-  const WaveFormItem({
+  WaveFormItem({
     @required this.waveform,
     Key key,
   }) : super(key: key);
@@ -18,6 +19,7 @@ class WaveFormItem extends StatelessWidget {
       child: ClipPath(
         clipper: WaveformClipper(waveform),
         child: Container(
+          key: _waveformContainerKey,
           height: 200,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -38,12 +40,19 @@ class WaveFormItem extends StatelessWidget {
   void _onTapDown(TapDownDetails details) {
     final x = details.globalPosition.dx;
     final y = details.globalPosition.dy;
-    print('tap down: $x , $y');
+    final width = _waveformWidth();
+    print('tap down: $x , $y, $width');
   }
 
   void _onTapUp(TapUpDetails details) {
     final x = details.globalPosition.dx;
     final y = details.globalPosition.dy;
     print('tap up: $x , $y');
+  }
+
+  double _waveformWidth() {
+    final keyContext = _waveformContainerKey.currentContext;
+    final box = keyContext.findRenderObject() as RenderBox;
+    return box.size.width;
   }
 }
