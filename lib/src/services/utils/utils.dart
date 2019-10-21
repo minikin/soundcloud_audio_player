@@ -3,11 +3,18 @@ import 'package:audio/src/services/models/tune.dart';
 final List<Tune> tunes = [
   Tune(
     (b) => b
-      ..artist = 'Minikin'
-      ..title = 'Acid Rain'
+      ..artist = 'Unknown'
+      ..title = 'Ambient Motion'
       ..artwork = 'assets/artworks/1.jpeg'
-      ..waveformDataPath = 'minikin_raw.json',
+      ..waveformDataPath = 'ambient_c_motion.json',
   ),
+  // Tune(
+  //   (b) => b
+  //     ..artist = 'Minikin'
+  //     ..title = 'RAW'
+  //     ..artwork = 'assets/artworks/1.jpeg'
+  //     ..waveformDataPath = 'minikin_raw.json',
+  // ),
   // Tune(
   //   (b) => b
   //     ..artist = 'Minikin'
