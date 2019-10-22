@@ -1,21 +1,20 @@
-import 'package:audio/src/app/bloc/player_state.dart';
-import 'package:audio/src/services/models/models.dart';
+import 'package:audio/src/app/models/player_state.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PlayerBloc {
-  final BehaviorSubject<bool> _onPlayButonPressed;
-
+  final _isFirstStart = BehaviorSubject<bool>();
+  final _onPlayButonPressed = BehaviorSubject<bool>();
   final Observable<PlayerState> playerState;
 
   Function(bool) get onPlayButonPressed => _onPlayButonPressed.sink.add;
 
   PlayerBloc._(
-    this._onPlayButonPressed,
     this.playerState,
   );
 
   void dispose() {
     _onPlayButonPressed.close();
+    _isFirstStart.close();
   }
 
   // factory PlayerBloc(
@@ -33,13 +32,15 @@ class PlayerBloc {
   // }
 
   static Stream<PlayerState> _play(
-    Tune tune,
+    bool isFirstStart,
     bool onPlayButonPressed,
   ) async* {
-    if (onPlayButonPressed) {
-      yield Playing();
+    if (isFirstStart) {
+      yield PlayerState.playing;
+    } else if (!isFirstStart && !onPlayButonPressed) {
+      yield PlayerState.resumed;
     } else {
-      yield Paused();
+      yield PlayerState.paused;
     }
   }
 }
