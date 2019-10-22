@@ -10,9 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^0.1.2
+  audioplayers: ^0.13.2
   built_collection: ^4.2.2
   built_value: ^6.7.1
+  cupertino_icons: ^0.1.2
+  rxdart: ^0.22.4
 
 dev_dependencies:
   flutter_test:
@@ -24,9 +26,13 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/waveforms/minikin_acid.json
-    - assets/waveforms/minikin_past.json
-    - assets/waveforms/minikin_background.json
     - assets/artworks/1.jpeg
     - assets/artworks/2.jpeg
     - assets/artworks/3.jpeg
+    - assets/audio/minikin_raw.mp3
+    - assets/data/tunes.json
+    - assets/waveforms/ambient_c_motion.json
+    - assets/waveforms/minikin_acid.json
+    - assets/waveforms/minikin_background.json
+    - assets/waveforms/minikin_past.json
+    - assets/waveforms/minikin_raw.json

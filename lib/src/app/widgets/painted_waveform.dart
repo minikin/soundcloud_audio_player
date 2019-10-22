@@ -1,5 +1,4 @@
-import 'package:audio/src/services/models/waveform.dart';
-import 'package:audio/src/services/models/waveform_painter.dart';
+import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/material.dart';
 
 class PaintedWaveform extends StatefulWidget {
@@ -45,9 +44,7 @@ class _PaintedWaveformState extends State<PaintedWaveform> {
                           height,
                         ),
                         foregroundPainter: WaveformPainter(
-                          color: Color(
-                            0xff3994DB,
-                          ),
+                          color: const Color(0xff3994DB),
                           zoomLevel: _zoomLevel,
                           startingFrame: widget.sampleData
                               .frameIdxFromPercent(_startPosition),

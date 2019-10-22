@@ -13,7 +13,7 @@ class MainScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => TunesList(),
+        '/': (context) => const TunesList(),
       },
     );
   }
