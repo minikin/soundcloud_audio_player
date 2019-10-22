@@ -1,3 +1,4 @@
+import 'package:audio/src/app/widgets/action_button.dart';
 import 'package:audio/src/app/widgets/waveform_item.dart';
 import 'package:audio/src/services/audio_player_service.dart';
 import 'package:audio/src/services/models/models.dart';
@@ -62,7 +63,12 @@ class _PlayerItemState extends State<PlayerItem> {
                                   ),
                                 ),
                               ),
-                              _actionButtom(icon: Icon(Icons.cloud_download)),
+                              ActionButton(
+                                icon: Icon(Icons.cloud_download),
+                                onPressed: () {
+                                  print('actionButtom was pressed');
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -80,7 +86,12 @@ class _PlayerItemState extends State<PlayerItem> {
                                   ),
                                 ),
                               ),
-                              _actionButtom(icon: Icon(Icons.share)),
+                              ActionButton(
+                                icon: Icon(Icons.share),
+                                onPressed: () {
+                                  print('actionButtom was pressed');
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -116,28 +127,6 @@ class _PlayerItemState extends State<PlayerItem> {
     _audioPlayer.dispose();
     _playerIsPlaying = false;
     super.dispose();
-  }
-
-  Widget _actionButtom({
-    @required Icon icon,
-  }) {
-    return Center(
-      child: Container(
-        child: Ink(
-          decoration: ShapeDecoration(
-            color: Colors.orange,
-            shape: CircleBorder(),
-          ),
-          child: IconButton(
-            icon: icon,
-            color: Colors.orange,
-            onPressed: () {
-              print('actionButtom was pressed');
-            },
-          ),
-        ),
-      ),
-    );
   }
 
   Widget _playButtom() {
