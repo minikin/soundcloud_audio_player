@@ -1,4 +1,6 @@
+import 'package:audio/src/app/models/player_state.dart';
 import 'package:audio/src/app/widgets/action_button.dart';
+import 'package:audio/src/app/widgets/play_button.dart';
 import 'package:audio/src/app/widgets/waveform_item.dart';
 import 'package:audio/src/services/audio_player_service.dart';
 import 'package:audio/src/services/models/models.dart';
@@ -18,8 +20,7 @@ class PlayerItem extends StatefulWidget {
 
 class _PlayerItemState extends State<PlayerItem> {
   AudioPlayerService _audioPlayer;
-  bool _playerIsPlaying = false;
-  bool _isFirstStrast = true;
+  PlayerState _playerState = PlayerState.stopped;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,11 @@ class _PlayerItemState extends State<PlayerItem> {
               width: 330,
               child: Row(
                 children: [
-                  _playButtom(),
+                  PlayButton(
+                    consumeStream: false,
+                    playerState: _playerState,
+                    onPressed: () => setState(() => _togglePlayerMode()),
+                  ),
                   Container(
                     width: 230,
                     child: Column(
@@ -65,9 +70,8 @@ class _PlayerItemState extends State<PlayerItem> {
                               ),
                               ActionButton(
                                 icon: Icon(Icons.cloud_download),
-                                onPressed: () {
-                                  print('actionButtom was pressed');
-                                },
+                                onPressed: () =>
+                                    print('ActionButton was pressed'),
                               ),
                             ],
                           ),
@@ -88,9 +92,8 @@ class _PlayerItemState extends State<PlayerItem> {
                               ),
                               ActionButton(
                                 icon: Icon(Icons.share),
-                                onPressed: () {
-                                  print('actionButtom was pressed');
-                                },
+                                onPressed: () =>
+                                    print('ActionButton was pressed'),
                               ),
                             ],
                           ),
@@ -116,45 +119,40 @@ class _PlayerItemState extends State<PlayerItem> {
   }
 
   @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     _audioPlayer = AudioPlayerService(tune: widget.tune);
     _audioPlayer.onProgress();
     super.initState();
   }
 
-  @override
-  void dispose() {
-    _audioPlayer.dispose();
-    _playerIsPlaying = false;
-    super.dispose();
-  }
-
-  Widget _playButtom() {
-    return Center(
-      child: Container(
-        child: IconButton(
-          iconSize: 80,
-          icon: _playerIsPlaying
-              ? Icon(Icons.pause)
-              : Icon(Icons.play_circle_filled),
-          color: Colors.orange,
-          onPressed: () => setState(() => _togglePlayerMode()),
-        ),
-      ),
-    );
-  }
-
   void _togglePlayerMode() {
-    if (_isFirstStrast) {
-      _playerIsPlaying = true;
-      _isFirstStrast = false;
-      _audioPlayer.playAudio();
-    } else if (!_isFirstStrast && !_playerIsPlaying) {
-      _playerIsPlaying = true;
-      _audioPlayer.resumeAudio();
-    } else {
-      _playerIsPlaying = false;
-      _audioPlayer.pauseAudio();
+    switch (_playerState) {
+      case PlayerState.stopped:
+        _audioPlayer.playAudio();
+        setState(() => _playerState = PlayerState.playing);
+        break;
+      case PlayerState.playing:
+        _audioPlayer.pauseAudio();
+        setState(() => _playerState = PlayerState.paused);
+        break;
+      case PlayerState.paused:
+        _audioPlayer.resumeAudio();
+        setState(() => _playerState = PlayerState.resumed);
+        break;
+      case PlayerState.resumed:
+        _audioPlayer.pauseAudio();
+        setState(() => _playerState = PlayerState.paused);
+        break;
+      default:
+        _audioPlayer.stopAudio();
+        setState(() => _playerState = PlayerState.stopped);
+        break;
     }
   }
 }

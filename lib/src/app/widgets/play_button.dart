@@ -39,6 +39,8 @@ class PlayButton<S> extends StatelessWidget {
 
   Icon _configureIcon() {
     if (playerState == PlayerState.stopped) {
+      return Icon(Icons.stop);
+    } else if (playerState == PlayerState.paused) {
       return Icon(Icons.pause);
     } else {
       return Icon(Icons.play_circle_filled);
