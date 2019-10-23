@@ -10,7 +10,5 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   @override
   Stream<PlayerState> mapEventToState(
     PlayerEvent event,
-  ) async* {
-    // TODO: Add Logic
-  }
+  ) async* {}
 }
