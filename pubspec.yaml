@@ -11,10 +11,11 @@ dependencies:
     sdk: flutter
 
   audioplayers: ^0.13.2
+  bloc: ^1.0.0
   built_collection: ^4.2.2
   built_value: ^6.7.1
   cupertino_icons: ^0.1.2
-  rxdart: ^0.22.4
+  flutter_bloc: ^1.0.0
 
 dev_dependencies:
   flutter_test:

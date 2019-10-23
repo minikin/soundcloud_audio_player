@@ -10,7 +10,9 @@ class AudioPlayerService {
 
   AudioPlayerService({
     @required this.tune,
-  });
+  }) {
+    onProgress();
+  }
 
   void dispose() {
     _audioPlayer.dispose();
@@ -34,6 +36,10 @@ class AudioPlayerService {
 
   void resumeAudio() async {
     await _audioPlayer.resume();
+  }
+
+  void seekTo(Duration position) async {
+    await _audioPlayer.seek(position);
   }
 
   void stopAudio() async {
