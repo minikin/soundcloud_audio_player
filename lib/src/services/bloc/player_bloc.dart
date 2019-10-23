@@ -30,6 +30,18 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     }
   }
 
+  void toggle(Tune tune) {
+    if (state == PlayerState.stopped()) {
+      this.add(PlayEvent((b) => b..tune.replace(tune)));
+    } else if (state == PlayerState.playing()) {
+      this.add(Pause((b) => b));
+    } else if (state == PlayerState.paused()) {
+      this.add(Resume((b) => b));
+    } else if (state == PlayerState.resumed()) {
+      this.add(Pause((b) => b));
+    }
+  }
+
   Stream<PlayerState> _pauseTune() async* {
     _audioPlayerService.pauseAudio();
     yield PlayerState.paused();
@@ -48,21 +60,5 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   Stream<PlayerState> _stopTune() async* {
     _audioPlayerService.stopAudio();
     yield PlayerState.stopped();
-  }
-
-  void play(Tune tune) {
-    this.add(PlayEvent((b) => b..tune.replace(tune)));
-  }
-
-  void toggle(Tune tune) {
-    if (state == PlayerState.stopped()) {
-      this.add(PlayEvent((b) => b..tune.replace(tune)));
-    } else if (state == PlayerState.playing()) {
-      this.add(Pause((b) => b));
-    } else if (state == PlayerState.paused()) {
-      this.add(Resume((b) => b));
-    } else if (state == PlayerState.resumed()) {
-      this.add(Pause((b) => b));
-    }
   }
 }
