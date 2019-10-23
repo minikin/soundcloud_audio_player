@@ -38,6 +38,10 @@ class AudioPlayerService {
     await _audioPlayer.resume();
   }
 
+  void seekTo(Duration position) async {
+    await _audioPlayer.seek(position);
+  }
+
   void stopAudio() async {
     await _audioPlayer.stop();
   }
