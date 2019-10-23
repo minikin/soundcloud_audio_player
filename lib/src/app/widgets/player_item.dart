@@ -25,7 +25,7 @@ class _PlayerItemState extends State<PlayerItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+      padding: const EdgeInsets.all(8),
       width: double.infinity,
       height: 300,
       child: Stack(
