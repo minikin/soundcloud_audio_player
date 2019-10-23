@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   @override
-  PlayerState get initialState => InitialPlayerState();
+  PlayerState get initialState => PlayerState.stopped();
 
   @override
   Stream<PlayerState> mapEventToState(
