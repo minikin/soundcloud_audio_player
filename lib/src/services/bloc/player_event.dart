@@ -11,8 +11,6 @@ abstract class Pause extends PlayerEvent implements Built<Pause, PauseBuilder> {
   factory Pause([updates(PauseBuilder b)]) = _$Pause;
 
   Pause._();
-
-  Tune get tune;
 }
 
 abstract class PlayEvent extends PlayerEvent
@@ -29,14 +27,10 @@ abstract class Resume extends PlayerEvent
   factory Resume([updates(ResumeBuilder b)]) = _$Resume;
 
   Resume._();
-
-  Tune get tune;
 }
 
 abstract class Stop extends PlayerEvent implements Built<Stop, StopBuilder> {
   factory Stop([updates(StopBuilder b)]) = _$Stop;
 
   Stop._();
-
-  Tune get tune;
 }

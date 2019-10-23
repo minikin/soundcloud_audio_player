@@ -7,17 +7,10 @@ part of player_event;
 // **************************************************************************
 
 class _$Pause extends Pause {
-  @override
-  final Tune tune;
-
   factory _$Pause([void Function(PauseBuilder) updates]) =>
       (new PauseBuilder()..update(updates)).build();
 
-  _$Pause._({this.tune}) : super._() {
-    if (tune == null) {
-      throw new BuiltValueNullFieldError('Pause', 'tune');
-    }
-  }
+  _$Pause._() : super._();
 
   @override
   Pause rebuild(void Function(PauseBuilder) updates) =>
@@ -29,36 +22,24 @@ class _$Pause extends Pause {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Pause && tune == other.tune;
+    return other is Pause;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, tune.hashCode));
+    return 277258060;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Pause')..add('tune', tune)).toString();
+    return newBuiltValueToStringHelper('Pause').toString();
   }
 }
 
 class PauseBuilder implements Builder<Pause, PauseBuilder> {
   _$Pause _$v;
 
-  TuneBuilder _tune;
-  TuneBuilder get tune => _$this._tune ??= new TuneBuilder();
-  set tune(TuneBuilder tune) => _$this._tune = tune;
-
   PauseBuilder();
-
-  PauseBuilder get _$this {
-    if (_$v != null) {
-      _tune = _$v.tune?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
 
   @override
   void replace(Pause other) {
@@ -75,20 +56,7 @@ class PauseBuilder implements Builder<Pause, PauseBuilder> {
 
   @override
   _$Pause build() {
-    _$Pause _$result;
-    try {
-      _$result = _$v ?? new _$Pause._(tune: tune.build());
-    } catch (_) {
-      String _$failedField;
-      try {
-        _$failedField = 'tune';
-        tune.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'Pause', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ?? new _$Pause._();
     replace(_$result);
     return _$result;
   }
@@ -184,17 +152,10 @@ class PlayEventBuilder implements Builder<PlayEvent, PlayEventBuilder> {
 }
 
 class _$Resume extends Resume {
-  @override
-  final Tune tune;
-
   factory _$Resume([void Function(ResumeBuilder) updates]) =>
       (new ResumeBuilder()..update(updates)).build();
 
-  _$Resume._({this.tune}) : super._() {
-    if (tune == null) {
-      throw new BuiltValueNullFieldError('Resume', 'tune');
-    }
-  }
+  _$Resume._() : super._();
 
   @override
   Resume rebuild(void Function(ResumeBuilder) updates) =>
@@ -206,37 +167,24 @@ class _$Resume extends Resume {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Resume && tune == other.tune;
+    return other is Resume;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, tune.hashCode));
+    return 195046551;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Resume')..add('tune', tune))
-        .toString();
+    return newBuiltValueToStringHelper('Resume').toString();
   }
 }
 
 class ResumeBuilder implements Builder<Resume, ResumeBuilder> {
   _$Resume _$v;
 
-  TuneBuilder _tune;
-  TuneBuilder get tune => _$this._tune ??= new TuneBuilder();
-  set tune(TuneBuilder tune) => _$this._tune = tune;
-
   ResumeBuilder();
-
-  ResumeBuilder get _$this {
-    if (_$v != null) {
-      _tune = _$v.tune?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
 
   @override
   void replace(Resume other) {
@@ -253,37 +201,17 @@ class ResumeBuilder implements Builder<Resume, ResumeBuilder> {
 
   @override
   _$Resume build() {
-    _$Resume _$result;
-    try {
-      _$result = _$v ?? new _$Resume._(tune: tune.build());
-    } catch (_) {
-      String _$failedField;
-      try {
-        _$failedField = 'tune';
-        tune.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'Resume', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ?? new _$Resume._();
     replace(_$result);
     return _$result;
   }
 }
 
 class _$Stop extends Stop {
-  @override
-  final Tune tune;
-
   factory _$Stop([void Function(StopBuilder) updates]) =>
       (new StopBuilder()..update(updates)).build();
 
-  _$Stop._({this.tune}) : super._() {
-    if (tune == null) {
-      throw new BuiltValueNullFieldError('Stop', 'tune');
-    }
-  }
+  _$Stop._() : super._();
 
   @override
   Stop rebuild(void Function(StopBuilder) updates) =>
@@ -295,36 +223,24 @@ class _$Stop extends Stop {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Stop && tune == other.tune;
+    return other is Stop;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, tune.hashCode));
+    return 464972701;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Stop')..add('tune', tune)).toString();
+    return newBuiltValueToStringHelper('Stop').toString();
   }
 }
 
 class StopBuilder implements Builder<Stop, StopBuilder> {
   _$Stop _$v;
 
-  TuneBuilder _tune;
-  TuneBuilder get tune => _$this._tune ??= new TuneBuilder();
-  set tune(TuneBuilder tune) => _$this._tune = tune;
-
   StopBuilder();
-
-  StopBuilder get _$this {
-    if (_$v != null) {
-      _tune = _$v.tune?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
 
   @override
   void replace(Stop other) {
@@ -341,20 +257,7 @@ class StopBuilder implements Builder<Stop, StopBuilder> {
 
   @override
   _$Stop build() {
-    _$Stop _$result;
-    try {
-      _$result = _$v ?? new _$Stop._(tune: tune.build());
-    } catch (_) {
-      String _$failedField;
-      try {
-        _$failedField = 'tune';
-        tune.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'Stop', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ?? new _$Stop._();
     replace(_$result);
     return _$result;
   }

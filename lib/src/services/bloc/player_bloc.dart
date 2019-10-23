@@ -20,17 +20,17 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   @override
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
     if (event is Pause) {
-      yield* _pauseTune(event.tune);
+      yield* _pauseTune();
     } else if (event is PlayEvent) {
       yield* _playTune(event.tune);
     } else if (event is Resume) {
-      yield* _resumeTune(event.tune);
+      yield* _resumeTune();
     } else if (event is Stop) {
-      yield* _stopTune(event.tune);
+      yield* _stopTune();
     }
   }
 
-  Stream<PlayerState> _pauseTune(Tune tune) async* {
+  Stream<PlayerState> _pauseTune() async* {
     _audioPlayerService.pauseAudio();
     yield PlayerState.paused();
   }
@@ -40,17 +40,29 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     yield PlayerState.playing();
   }
 
-  Stream<PlayerState> _resumeTune(Tune tune) async* {
+  Stream<PlayerState> _resumeTune() async* {
     _audioPlayerService.resumeAudio();
     yield PlayerState.resumed();
   }
 
-  Stream<PlayerState> _stopTune(Tune tune) async* {
+  Stream<PlayerState> _stopTune() async* {
     _audioPlayerService.stopAudio();
     yield PlayerState.stopped();
   }
 
   void play(Tune tune) {
     this.add(PlayEvent((b) => b..tune.replace(tune)));
+  }
+
+  void toggle(Tune tune) {
+    if (state == PlayerState.stopped()) {
+      this.add(PlayEvent((b) => b..tune.replace(tune)));
+    } else if (state == PlayerState.playing()) {
+      this.add(Pause((b) => b));
+    } else if (state == PlayerState.paused()) {
+      this.add(Resume((b) => b));
+    } else if (state == PlayerState.resumed()) {
+      this.add(Pause((b) => b));
+    }
   }
 }

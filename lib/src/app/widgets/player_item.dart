@@ -52,7 +52,7 @@ class _PlayerItemState extends State<PlayerItem> {
                         stream: _playerBloc,
                         playerState: state,
                         onPressed: () {
-                          _playerBloc.play(widget.tune);
+                          _playerBloc.toggle(widget.tune);
                         },
                       ),
                       Container(
