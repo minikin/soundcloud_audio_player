@@ -127,7 +127,6 @@ class _PlayerItemState extends State<PlayerItem> {
   @override
   void initState() {
     _audioPlayer = AudioPlayerService(tune: widget.tune);
-    _audioPlayer.onProgress();
     super.initState();
   }
 

@@ -14,6 +14,7 @@ class PlayerState extends EnumClass {
 
   static Serializer<PlayerState> get serializer => _$playerStateSerializer;
   static BuiltSet<PlayerState> get values => _$playerStateValues;
+
   const PlayerState._(String name) : super(name);
 
   String render() {

@@ -10,7 +10,9 @@ class AudioPlayerService {
 
   AudioPlayerService({
     @required this.tune,
-  });
+  }) {
+    onProgress();
+  }
 
   void dispose() {
     _audioPlayer.dispose();

@@ -31,16 +31,16 @@ class PlayerBloc {
   //   return PlayerBloc._(onPlayButonChanged, state);
   // }
 
-  // static Stream<PlayerState> _play(
-  //   bool isFirstStart,
-  //   bool onPlayButonPressed,
-  // ) async* {
-  //   if (isFirstStart) {
-  //     yield PlayerState.playing;
-  //   } else if (!isFirstStart && !onPlayButonPressed) {
-  //     yield PlayerState.resumed;
-  //   } else {
-  //     yield PlayerState.paused;
-  //   }
-  // }
+  static Stream<PlayerState> _play(
+    bool isFirstStart,
+    bool onPlayButonPressed,
+  ) async* {
+    if (isFirstStart) {
+      yield PlayerState.playing;
+    } else if (!isFirstStart && !onPlayButonPressed) {
+      yield PlayerState.resumed;
+    } else {
+      yield PlayerState.paused;
+    }
+  }
 }
