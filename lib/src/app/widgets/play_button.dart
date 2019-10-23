@@ -1,4 +1,4 @@
-import 'package:audio/src/app/models/player_state.dart';
+import 'package:audio/src/services/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 class PlayButton<S> extends StatelessWidget {
@@ -9,14 +9,14 @@ class PlayButton<S> extends StatelessWidget {
   final Stream<S> stream;
   final VoidCallback onPressed;
 
-  const PlayButton({
+  PlayButton({
     Key key,
+    @required this.playerState,
+    @required this.onPressed,
     this.consumeStream = true,
     this.activeColor = Colors.orange,
     this.disabledColor = Colors.grey,
-    this.playerState = PlayerState.stopped,
     this.stream,
-    @required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -38,17 +38,16 @@ class PlayButton<S> extends StatelessWidget {
   }
 
   Icon _configureIcon() {
-    switch (playerState) {
-      case PlayerState.stopped:
-        return Icon(Icons.play_circle_filled);
-      case PlayerState.playing:
-        return Icon(Icons.pause);
-      case PlayerState.paused:
-        return Icon(Icons.play_circle_filled);
-      case PlayerState.resumed:
-        return Icon(Icons.pause);
-      default:
-        return Icon(Icons.stop);
+    if (playerState == PlayerState.stopped()) {
+      return Icon(Icons.play_circle_filled);
+    } else if (playerState == PlayerState.playing()) {
+      return Icon(Icons.pause);
+    } else if (playerState == PlayerState.paused()) {
+      return Icon(Icons.play_circle_filled);
+    } else if (playerState == PlayerState.resumed()) {
+      return Icon(Icons.pause);
+    } else {
+      return Icon(Icons.stop);
     }
   }
 

@@ -21,7 +21,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
     if (event is Pause) {
       yield* _pauseTune(event.tune);
-    } else if (event is Play) {
+    } else if (event is PlayEvent) {
       yield* _playTune(event.tune);
     } else if (event is Resume) {
       yield* _resumeTune(event.tune);
@@ -30,14 +30,14 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     }
   }
 
-  Stream<PlayerState> _playTune(Tune tune) async* {
-    _audioPlayerService.playAudio();
-    yield PlayerState.playing();
-  }
-
   Stream<PlayerState> _pauseTune(Tune tune) async* {
     _audioPlayerService.pauseAudio();
     yield PlayerState.paused();
+  }
+
+  Stream<PlayerState> _playTune(Tune tune) async* {
+    _audioPlayerService.playAudio();
+    yield PlayerState.playing();
   }
 
   Stream<PlayerState> _resumeTune(Tune tune) async* {
@@ -48,5 +48,9 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   Stream<PlayerState> _stopTune(Tune tune) async* {
     _audioPlayerService.stopAudio();
     yield PlayerState.stopped();
+  }
+
+  void play(Tune tune) {
+    this.add(PlayEvent((b) => b..tune.replace(tune)));
   }
 }

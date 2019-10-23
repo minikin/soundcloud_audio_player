@@ -15,12 +15,13 @@ abstract class Pause extends PlayerEvent implements Built<Pause, PauseBuilder> {
   Tune get tune;
 }
 
-abstract class Play extends PlayerEvent implements Built<Play, PlayBuilder> {
-  factory Play([updates(PlayBuilder b)]) = _$Play;
-
-  Play._();
+abstract class PlayEvent extends PlayerEvent
+    implements Built<PlayEvent, PlayEventBuilder> {
+  PlayEvent._();
 
   Tune get tune;
+
+  factory PlayEvent([updates(PlayEventBuilder b)]) = _$PlayEvent;
 }
 
 abstract class Resume extends PlayerEvent

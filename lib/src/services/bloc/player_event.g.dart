@@ -94,30 +94,30 @@ class PauseBuilder implements Builder<Pause, PauseBuilder> {
   }
 }
 
-class _$Play extends Play {
+class _$PlayEvent extends PlayEvent {
   @override
   final Tune tune;
 
-  factory _$Play([void Function(PlayBuilder) updates]) =>
-      (new PlayBuilder()..update(updates)).build();
+  factory _$PlayEvent([void Function(PlayEventBuilder) updates]) =>
+      (new PlayEventBuilder()..update(updates)).build();
 
-  _$Play._({this.tune}) : super._() {
+  _$PlayEvent._({this.tune}) : super._() {
     if (tune == null) {
-      throw new BuiltValueNullFieldError('Play', 'tune');
+      throw new BuiltValueNullFieldError('PlayEvent', 'tune');
     }
   }
 
   @override
-  Play rebuild(void Function(PlayBuilder) updates) =>
+  PlayEvent rebuild(void Function(PlayEventBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  PlayBuilder toBuilder() => new PlayBuilder()..replace(this);
+  PlayEventBuilder toBuilder() => new PlayEventBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Play && tune == other.tune;
+    return other is PlayEvent && tune == other.tune;
   }
 
   @override
@@ -127,20 +127,21 @@ class _$Play extends Play {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Play')..add('tune', tune)).toString();
+    return (newBuiltValueToStringHelper('PlayEvent')..add('tune', tune))
+        .toString();
   }
 }
 
-class PlayBuilder implements Builder<Play, PlayBuilder> {
-  _$Play _$v;
+class PlayEventBuilder implements Builder<PlayEvent, PlayEventBuilder> {
+  _$PlayEvent _$v;
 
   TuneBuilder _tune;
   TuneBuilder get tune => _$this._tune ??= new TuneBuilder();
   set tune(TuneBuilder tune) => _$this._tune = tune;
 
-  PlayBuilder();
+  PlayEventBuilder();
 
-  PlayBuilder get _$this {
+  PlayEventBuilder get _$this {
     if (_$v != null) {
       _tune = _$v.tune?.toBuilder();
       _$v = null;
@@ -149,23 +150,23 @@ class PlayBuilder implements Builder<Play, PlayBuilder> {
   }
 
   @override
-  void replace(Play other) {
+  void replace(PlayEvent other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Play;
+    _$v = other as _$PlayEvent;
   }
 
   @override
-  void update(void Function(PlayBuilder) updates) {
+  void update(void Function(PlayEventBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Play build() {
-    _$Play _$result;
+  _$PlayEvent build() {
+    _$PlayEvent _$result;
     try {
-      _$result = _$v ?? new _$Play._(tune: tune.build());
+      _$result = _$v ?? new _$PlayEvent._(tune: tune.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -173,7 +174,7 @@ class PlayBuilder implements Builder<Play, PlayBuilder> {
         tune.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'Play', _$failedField, e.toString());
+            'PlayEvent', _$failedField, e.toString());
       }
       rethrow;
     }
