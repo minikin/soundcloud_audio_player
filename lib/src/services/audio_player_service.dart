@@ -20,8 +20,9 @@ class AudioPlayerService {
 
   void onProgress() {
     _audioPlayer.onAudioPositionChanged.listen(
-      (Duration p) => {
-        print('Current position: $p'),
+      (position) => {
+        print('Current position: ${position.inMilliseconds}'),
+        position.inMilliseconds,
       },
     );
   }

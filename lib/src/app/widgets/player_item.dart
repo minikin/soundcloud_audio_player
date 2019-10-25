@@ -114,7 +114,10 @@ class _PlayerItemState extends State<PlayerItem> {
                 left: 8,
                 right: 8,
                 child: WaveFormItem(
-                  waveform: Waveform(widget.tune.audioFile.waveformResponse),
+                  waveform: Waveform(
+                    widget.tune.audioFile.waveformResponse,
+                  ),
+                  trackDuration: widget.tune.audioFile.duration,
                 ),
               ),
             ],
