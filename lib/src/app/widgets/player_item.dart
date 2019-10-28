@@ -118,6 +118,7 @@ class _PlayerItemState extends State<PlayerItem> {
                     widget.tune.audioFile.waveformResponse,
                   ),
                   trackDuration: widget.tune.audioFile.duration,
+                  trackPosition: state.position,
                 ),
               ),
             ],

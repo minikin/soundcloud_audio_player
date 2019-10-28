@@ -8,6 +8,7 @@ import 'package:meta/meta.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   final AudioPlayerService _audioPlayerService;
+  var _trackPosition = 0;
 
   PlayerBloc({
     @required AudioPlayerService audioPlayerService,
@@ -17,20 +18,26 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   @override
   PlayerState get initialState => PlayerState.stopped();
 
-  Stream<Duration> get tunePosition => _audioPlayerService.onProgress();
-
   @override
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
     if (event is Pause) {
-      yield* _pauseTune();
+      yield* _pauseTune(event);
     } else if (event is PlayEvent) {
-      yield* _playTune(event.tune);
+      yield* _playTune(event);
     } else if (event is Resume) {
-      yield* _resumeTune();
+      yield* _resumeTune(event);
     } else if (event is Stop) {
-      yield* _stopTune();
+      yield* _stopTune(event);
+    } else if (event is TrackPosition) {
+      yield* _positionDidUpdated(event);
     }
   }
+
+  // @override
+  // void onTransition(Transition<PlayerEvent, PlayerState> transition) {
+  //   super.onTransition(transition);
+  //   print(transition);
+  // }
 
   void toggle(Tune tune) {
     if (state == PlayerState.stopped()) {
@@ -44,28 +51,33 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     }
   }
 
-  Stream<PlayerState> _pauseTune() async* {
+  Stream<PlayerState> _pauseTune(Pause event) async* {
     _audioPlayerService.pauseAudio();
     yield PlayerState.paused();
   }
 
-  Stream<PlayerState> _playTune(Tune tune) async* {
+  Stream<PlayerState> _playTune(PlayEvent event) async* {
     _audioPlayerService.playAudio();
-    // _audioPlayerService.onProgress().listen(
-    //       (p) => {
-    //         print('Current position: ${p.inMilliseconds}'),
-    //       },
-    //     );
+    _audioPlayerService.onProgress().listen(
+        (p) => add(TrackPosition((b) => b..position = p.inMilliseconds)));
+
     yield PlayerState.playing(0);
   }
 
-  Stream<PlayerState> _resumeTune() async* {
+  Stream<PlayerState> _resumeTune(Resume event) async* {
     _audioPlayerService.resumeAudio();
     yield PlayerState.resumed();
   }
 
-  Stream<PlayerState> _stopTune() async* {
+  Stream<PlayerState> _stopTune(Stop event) async* {
     _audioPlayerService.stopAudio();
     yield PlayerState.stopped();
+  }
+
+  Stream<PlayerState> _positionDidUpdated(TrackPosition event) async* {
+    yield PlayerState.playing(event.position);
+    // yield event.position > 0
+    //     ? PlayerState.playing(event.position)
+    //     : PlayerState.paused();
   }
 }

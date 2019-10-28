@@ -34,3 +34,12 @@ abstract class Stop extends PlayerEvent implements Built<Stop, StopBuilder> {
 
   Stop._();
 }
+
+abstract class TrackPosition extends PlayerEvent
+    implements Built<TrackPosition, TrackPositionBuilder> {
+  int get position;
+
+  TrackPosition._();
+
+  factory TrackPosition([updates(TrackPositionBuilder b)]) = _$TrackPosition;
+}

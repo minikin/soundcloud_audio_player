@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class WaveFormItem extends StatefulWidget {
   final Waveform waveform;
   final int trackDuration;
+  final int trackPosition;
 
   WaveFormItem({
     @required this.waveform,
     @required this.trackDuration,
+    @required this.trackPosition,
     Key key,
   }) : super(key: key);
 
@@ -20,6 +22,8 @@ class _WaveFormItemState extends State<WaveFormItem> {
 
   @override
   Widget build(BuildContext context) {
+    final data = _gradientPosition(widget.trackPosition);
+    print('widget.trackPosition: $data');
     return GestureDetector(
       onTapDown: (details) => _onTapDown(details),
       child: ClipPath(
@@ -31,7 +35,7 @@ class _WaveFormItemState extends State<WaveFormItem> {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              stops: [_gradientPosition(45), 0],
+              stops: [_gradientPosition(widget.trackPosition), 0],
               colors: [
                 Colors.orange,
                 Colors.grey,
@@ -44,7 +48,7 @@ class _WaveFormItemState extends State<WaveFormItem> {
   }
 
   double _gradientPosition(int trackPosition) =>
-      trackPosition / widget.trackDuration * 1000;
+      trackPosition / widget.trackDuration * 1;
 
   void _onTapDown(TapDownDetails details) {
     final x = details.globalPosition.dx;
