@@ -18,13 +18,8 @@ class AudioPlayerService {
     _audioPlayer.dispose();
   }
 
-  void onProgress() {
-    _audioPlayer.onAudioPositionChanged.listen(
-      (position) => {
-        print('Current position: ${position.inMilliseconds}'),
-        position.inMilliseconds,
-      },
-    );
+  Stream<Duration> onProgress() {
+    return _audioPlayer.onAudioPositionChanged;
   }
 
   void pauseAudio() async {

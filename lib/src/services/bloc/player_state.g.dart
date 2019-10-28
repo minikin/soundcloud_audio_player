@@ -15,12 +15,18 @@ class _$PlayerState extends PlayerState {
   final bool isStopped;
   @override
   final bool isResumed;
+  @override
+  final int position;
 
   factory _$PlayerState([void Function(PlayerStateBuilder) updates]) =>
       (new PlayerStateBuilder()..update(updates)).build();
 
   _$PlayerState._(
-      {this.isPlaying, this.isPaused, this.isStopped, this.isResumed})
+      {this.isPlaying,
+      this.isPaused,
+      this.isStopped,
+      this.isResumed,
+      this.position})
       : super._() {
     if (isPlaying == null) {
       throw new BuiltValueNullFieldError('PlayerState', 'isPlaying');
@@ -33,6 +39,9 @@ class _$PlayerState extends PlayerState {
     }
     if (isResumed == null) {
       throw new BuiltValueNullFieldError('PlayerState', 'isResumed');
+    }
+    if (position == null) {
+      throw new BuiltValueNullFieldError('PlayerState', 'position');
     }
   }
 
@@ -50,15 +59,18 @@ class _$PlayerState extends PlayerState {
         isPlaying == other.isPlaying &&
         isPaused == other.isPaused &&
         isStopped == other.isStopped &&
-        isResumed == other.isResumed;
+        isResumed == other.isResumed &&
+        position == other.position;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, isPlaying.hashCode), isPaused.hashCode),
-            isStopped.hashCode),
-        isResumed.hashCode));
+        $jc(
+            $jc($jc($jc(0, isPlaying.hashCode), isPaused.hashCode),
+                isStopped.hashCode),
+            isResumed.hashCode),
+        position.hashCode));
   }
 
   @override
@@ -67,7 +79,8 @@ class _$PlayerState extends PlayerState {
           ..add('isPlaying', isPlaying)
           ..add('isPaused', isPaused)
           ..add('isStopped', isStopped)
-          ..add('isResumed', isResumed))
+          ..add('isResumed', isResumed)
+          ..add('position', position))
         .toString();
   }
 }
@@ -91,6 +104,10 @@ class PlayerStateBuilder implements Builder<PlayerState, PlayerStateBuilder> {
   bool get isResumed => _$this._isResumed;
   set isResumed(bool isResumed) => _$this._isResumed = isResumed;
 
+  int _position;
+  int get position => _$this._position;
+  set position(int position) => _$this._position = position;
+
   PlayerStateBuilder();
 
   PlayerStateBuilder get _$this {
@@ -99,6 +116,7 @@ class PlayerStateBuilder implements Builder<PlayerState, PlayerStateBuilder> {
       _isPaused = _$v.isPaused;
       _isStopped = _$v.isStopped;
       _isResumed = _$v.isResumed;
+      _position = _$v.position;
       _$v = null;
     }
     return this;
@@ -124,7 +142,8 @@ class PlayerStateBuilder implements Builder<PlayerState, PlayerStateBuilder> {
             isPlaying: isPlaying,
             isPaused: isPaused,
             isStopped: isStopped,
-            isResumed: isResumed);
+            isResumed: isResumed,
+            position: position);
     replace(_$result);
     return _$result;
   }

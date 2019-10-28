@@ -8,6 +8,7 @@ import 'package:meta/meta.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   final AudioPlayerService _audioPlayerService;
+  var _position = 0;
 
   PlayerBloc({
     @required AudioPlayerService audioPlayerService,
@@ -16,6 +17,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   @override
   PlayerState get initialState => PlayerState.stopped();
+
+  int get tunePostion => _position;
 
   @override
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
@@ -33,7 +36,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   void toggle(Tune tune) {
     if (state == PlayerState.stopped()) {
       this.add(PlayEvent((b) => b..tune.replace(tune)));
-    } else if (state == PlayerState.playing()) {
+    } else if (state == PlayerState.playing(_position)) {
       this.add(Pause((b) => b));
     } else if (state == PlayerState.paused()) {
       this.add(Resume((b) => b));
@@ -49,7 +52,15 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   Stream<PlayerState> _playTune(Tune tune) async* {
     _audioPlayerService.playAudio();
-    yield PlayerState.playing();
+
+    _audioPlayerService.onProgress().listen(
+          (p) => {
+            _position = p.inMilliseconds,
+            print('Current position: $_position'),
+          },
+        );
+
+    yield PlayerState.playing(_position);
   }
 
   Stream<PlayerState> _resumeTune() async* {

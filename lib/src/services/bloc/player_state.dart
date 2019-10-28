@@ -9,18 +9,20 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
   bool get isPaused;
   bool get isStopped;
   bool get isResumed;
+  int get position;
 
   PlayerState._();
 
   factory PlayerState([updates(PlayerStateBuilder b)]) = _$PlayerState;
 
-  factory PlayerState.playing() {
+  factory PlayerState.playing(int position) {
     return PlayerState(
       (b) => b
         ..isPlaying = true
         ..isPaused = false
         ..isStopped = false
-        ..isResumed = false,
+        ..isResumed = false
+        ..position = position,
     );
   }
 
@@ -30,7 +32,8 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
         ..isPlaying = false
         ..isPaused = true
         ..isStopped = false
-        ..isResumed = false,
+        ..isResumed = false
+        ..position = 0,
     );
   }
 
@@ -40,7 +43,8 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
         ..isPlaying = false
         ..isPaused = false
         ..isStopped = true
-        ..isResumed = false,
+        ..isResumed = false
+        ..position = 0,
     );
   }
 
@@ -50,7 +54,8 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
         ..isPlaying = true
         ..isPaused = false
         ..isStopped = false
-        ..isResumed = true,
+        ..isResumed = true
+        ..position = 0,
     );
   }
 }
