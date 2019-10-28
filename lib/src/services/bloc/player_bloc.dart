@@ -8,7 +8,6 @@ import 'package:meta/meta.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   final AudioPlayerService _audioPlayerService;
-  var _position = 0;
 
   PlayerBloc({
     @required AudioPlayerService audioPlayerService,
@@ -18,7 +17,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   @override
   PlayerState get initialState => PlayerState.stopped();
 
-  int get tunePostion => _position;
+  Stream<Duration> get tunePosition => _audioPlayerService.onProgress();
 
   @override
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
@@ -36,7 +35,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   void toggle(Tune tune) {
     if (state == PlayerState.stopped()) {
       this.add(PlayEvent((b) => b..tune.replace(tune)));
-    } else if (state == PlayerState.playing(_position)) {
+    } else if (state == PlayerState.playing(0)) {
       this.add(Pause((b) => b));
     } else if (state == PlayerState.paused()) {
       this.add(Resume((b) => b));
@@ -52,15 +51,12 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   Stream<PlayerState> _playTune(Tune tune) async* {
     _audioPlayerService.playAudio();
-
-    _audioPlayerService.onProgress().listen(
-          (p) => {
-            _position = p.inMilliseconds,
-            print('Current position: $_position'),
-          },
-        );
-
-    yield PlayerState.playing(_position);
+    // _audioPlayerService.onProgress().listen(
+    //       (p) => {
+    //         print('Current position: ${p.inMilliseconds}'),
+    //       },
+    //     );
+    yield PlayerState.playing(0);
   }
 
   Stream<PlayerState> _resumeTune() async* {

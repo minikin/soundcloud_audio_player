@@ -47,7 +47,7 @@ class _PlayerItemState extends State<PlayerItem> {
                 child: Container(
                   width: 330,
                   child: Row(
-                    children: [
+                    children: <Widget>[
                       PlayButton(
                         stream: _playerBloc,
                         playerState: state,
@@ -58,7 +58,7 @@ class _PlayerItemState extends State<PlayerItem> {
                       Container(
                         width: 230,
                         child: Column(
-                          children: [
+                          children: <Widget>[
                             Container(
                               height: 30,
                               child: Row(
@@ -85,7 +85,7 @@ class _PlayerItemState extends State<PlayerItem> {
                               height: 30,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
+                                children: <Widget>[
                                   Expanded(
                                     child: Text(
                                       widget.tune.title,

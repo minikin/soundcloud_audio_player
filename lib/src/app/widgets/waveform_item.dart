@@ -1,11 +1,9 @@
 import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/material.dart';
 
-class WaveFormItem extends StatelessWidget {
+class WaveFormItem extends StatefulWidget {
   final Waveform waveform;
   final int trackDuration;
-  final _waveformContainerKey = GlobalKey();
-  final double _trackPosition = 123;
 
   WaveFormItem({
     @required this.waveform,
@@ -14,12 +12,18 @@ class WaveFormItem extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _WaveFormItemState createState() => _WaveFormItemState();
+}
+
+class _WaveFormItemState extends State<WaveFormItem> {
+  final _waveformContainerKey = GlobalKey();
+
+  @override
   Widget build(BuildContext context) {
-    final data = _gradientPosition();
     return GestureDetector(
       onTapDown: (details) => _onTapDown(details),
       child: ClipPath(
-        clipper: WaveformClipper(waveform),
+        clipper: WaveformClipper(widget.waveform),
         child: Container(
           key: _waveformContainerKey,
           height: 200,
@@ -27,7 +31,7 @@ class WaveFormItem extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              stops: [data, 0],
+              stops: [_gradientPosition(45), 0],
               colors: [
                 Colors.orange,
                 Colors.grey,
@@ -39,11 +43,12 @@ class WaveFormItem extends StatelessWidget {
     );
   }
 
+  double _gradientPosition(int trackPosition) =>
+      trackPosition / widget.trackDuration * 1000;
+
   void _onTapDown(TapDownDetails details) {
     final x = details.globalPosition.dx;
     final y = details.globalPosition.dy;
     print('tap down: $x , $y');
   }
-
-  double _gradientPosition() => _trackPosition / trackDuration * 1000;
 }
