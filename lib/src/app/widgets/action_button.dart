@@ -15,10 +15,10 @@ class ActionButton extends StatelessWidget {
     return Center(
       child: Container(
         child: Ink(
-          decoration: ShapeDecoration(
-            color: Colors.orange,
-            shape: CircleBorder(),
-          ),
+          // decoration: ShapeDecoration(
+          //   color: Colors.orange,
+          //   shape: CircleBorder(),
+          // ),
           child: IconButton(
             icon: icon,
             color: Colors.orange,
