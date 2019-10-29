@@ -34,8 +34,6 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       yield* _resumeTune(event);
     } else if (event is Stop) {
       yield* _stopTune(event);
-    } else if (event is TrackPosition) {
-      yield* _positionDidUpdated(event);
     }
   }
 
@@ -57,11 +55,15 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   }
 
   Stream<PlayerState> _playTune(PlayEvent event) async* {
+    yield PlayerState.playing(0);
     _trackDuration = event.tune.audioFile.duration;
     _audioPlayerService.playAudio();
     _audioPlayerService.onProgress().listen(
-        (p) => add(TrackPosition((b) => b..position = p.inMilliseconds)));
-    yield PlayerState.playing(0);
+          (p) => add(
+            PlayEvent((b) => b..position = p.inMilliseconds),
+          ),
+        );
+    yield* _positionDidUpdated(event);
   }
 
   Stream<PlayerState> _resumeTune(Resume event) async* {
@@ -74,7 +76,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     yield PlayerState.stopped();
   }
 
-  Stream<PlayerState> _positionDidUpdated(TrackPosition event) async* {
+  Stream<PlayerState> _positionDidUpdated(PlayEvent event) async* {
     if (event.position >= _trackDuration) {
       yield PlayerState.stopped();
     } else if (event.position > 0 && event.position < _trackDuration) {

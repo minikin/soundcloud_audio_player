@@ -65,13 +65,18 @@ class PauseBuilder implements Builder<Pause, PauseBuilder> {
 class _$PlayEvent extends PlayEvent {
   @override
   final Tune tune;
+  @override
+  final int position;
 
   factory _$PlayEvent([void Function(PlayEventBuilder) updates]) =>
       (new PlayEventBuilder()..update(updates)).build();
 
-  _$PlayEvent._({this.tune}) : super._() {
+  _$PlayEvent._({this.tune, this.position}) : super._() {
     if (tune == null) {
       throw new BuiltValueNullFieldError('PlayEvent', 'tune');
+    }
+    if (position == null) {
+      throw new BuiltValueNullFieldError('PlayEvent', 'position');
     }
   }
 
@@ -85,17 +90,21 @@ class _$PlayEvent extends PlayEvent {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is PlayEvent && tune == other.tune;
+    return other is PlayEvent &&
+        tune == other.tune &&
+        position == other.position;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, tune.hashCode));
+    return $jf($jc($jc(0, tune.hashCode), position.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('PlayEvent')..add('tune', tune))
+    return (newBuiltValueToStringHelper('PlayEvent')
+          ..add('tune', tune)
+          ..add('position', position))
         .toString();
   }
 }
@@ -107,11 +116,16 @@ class PlayEventBuilder implements Builder<PlayEvent, PlayEventBuilder> {
   TuneBuilder get tune => _$this._tune ??= new TuneBuilder();
   set tune(TuneBuilder tune) => _$this._tune = tune;
 
+  int _position;
+  int get position => _$this._position;
+  set position(int position) => _$this._position = position;
+
   PlayEventBuilder();
 
   PlayEventBuilder get _$this {
     if (_$v != null) {
       _tune = _$v.tune?.toBuilder();
+      _position = _$v.position;
       _$v = null;
     }
     return this;
@@ -134,7 +148,8 @@ class PlayEventBuilder implements Builder<PlayEvent, PlayEventBuilder> {
   _$PlayEvent build() {
     _$PlayEvent _$result;
     try {
-      _$result = _$v ?? new _$PlayEvent._(tune: tune.build());
+      _$result =
+          _$v ?? new _$PlayEvent._(tune: tune.build(), position: position);
     } catch (_) {
       String _$failedField;
       try {
@@ -258,84 +273,6 @@ class StopBuilder implements Builder<Stop, StopBuilder> {
   @override
   _$Stop build() {
     final _$result = _$v ?? new _$Stop._();
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$TrackPosition extends TrackPosition {
-  @override
-  final int position;
-
-  factory _$TrackPosition([void Function(TrackPositionBuilder) updates]) =>
-      (new TrackPositionBuilder()..update(updates)).build();
-
-  _$TrackPosition._({this.position}) : super._() {
-    if (position == null) {
-      throw new BuiltValueNullFieldError('TrackPosition', 'position');
-    }
-  }
-
-  @override
-  TrackPosition rebuild(void Function(TrackPositionBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  TrackPositionBuilder toBuilder() => new TrackPositionBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is TrackPosition && position == other.position;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(0, position.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('TrackPosition')
-          ..add('position', position))
-        .toString();
-  }
-}
-
-class TrackPositionBuilder
-    implements Builder<TrackPosition, TrackPositionBuilder> {
-  _$TrackPosition _$v;
-
-  int _position;
-  int get position => _$this._position;
-  set position(int position) => _$this._position = position;
-
-  TrackPositionBuilder();
-
-  TrackPositionBuilder get _$this {
-    if (_$v != null) {
-      _position = _$v.position;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(TrackPosition other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
-    _$v = other as _$TrackPosition;
-  }
-
-  @override
-  void update(void Function(TrackPositionBuilder) updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$TrackPosition build() {
-    final _$result = _$v ?? new _$TrackPosition._(position: position);
     replace(_$result);
     return _$result;
   }

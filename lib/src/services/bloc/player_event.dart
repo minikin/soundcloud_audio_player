@@ -8,7 +8,7 @@ part 'player_event.g.dart';
 abstract class PlayerEvent {}
 
 abstract class Pause extends PlayerEvent implements Built<Pause, PauseBuilder> {
-  factory Pause([updates(PauseBuilder b)]) = _$Pause;
+  factory Pause([void Function(PauseBuilder) updates]) = _$Pause;
 
   Pause._();
 }
@@ -19,7 +19,10 @@ abstract class PlayEvent extends PlayerEvent
 
   Tune get tune;
 
-  factory PlayEvent([updates(PlayEventBuilder b)]) = _$PlayEvent;
+  @BuiltValueField(compare: true)
+  int get position;
+
+  factory PlayEvent([void Function(PlayEventBuilder) updates]) = _$PlayEvent;
 }
 
 abstract class Resume extends PlayerEvent
@@ -30,16 +33,16 @@ abstract class Resume extends PlayerEvent
 }
 
 abstract class Stop extends PlayerEvent implements Built<Stop, StopBuilder> {
-  factory Stop([updates(StopBuilder b)]) = _$Stop;
+  factory Stop([void Function(StopBuilder) updates]) = _$Stop;
 
   Stop._();
 }
 
-abstract class TrackPosition extends PlayerEvent
-    implements Built<TrackPosition, TrackPositionBuilder> {
-  int get position;
+// abstract class TrackPosition extends PlayerEvent
+//     implements Built<TrackPosition, TrackPositionBuilder> {
+//   int get position;
 
-  TrackPosition._();
+//   TrackPosition._();
 
-  factory TrackPosition([updates(TrackPositionBuilder b)]) = _$TrackPosition;
-}
+//   factory TrackPosition([updates(TrackPositionBuilder b)]) = _$TrackPosition;
+// }
