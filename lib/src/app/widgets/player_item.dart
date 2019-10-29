@@ -7,21 +7,16 @@ import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PlayerItem extends StatefulWidget {
+class PlayerItem extends StatelessWidget {
   final Tune tune;
+  final PlayerBloc _playerBloc;
 
-  const PlayerItem({
+  PlayerItem({
     @required this.tune,
     Key key,
-  }) : super(key: key);
-
-  @override
-  _PlayerItemState createState() => _PlayerItemState();
-}
-
-class _PlayerItemState extends State<PlayerItem> {
-  AudioPlayerService _audioPlayerService;
-  PlayerBloc _playerBloc;
+  })  : _playerBloc =
+            PlayerBloc(audioPlayerService: AudioPlayerService(tune: tune)),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +28,9 @@ class _PlayerItemState extends State<PlayerItem> {
           width: double.infinity,
           height: 300,
           child: Stack(
-            children: [
+            children: <Widget>[
               Image.asset(
-                widget.tune.artwork,
+                tune.artwork,
                 fit: BoxFit.cover,
                 height: 300,
                 width: double.infinity,
@@ -51,9 +46,7 @@ class _PlayerItemState extends State<PlayerItem> {
                       PlayButton(
                         stream: _playerBloc,
                         playerState: state,
-                        onPressed: () {
-                          _playerBloc.toggle(widget.tune);
-                        },
+                        onPressed: () => _playerBloc.toggle(tune),
                       ),
                       Container(
                         width: 230,
@@ -66,7 +59,7 @@ class _PlayerItemState extends State<PlayerItem> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      widget.tune.artist,
+                                      tune.artist,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 24,
@@ -88,7 +81,7 @@ class _PlayerItemState extends State<PlayerItem> {
                                 children: <Widget>[
                                   Expanded(
                                     child: Text(
-                                      widget.tune.title,
+                                      tune.title,
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.grey[300],
@@ -115,9 +108,9 @@ class _PlayerItemState extends State<PlayerItem> {
                 right: 8,
                 child: WaveFormItem(
                   waveform: Waveform(
-                    widget.tune.audioFile.waveformResponse,
+                    tune.audioFile.waveformResponse,
                   ),
-                  trackDuration: widget.tune.audioFile.duration,
+                  trackDuration: tune.audioFile.duration,
                   trackPosition: state.position,
                 ),
               ),
@@ -126,12 +119,5 @@ class _PlayerItemState extends State<PlayerItem> {
         );
       },
     );
-  }
-
-  @override
-  void initState() {
-    _audioPlayerService = AudioPlayerService(tune: widget.tune);
-    _playerBloc = PlayerBloc(audioPlayerService: _audioPlayerService);
-    super.initState();
   }
 }
