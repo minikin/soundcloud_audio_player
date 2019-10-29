@@ -7,42 +7,37 @@ part 'player_event.g.dart';
 
 abstract class PlayerEvent {}
 
-abstract class Pause extends PlayerEvent implements Built<Pause, PauseBuilder> {
-  factory Pause([void Function(PauseBuilder) updates]) = _$Pause;
+abstract class PauseEvent extends PlayerEvent
+    implements Built<PauseEvent, PauseEventBuilder> {
+  PauseEvent._();
 
-  Pause._();
+  factory PauseEvent([updates(PauseEventBuilder b)]) = _$PauseEvent;
 }
 
 abstract class PlayEvent extends PlayerEvent
     implements Built<PlayEvent, PlayEventBuilder> {
-  PlayEvent._();
-
   Tune get tune;
 
-  @BuiltValueField(compare: true)
-  int get position;
+  PlayEvent._();
 
-  factory PlayEvent([void Function(PlayEventBuilder) updates]) = _$PlayEvent;
+  factory PlayEvent([updates(PlayEventBuilder b)]) = _$PlayEvent;
 }
 
-abstract class Resume extends PlayerEvent
-    implements Built<Resume, ResumeBuilder> {
-  factory Resume([updates(ResumeBuilder b)]) = _$Resume;
+abstract class ResumeEvent extends PlayerEvent
+    implements Built<ResumeEvent, ResumeEventBuilder> {
+  ResumeEvent._();
 
-  Resume._();
+  factory ResumeEvent([updates(ResumeEventBuilder b)]) = _$ResumeEvent;
 }
 
-abstract class Stop extends PlayerEvent implements Built<Stop, StopBuilder> {
-  factory Stop([void Function(StopBuilder) updates]) = _$Stop;
+abstract class StopEvent extends PlayerEvent
+    implements Built<StopEvent, StopEventBuilder> {
+  StopEvent._();
 
-  Stop._();
+  factory StopEvent([updates(StopEventBuilder b)]) = _$StopEvent;
 }
 
-// abstract class TrackPosition extends PlayerEvent
-//     implements Built<TrackPosition, TrackPositionBuilder> {
-//   int get position;
-
-//   TrackPosition._();
-
-//   factory TrackPosition([updates(TrackPositionBuilder b)]) = _$TrackPosition;
-// }
+class Tick extends PlayerEvent {
+  final int position;
+  Tick({this.position = 0});
+}

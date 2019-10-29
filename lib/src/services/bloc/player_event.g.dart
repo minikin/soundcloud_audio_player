@@ -6,57 +6,57 @@ part of player_event;
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$Pause extends Pause {
-  factory _$Pause([void Function(PauseBuilder) updates]) =>
-      (new PauseBuilder()..update(updates)).build();
+class _$PauseEvent extends PauseEvent {
+  factory _$PauseEvent([void Function(PauseEventBuilder) updates]) =>
+      (new PauseEventBuilder()..update(updates)).build();
 
-  _$Pause._() : super._();
+  _$PauseEvent._() : super._();
 
   @override
-  Pause rebuild(void Function(PauseBuilder) updates) =>
+  PauseEvent rebuild(void Function(PauseEventBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  PauseBuilder toBuilder() => new PauseBuilder()..replace(this);
+  PauseEventBuilder toBuilder() => new PauseEventBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Pause;
+    return other is PauseEvent;
   }
 
   @override
   int get hashCode {
-    return 277258060;
+    return 636914037;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('Pause').toString();
+    return newBuiltValueToStringHelper('PauseEvent').toString();
   }
 }
 
-class PauseBuilder implements Builder<Pause, PauseBuilder> {
-  _$Pause _$v;
+class PauseEventBuilder implements Builder<PauseEvent, PauseEventBuilder> {
+  _$PauseEvent _$v;
 
-  PauseBuilder();
+  PauseEventBuilder();
 
   @override
-  void replace(Pause other) {
+  void replace(PauseEvent other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Pause;
+    _$v = other as _$PauseEvent;
   }
 
   @override
-  void update(void Function(PauseBuilder) updates) {
+  void update(void Function(PauseEventBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Pause build() {
-    final _$result = _$v ?? new _$Pause._();
+  _$PauseEvent build() {
+    final _$result = _$v ?? new _$PauseEvent._();
     replace(_$result);
     return _$result;
   }
@@ -65,18 +65,13 @@ class PauseBuilder implements Builder<Pause, PauseBuilder> {
 class _$PlayEvent extends PlayEvent {
   @override
   final Tune tune;
-  @override
-  final int position;
 
   factory _$PlayEvent([void Function(PlayEventBuilder) updates]) =>
       (new PlayEventBuilder()..update(updates)).build();
 
-  _$PlayEvent._({this.tune, this.position}) : super._() {
+  _$PlayEvent._({this.tune}) : super._() {
     if (tune == null) {
       throw new BuiltValueNullFieldError('PlayEvent', 'tune');
-    }
-    if (position == null) {
-      throw new BuiltValueNullFieldError('PlayEvent', 'position');
     }
   }
 
@@ -90,21 +85,17 @@ class _$PlayEvent extends PlayEvent {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is PlayEvent &&
-        tune == other.tune &&
-        position == other.position;
+    return other is PlayEvent && tune == other.tune;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, tune.hashCode), position.hashCode));
+    return $jf($jc(0, tune.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('PlayEvent')
-          ..add('tune', tune)
-          ..add('position', position))
+    return (newBuiltValueToStringHelper('PlayEvent')..add('tune', tune))
         .toString();
   }
 }
@@ -116,16 +107,11 @@ class PlayEventBuilder implements Builder<PlayEvent, PlayEventBuilder> {
   TuneBuilder get tune => _$this._tune ??= new TuneBuilder();
   set tune(TuneBuilder tune) => _$this._tune = tune;
 
-  int _position;
-  int get position => _$this._position;
-  set position(int position) => _$this._position = position;
-
   PlayEventBuilder();
 
   PlayEventBuilder get _$this {
     if (_$v != null) {
       _tune = _$v.tune?.toBuilder();
-      _position = _$v.position;
       _$v = null;
     }
     return this;
@@ -148,8 +134,7 @@ class PlayEventBuilder implements Builder<PlayEvent, PlayEventBuilder> {
   _$PlayEvent build() {
     _$PlayEvent _$result;
     try {
-      _$result =
-          _$v ?? new _$PlayEvent._(tune: tune.build(), position: position);
+      _$result = _$v ?? new _$PlayEvent._(tune: tune.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -166,113 +151,113 @@ class PlayEventBuilder implements Builder<PlayEvent, PlayEventBuilder> {
   }
 }
 
-class _$Resume extends Resume {
-  factory _$Resume([void Function(ResumeBuilder) updates]) =>
-      (new ResumeBuilder()..update(updates)).build();
+class _$ResumeEvent extends ResumeEvent {
+  factory _$ResumeEvent([void Function(ResumeEventBuilder) updates]) =>
+      (new ResumeEventBuilder()..update(updates)).build();
 
-  _$Resume._() : super._();
+  _$ResumeEvent._() : super._();
 
   @override
-  Resume rebuild(void Function(ResumeBuilder) updates) =>
+  ResumeEvent rebuild(void Function(ResumeEventBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ResumeBuilder toBuilder() => new ResumeBuilder()..replace(this);
+  ResumeEventBuilder toBuilder() => new ResumeEventBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Resume;
+    return other is ResumeEvent;
   }
 
   @override
   int get hashCode {
-    return 195046551;
+    return 653521892;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('Resume').toString();
+    return newBuiltValueToStringHelper('ResumeEvent').toString();
   }
 }
 
-class ResumeBuilder implements Builder<Resume, ResumeBuilder> {
-  _$Resume _$v;
+class ResumeEventBuilder implements Builder<ResumeEvent, ResumeEventBuilder> {
+  _$ResumeEvent _$v;
 
-  ResumeBuilder();
+  ResumeEventBuilder();
 
   @override
-  void replace(Resume other) {
+  void replace(ResumeEvent other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Resume;
+    _$v = other as _$ResumeEvent;
   }
 
   @override
-  void update(void Function(ResumeBuilder) updates) {
+  void update(void Function(ResumeEventBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Resume build() {
-    final _$result = _$v ?? new _$Resume._();
+  _$ResumeEvent build() {
+    final _$result = _$v ?? new _$ResumeEvent._();
     replace(_$result);
     return _$result;
   }
 }
 
-class _$Stop extends Stop {
-  factory _$Stop([void Function(StopBuilder) updates]) =>
-      (new StopBuilder()..update(updates)).build();
+class _$StopEvent extends StopEvent {
+  factory _$StopEvent([void Function(StopEventBuilder) updates]) =>
+      (new StopEventBuilder()..update(updates)).build();
 
-  _$Stop._() : super._();
+  _$StopEvent._() : super._();
 
   @override
-  Stop rebuild(void Function(StopBuilder) updates) =>
+  StopEvent rebuild(void Function(StopEventBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  StopBuilder toBuilder() => new StopBuilder()..replace(this);
+  StopEventBuilder toBuilder() => new StopEventBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Stop;
+    return other is StopEvent;
   }
 
   @override
   int get hashCode {
-    return 464972701;
+    return 271559030;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('Stop').toString();
+    return newBuiltValueToStringHelper('StopEvent').toString();
   }
 }
 
-class StopBuilder implements Builder<Stop, StopBuilder> {
-  _$Stop _$v;
+class StopEventBuilder implements Builder<StopEvent, StopEventBuilder> {
+  _$StopEvent _$v;
 
-  StopBuilder();
+  StopEventBuilder();
 
   @override
-  void replace(Stop other) {
+  void replace(StopEvent other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Stop;
+    _$v = other as _$StopEvent;
   }
 
   @override
-  void update(void Function(StopBuilder) updates) {
+  void update(void Function(StopEventBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Stop build() {
-    final _$result = _$v ?? new _$Stop._();
+  _$StopEvent build() {
+    final _$result = _$v ?? new _$StopEvent._();
     replace(_$result);
     return _$result;
   }
