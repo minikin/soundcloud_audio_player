@@ -26,14 +26,14 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
     );
   }
 
-  factory PlayerState.paused() {
+  factory PlayerState.paused(int position) {
     return PlayerState(
       (b) => b
         ..isPlaying = false
         ..isPaused = true
         ..isStopped = false
         ..isResumed = false
-        ..position = 0,
+        ..position = position,
     );
   }
 
@@ -48,14 +48,14 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
     );
   }
 
-  factory PlayerState.resumed() {
+  factory PlayerState.resumed(int position) {
     return PlayerState(
       (b) => b
         ..isPlaying = true
         ..isPaused = false
         ..isStopped = false
         ..isResumed = true
-        ..position = 0,
+        ..position = position,
     );
   }
 }

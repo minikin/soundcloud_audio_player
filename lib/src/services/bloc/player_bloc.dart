@@ -35,7 +35,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       yield* _resumeTune(event);
     } else if (event is StopEvent) {
       yield* _stopTune(event);
-    } else if (event is Tick) {
+    } else if (event is TickEvent) {
       yield* _positionDidUpdated(event);
     }
   }
@@ -45,16 +45,14 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       add(PlayEvent((b) => b..tune.replace(tune)));
     } else if (state == PlayerState.playing(_trackPosition)) {
       add(PauseEvent((b) => b));
-    } else if (state == PlayerState.paused()) {
+    } else {
       add(ResumeEvent((b) => b));
-    } else if (state == PlayerState.resumed()) {
-      add(PauseEvent((b) => b));
     }
   }
 
   Stream<PlayerState> _pauseTune(PauseEvent event) async* {
     _audioPlayerService.pauseAudio();
-    yield PlayerState.paused();
+    yield PlayerState.paused(_trackPosition);
   }
 
   Stream<PlayerState> _playTune(PlayEvent event) async* {
@@ -63,7 +61,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     _audioPlayerService.onProgress().listen((p) {
       _trackPosition = p.inMilliseconds;
       return add(
-        Tick(position: _trackPosition),
+        TickEvent(position: _trackPosition),
       );
     });
     yield PlayerState.playing(_trackPosition);
@@ -71,7 +69,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   Stream<PlayerState> _resumeTune(ResumeEvent event) async* {
     _audioPlayerService.resumeAudio();
-    yield PlayerState.resumed();
+    yield PlayerState.resumed(_trackPosition);
   }
 
   Stream<PlayerState> _stopTune(StopEvent event) async* {
@@ -79,13 +77,11 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     yield PlayerState.stopped();
   }
 
-  Stream<PlayerState> _positionDidUpdated(Tick event) async* {
+  Stream<PlayerState> _positionDidUpdated(TickEvent event) async* {
     if (event.position >= _trackDuration) {
       yield PlayerState.stopped();
     } else if (event.position > 0 && event.position < _trackDuration) {
       yield PlayerState.playing(event.position);
-    } else {
-      yield PlayerState.paused();
     }
   }
 }
