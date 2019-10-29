@@ -8,6 +8,8 @@ import 'package:meta/meta.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   final AudioPlayerService _audioPlayerService;
+  int _trackDuration = 0;
+  int _trackPosition = 0;
 
   PlayerBloc({
     @required AudioPlayerService audioPlayerService,
@@ -18,51 +20,68 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   PlayerState get initialState => PlayerState.stopped();
 
   @override
+  void close() {
+    _audioPlayerService.dispose();
+    super.close();
+  }
+
+  @override
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
-    if (event is Pause) {
-      yield* _pauseTune();
+    if (event is PauseEvent) {
+      yield* _pauseTune(event);
     } else if (event is PlayEvent) {
-      yield* _playTune(event.tune);
-    } else if (event is Resume) {
-      yield* _resumeTune();
-    } else if (event is Stop) {
-      yield* _stopTune();
+      yield* _playTune(event);
+    } else if (event is ResumeEvent) {
+      yield* _resumeTune(event);
+    } else if (event is StopEvent) {
+      yield* _stopTune(event);
+    } else if (event is TickEvent) {
+      yield* _positionDidUpdated(event);
     }
-  }
-
-  Stream<PlayerState> _pauseTune() async* {
-    _audioPlayerService.pauseAudio();
-    yield PlayerState.paused();
-  }
-
-  Stream<PlayerState> _playTune(Tune tune) async* {
-    _audioPlayerService.playAudio();
-    yield PlayerState.playing();
-  }
-
-  Stream<PlayerState> _resumeTune() async* {
-    _audioPlayerService.resumeAudio();
-    yield PlayerState.resumed();
-  }
-
-  Stream<PlayerState> _stopTune() async* {
-    _audioPlayerService.stopAudio();
-    yield PlayerState.stopped();
-  }
-
-  void play(Tune tune) {
-    this.add(PlayEvent((b) => b..tune.replace(tune)));
   }
 
   void toggle(Tune tune) {
     if (state == PlayerState.stopped()) {
-      this.add(PlayEvent((b) => b..tune.replace(tune)));
-    } else if (state == PlayerState.playing()) {
-      this.add(Pause((b) => b));
-    } else if (state == PlayerState.paused()) {
-      this.add(Resume((b) => b));
-    } else if (state == PlayerState.resumed()) {
-      this.add(Pause((b) => b));
+      add(PlayEvent((b) => b..tune.replace(tune)));
+    } else if (state == PlayerState.playing(_trackPosition)) {
+      add(PauseEvent((b) => b));
+    } else {
+      add(ResumeEvent((b) => b));
+    }
+  }
+
+  Stream<PlayerState> _pauseTune(PauseEvent event) async* {
+    _audioPlayerService.pauseAudio();
+    yield PlayerState.paused(_trackPosition);
+  }
+
+  Stream<PlayerState> _playTune(PlayEvent event) async* {
+    _trackDuration = event.tune.audioFile.duration;
+    _audioPlayerService.playAudio();
+    _audioPlayerService.onProgress().listen((p) {
+      _trackPosition = p.inMilliseconds;
+      return add(
+        TickEvent(position: _trackPosition),
+      );
+    });
+    yield PlayerState.playing(_trackPosition);
+  }
+
+  Stream<PlayerState> _resumeTune(ResumeEvent event) async* {
+    _audioPlayerService.resumeAudio();
+    yield PlayerState.resumed(_trackPosition);
+  }
+
+  Stream<PlayerState> _stopTune(StopEvent event) async* {
+    _audioPlayerService.stopAudio();
+    yield PlayerState.stopped();
+  }
+
+  Stream<PlayerState> _positionDidUpdated(TickEvent event) async* {
+    if (event.position >= _trackDuration) {
+      yield PlayerState.stopped();
+    } else if (event.position > 0 && event.position < _trackDuration) {
+      yield PlayerState.playing(event.position);
     }
   }
 }

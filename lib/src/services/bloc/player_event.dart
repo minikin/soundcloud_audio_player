@@ -7,30 +7,38 @@ part 'player_event.g.dart';
 
 abstract class PlayerEvent {}
 
-abstract class Pause extends PlayerEvent implements Built<Pause, PauseBuilder> {
-  factory Pause([updates(PauseBuilder b)]) = _$Pause;
+abstract class PauseEvent extends PlayerEvent
+    implements Built<PauseEvent, PauseEventBuilder> {
+  PauseEvent._();
 
-  Pause._();
+  factory PauseEvent([void Function(PauseEventBuilder) updates]) = _$PauseEvent;
 }
 
 abstract class PlayEvent extends PlayerEvent
     implements Built<PlayEvent, PlayEventBuilder> {
-  PlayEvent._();
-
   Tune get tune;
 
-  factory PlayEvent([updates(PlayEventBuilder b)]) = _$PlayEvent;
+  PlayEvent._();
+
+  factory PlayEvent([void Function(PlayEventBuilder) updates]) = _$PlayEvent;
 }
 
-abstract class Resume extends PlayerEvent
-    implements Built<Resume, ResumeBuilder> {
-  factory Resume([updates(ResumeBuilder b)]) = _$Resume;
+abstract class ResumeEvent extends PlayerEvent
+    implements Built<ResumeEvent, ResumeEventBuilder> {
+  ResumeEvent._();
 
-  Resume._();
+  factory ResumeEvent([void Function(ResumeEventBuilder) updates]) =
+      _$ResumeEvent;
 }
 
-abstract class Stop extends PlayerEvent implements Built<Stop, StopBuilder> {
-  factory Stop([updates(StopBuilder b)]) = _$Stop;
+abstract class StopEvent extends PlayerEvent
+    implements Built<StopEvent, StopEventBuilder> {
+  StopEvent._();
 
-  Stop._();
+  factory StopEvent([void Function(StopEventBuilder) updates]) = _$StopEvent;
+}
+
+class TickEvent extends PlayerEvent {
+  final int position;
+  TickEvent({this.position = 0});
 }
