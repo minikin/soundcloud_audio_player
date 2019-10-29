@@ -47,7 +47,7 @@ class PlayButton<S> extends StatelessWidget {
     } else if (playerState == PlayerState.resumed()) {
       return Icon(Icons.pause);
     } else {
-      return Icon(Icons.stop);
+      return Icon(Icons.pause);
     }
   }
 

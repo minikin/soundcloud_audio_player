@@ -8,7 +8,6 @@ import 'package:meta/meta.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   final AudioPlayerService _audioPlayerService;
-  var _trackPosition = 0;
 
   PlayerBloc({
     @required AudioPlayerService audioPlayerService,
@@ -28,16 +27,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
       yield* _resumeTune(event);
     } else if (event is Stop) {
       yield* _stopTune(event);
-    } else if (event is TrackPosition) {
-      yield* _positionDidUpdated(event);
     }
   }
-
-  // @override
-  // void onTransition(Transition<PlayerEvent, PlayerState> transition) {
-  //   super.onTransition(transition);
-  //   print(transition);
-  // }
 
   void toggle(Tune tune) {
     if (state == PlayerState.stopped()) {
@@ -60,7 +51,6 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     _audioPlayerService.playAudio();
     _audioPlayerService.onProgress().listen(
         (p) => add(TrackPosition((b) => b..position = p.inMilliseconds)));
-
     yield PlayerState.playing(0);
   }
 
@@ -75,9 +65,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   }
 
   Stream<PlayerState> _positionDidUpdated(TrackPosition event) async* {
-    yield PlayerState.playing(event.position);
-    // yield event.position > 0
-    //     ? PlayerState.playing(event.position)
-    //     : PlayerState.paused();
+    yield event.position > 0
+        ? PlayerState.playing(event.position)
+        : PlayerState.paused();
   }
 }
