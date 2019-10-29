@@ -19,6 +19,12 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   PlayerState get initialState => PlayerState.stopped();
 
   @override
+  void close() {
+    _audioPlayerService.dispose();
+    super.close();
+  }
+
+  @override
   Stream<PlayerState> mapEventToState(PlayerEvent event) async* {
     if (event is Pause) {
       yield* _pauseTune(event);
@@ -35,13 +41,13 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   void toggle(Tune tune) {
     if (state == PlayerState.stopped()) {
-      this.add(PlayEvent((b) => b..tune.replace(tune)));
+      add(PlayEvent((b) => b..tune.replace(tune)));
     } else if (state == PlayerState.playing(0)) {
-      this.add(Pause((b) => b));
+      add(Pause((b) => b));
     } else if (state == PlayerState.paused()) {
-      this.add(Resume((b) => b));
+      add(Resume((b) => b));
     } else if (state == PlayerState.resumed()) {
-      this.add(Pause((b) => b));
+      add(Pause((b) => b));
     }
   }
 

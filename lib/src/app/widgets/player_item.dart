@@ -129,13 +129,6 @@ class _PlayerItemState extends State<PlayerItem> {
   }
 
   @override
-  void dispose() {
-    _audioPlayerService.dispose();
-    _playerBloc.close();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     _audioPlayerService = AudioPlayerService(tune: widget.tune);
     _playerBloc = PlayerBloc(audioPlayerService: _audioPlayerService);
