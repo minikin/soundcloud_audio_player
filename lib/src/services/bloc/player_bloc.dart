@@ -43,9 +43,15 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     }
   }
 
-  void seekTo(double touchosition) {
-    //add(SeekEvent(seekToPosition: position));
-    final seekToPosition = (touchosition * 1000).toInt();
+  void seekTo({
+    @required double touchPosition,
+    @required double widgetWidth,
+  }) {
+    // 210000 track duration
+    // widgetWidth 350
+    final dx = _trackDuration / widgetWidth;
+    print('DX $widgetWidth');
+    final seekToPosition = (dx * touchPosition).toInt();
     print(seekToPosition);
     _audioPlayerService.seekTo(Duration(milliseconds: seekToPosition));
   }
