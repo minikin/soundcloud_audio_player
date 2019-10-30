@@ -15,7 +15,7 @@ class WaveFormItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (details) => _onTapDown(details),
+      onTapDown: (details) => bloc.seekTo(details.globalPosition.dx),
       child: ClipPath(
         clipper: WaveformClipper(waveform),
         child: Container(
@@ -34,11 +34,5 @@ class WaveFormItem extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _onTapDown(TapDownDetails details) {
-    final x = details.globalPosition.dx;
-    print('tap down: $x');
-    bloc.seekTo(20000);
   }
 }

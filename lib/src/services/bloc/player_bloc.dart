@@ -16,7 +16,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   })  : assert(audioPlayerService != null),
         _audioPlayerService = audioPlayerService;
 
-  double get gradientStart => _trackPosition / _trackDuration;
+  double get _gradientStart => _trackPosition / _trackDuration;
+  double get gradientStart => !_gradientStart.isNaN ? _gradientStart : 0;
 
   @override
   PlayerState get initialState => PlayerState.stopped();
@@ -42,9 +43,11 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     }
   }
 
-  void seekTo(int position) {
+  void seekTo(double touchosition) {
     //add(SeekEvent(seekToPosition: position));
-    _audioPlayerService.seekTo(Duration(milliseconds: position));
+    final seekToPosition = (touchosition * 1000).toInt();
+    print(seekToPosition);
+    _audioPlayerService.seekTo(Duration(milliseconds: seekToPosition));
   }
 
   void toggle(Tune tune) {
