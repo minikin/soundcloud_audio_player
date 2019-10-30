@@ -107,11 +107,8 @@ class PlayerItem extends StatelessWidget {
                 left: 8,
                 right: 8,
                 child: WaveFormItem(
-                  waveform: Waveform(
-                    tune.audioFile.waveformResponse,
-                  ),
-                  trackDuration: tune.audioFile.duration,
-                  trackPosition: state.position,
+                  waveform: Waveform(tune.audioFile.waveformResponse),
+                  bloc: _playerBloc,
                 ),
               ),
             ],

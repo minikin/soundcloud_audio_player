@@ -42,3 +42,9 @@ class TickEvent extends PlayerEvent {
   final int position;
   TickEvent({this.position = 0});
 }
+
+class SeekEvent extends PlayerEvent {
+  final int seekToPosition;
+
+  SeekEvent({this.seekToPosition});
+}

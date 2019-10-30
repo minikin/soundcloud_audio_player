@@ -16,6 +16,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   })  : assert(audioPlayerService != null),
         _audioPlayerService = audioPlayerService;
 
+  double get gradientStart => _trackPosition / _trackDuration;
+
   @override
   PlayerState get initialState => PlayerState.stopped();
 
@@ -38,6 +40,11 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     } else if (event is TickEvent) {
       yield* _positionDidUpdated(event);
     }
+  }
+
+  void seekTo(int position) {
+    //add(SeekEvent(seekToPosition: position));
+    _audioPlayerService.seekTo(Duration(milliseconds: position));
   }
 
   void toggle(Tune tune) {
@@ -67,6 +74,14 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     yield PlayerState.playing(_trackPosition);
   }
 
+  Stream<PlayerState> _positionDidUpdated(TickEvent event) async* {
+    if (event.position >= _trackDuration) {
+      yield PlayerState.stopped();
+    } else if (event.position > 0 && event.position < _trackDuration) {
+      yield PlayerState.playing(event.position);
+    }
+  }
+
   Stream<PlayerState> _resumeTune(ResumeEvent event) async* {
     _audioPlayerService.resumeAudio();
     yield PlayerState.resumed(_trackPosition);
@@ -75,13 +90,5 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   Stream<PlayerState> _stopTune(StopEvent event) async* {
     _audioPlayerService.stopAudio();
     yield PlayerState.stopped();
-  }
-
-  Stream<PlayerState> _positionDidUpdated(TickEvent event) async* {
-    if (event.position >= _trackDuration) {
-      yield PlayerState.stopped();
-    } else if (event.position > 0 && event.position < _trackDuration) {
-      yield PlayerState.playing(event.position);
-    }
   }
 }

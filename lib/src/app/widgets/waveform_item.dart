@@ -1,15 +1,14 @@
+import 'package:audio/src/services/bloc/bloc.dart';
 import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/material.dart';
 
 class WaveFormItem extends StatelessWidget {
   final Waveform waveform;
-  final int trackDuration;
-  final int trackPosition;
+  final PlayerBloc bloc;
 
   const WaveFormItem({
     @required this.waveform,
-    @required this.trackDuration,
-    @required this.trackPosition,
+    @required this.bloc,
     Key key,
   }) : super(key: key);
 
@@ -25,7 +24,7 @@ class WaveFormItem extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              stops: [trackPosition / trackDuration, 0],
+              stops: [bloc.gradientStart, 0],
               colors: [
                 Colors.orange,
                 Colors.grey,
@@ -39,7 +38,7 @@ class WaveFormItem extends StatelessWidget {
 
   void _onTapDown(TapDownDetails details) {
     final x = details.globalPosition.dx;
-    final y = details.globalPosition.dy;
-    print('tap down: $x , $y');
+    print('tap down: $x');
+    bloc.seekTo(20000);
   }
 }
