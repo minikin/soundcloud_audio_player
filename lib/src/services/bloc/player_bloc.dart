@@ -16,6 +16,9 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   })  : assert(audioPlayerService != null),
         _audioPlayerService = audioPlayerService;
 
+  double get _gradientStart => _trackPosition / _trackDuration;
+  double get gradientStart => !_gradientStart.isNaN ? _gradientStart : 0;
+
   @override
   PlayerState get initialState => PlayerState.stopped();
 
@@ -38,6 +41,19 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     } else if (event is TickEvent) {
       yield* _positionDidUpdated(event);
     }
+  }
+
+  void seekTo({
+    @required double touchPosition,
+    @required double widgetWidth,
+  }) {
+    // 210000 track duration
+    // widgetWidth 350
+    final dx = _trackDuration / widgetWidth;
+    print('DX $widgetWidth');
+    final seekToPosition = (dx * touchPosition).toInt();
+    print(seekToPosition);
+    _audioPlayerService.seekTo(Duration(milliseconds: seekToPosition));
   }
 
   void toggle(Tune tune) {
@@ -67,6 +83,14 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     yield PlayerState.playing(_trackPosition);
   }
 
+  Stream<PlayerState> _positionDidUpdated(TickEvent event) async* {
+    if (event.position >= _trackDuration) {
+      yield PlayerState.stopped();
+    } else if (event.position > 0 && event.position < _trackDuration) {
+      yield PlayerState.playing(event.position);
+    }
+  }
+
   Stream<PlayerState> _resumeTune(ResumeEvent event) async* {
     _audioPlayerService.resumeAudio();
     yield PlayerState.resumed(_trackPosition);
@@ -75,13 +99,5 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   Stream<PlayerState> _stopTune(StopEvent event) async* {
     _audioPlayerService.stopAudio();
     yield PlayerState.stopped();
-  }
-
-  Stream<PlayerState> _positionDidUpdated(TickEvent event) async* {
-    if (event.position >= _trackDuration) {
-      yield PlayerState.stopped();
-    } else if (event.position > 0 && event.position < _trackDuration) {
-      yield PlayerState.playing(event.position);
-    }
   }
 }
