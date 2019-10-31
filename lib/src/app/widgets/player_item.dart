@@ -28,13 +28,13 @@ class PlayerItem extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(8),
           width: double.infinity,
-          height: 300,
+          height: screenWidth(context),
           child: Stack(
             children: <Widget>[
-              Image.asset(
+              Image.network(
                 tune.artwork,
                 fit: BoxFit.cover,
-                height: 300,
+                height: screenWidth(context),
                 width: double.infinity,
                 color: Colors.black38,
                 colorBlendMode: BlendMode.hardLight,
@@ -64,7 +64,7 @@ class PlayerItem extends StatelessWidget {
                                       tune.artist,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 24,
+                                        fontSize: 32,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
@@ -85,7 +85,7 @@ class PlayerItem extends StatelessWidget {
                                     child: Text(
                                       tune.title,
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 20,
                                         color: Colors.grey[300],
                                       ),
                                     ),
@@ -105,7 +105,7 @@ class PlayerItem extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: -55,
+                bottom: -45,
                 left: 8,
                 right: 8,
                 child: WaveFormItem(
