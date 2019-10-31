@@ -47,12 +47,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     @required double touchPosition,
     @required double widgetWidth,
   }) {
-    // 210000 track duration
-    // widgetWidth 350
     final dx = _trackDuration / widgetWidth;
-    print('DX $widgetWidth');
     final seekToPosition = (dx * touchPosition).toInt();
-    print(seekToPosition);
     _audioPlayerService.seekTo(Duration(milliseconds: seekToPosition));
   }
 

@@ -1,3 +1,4 @@
+import 'package:audio/src/app/utils/free_functions.dart';
 import 'package:audio/src/app/widgets/action_button.dart';
 import 'package:audio/src/app/widgets/play_button.dart';
 import 'package:audio/src/app/widgets/waveform_item.dart';
@@ -20,19 +21,20 @@ class PlayerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final rowHeight = 40.0;
     return BlocBuilder<PlayerBloc, PlayerState>(
       bloc: _playerBloc,
       builder: (context, state) {
         return Container(
           padding: const EdgeInsets.all(8),
           width: double.infinity,
-          height: 300,
+          height: screenWidth(context),
           child: Stack(
             children: <Widget>[
-              Image.asset(
+              Image.network(
                 tune.artwork,
                 fit: BoxFit.cover,
-                height: 300,
+                height: screenWidth(context),
                 width: double.infinity,
                 color: Colors.black38,
                 colorBlendMode: BlendMode.hardLight,
@@ -40,7 +42,7 @@ class PlayerItem extends StatelessWidget {
               Positioned(
                 top: 0,
                 child: Container(
-                  width: 330,
+                  width: screenWidth(context),
                   child: Row(
                     children: <Widget>[
                       PlayButton(
@@ -49,11 +51,11 @@ class PlayerItem extends StatelessWidget {
                         onPressed: () => _playerBloc.toggle(tune),
                       ),
                       Container(
-                        width: 230,
+                        width: screenWidth(context) - 135,
                         child: Column(
                           children: <Widget>[
                             Container(
-                              height: 30,
+                              height: rowHeight,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -62,7 +64,7 @@ class PlayerItem extends StatelessWidget {
                                       tune.artist,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 24,
+                                        fontSize: 32,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
@@ -75,7 +77,7 @@ class PlayerItem extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              height: 30,
+                              height: rowHeight,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
@@ -83,7 +85,7 @@ class PlayerItem extends StatelessWidget {
                                     child: Text(
                                       tune.title,
                                       style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 20,
                                         color: Colors.grey[300],
                                       ),
                                     ),

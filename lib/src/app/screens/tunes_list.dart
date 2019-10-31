@@ -1,4 +1,3 @@
-import 'package:audio/src/app/widgets/app_bar.dart';
 import 'package:audio/src/app/widgets/player_item.dart';
 import 'package:audio/src/services/models/models.dart';
 import 'package:built_collection/built_collection.dart';
@@ -10,7 +9,12 @@ class TunesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: sharedAppBar(context, 'Music'),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        brightness: Brightness.light,
+        elevation: 1,
+        title: const Text('Music'),
+      ),
       body: SafeArea(
         child: Center(
           child: Container(
