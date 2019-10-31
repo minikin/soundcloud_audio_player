@@ -12,18 +12,12 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Ink(
-          // decoration: ShapeDecoration(
-          //   color: Colors.orange,
-          //   shape: CircleBorder(),
-          // ),
-          child: IconButton(
-            icon: icon,
-            color: Colors.orange,
-            onPressed: () => onPressed,
-          ),
+    return Container(
+      child: Ink(
+        child: IconButton(
+          icon: icon,
+          color: Colors.orange,
+          onPressed: () => onPressed,
         ),
       ),
     );

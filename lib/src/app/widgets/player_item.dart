@@ -21,6 +21,7 @@ class PlayerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final rowHeight = 40.0;
     return BlocBuilder<PlayerBloc, PlayerState>(
       bloc: _playerBloc,
       builder: (context, state) {
@@ -50,11 +51,11 @@ class PlayerItem extends StatelessWidget {
                         onPressed: () => _playerBloc.toggle(tune),
                       ),
                       Container(
-                        width: screenWidth(context) - 130,
+                        width: screenWidth(context) - 135,
                         child: Column(
                           children: <Widget>[
                             Container(
-                              height: 30,
+                              height: rowHeight,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -76,7 +77,7 @@ class PlayerItem extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              height: 30,
+                              height: rowHeight,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
