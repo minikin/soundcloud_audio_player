@@ -1,3 +1,4 @@
+import 'package:audio/src/app/utils/free_functions.dart';
 import 'package:audio/src/app/widgets/action_button.dart';
 import 'package:audio/src/app/widgets/play_button.dart';
 import 'package:audio/src/app/widgets/waveform_item.dart';
@@ -40,7 +41,7 @@ class PlayerItem extends StatelessWidget {
               Positioned(
                 top: 0,
                 child: Container(
-                  width: 330,
+                  width: screenWidth(context),
                   child: Row(
                     children: <Widget>[
                       PlayButton(
@@ -49,7 +50,7 @@ class PlayerItem extends StatelessWidget {
                         onPressed: () => _playerBloc.toggle(tune),
                       ),
                       Container(
-                        width: 230,
+                        width: screenWidth(context) - 130,
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -103,7 +104,7 @@ class PlayerItem extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: -45,
+                bottom: -55,
                 left: 8,
                 right: 8,
                 child: WaveFormItem(

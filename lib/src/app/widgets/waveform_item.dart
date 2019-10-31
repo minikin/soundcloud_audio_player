@@ -1,3 +1,4 @@
+import 'package:audio/src/app/utils/free_functions.dart';
 import 'package:audio/src/services/bloc/bloc.dart';
 import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class WaveFormItem extends StatelessWidget {
     return GestureDetector(
       onTapDown: (details) => bloc.seekTo(
         touchPosition: details.globalPosition.dx,
-        widgetWidth: 350,
+        widgetWidth: screenWidth(context) - 16,
       ),
       child: ClipPath(
         clipper: WaveformClipper(waveform),
