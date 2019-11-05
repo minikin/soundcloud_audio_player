@@ -23,9 +23,9 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   PlayerState get initialState => PlayerState.stopped();
 
   @override
-  void close() {
+  Future<void> close() {
     _audioPlayerService.dispose();
-    super.close();
+    return super.close();
   }
 
   @override
