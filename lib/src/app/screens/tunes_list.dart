@@ -13,7 +13,13 @@ class TunesList extends StatelessWidget {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         elevation: 1,
-        title: const Text('Music'),
+        title: Text(
+          'Music',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+          ),
+        ),
       ),
       body: SafeArea(
         child: Center(

@@ -23,7 +23,7 @@ class WaveFormItem extends StatelessWidget {
         child: ClipPath(
           clipper: WaveformClipper(waveform),
           child: Container(
-            height: 200,
+            height: 100,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,

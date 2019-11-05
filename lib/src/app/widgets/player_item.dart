@@ -68,13 +68,16 @@ class PlayerItem extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  IconButton(
-                                    iconSize: 30,
-                                    color: Colors.orange,
-                                    icon: Icon(Icons.cloud_download),
-                                    onPressed: () {
-                                      print('ERRORRRRRRROROROROROROROR');
-                                    },
+                                  Container(
+                                    child: IconButton(
+                                      iconSize: 30,
+                                      color: Colors.orange,
+                                      icon: Icon(Icons.cloud_download),
+                                      onPressed: () {
+                                        print(
+                                            'IconButton IconButton IconButton');
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
@@ -93,13 +96,16 @@ class PlayerItem extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  IconButton(
-                                    iconSize: 30,
-                                    color: Colors.orange,
-                                    icon: Icon(Icons.share),
-                                    onPressed: () {
-                                      print('ERRORRRRRRROROROROROROROR');
-                                    },
+                                  Container(
+                                    child: IconButton(
+                                      iconSize: 30,
+                                      color: Colors.orange,
+                                      icon: Icon(Icons.share),
+                                      onPressed: () {
+                                        print(
+                                            'IconButton IconButton IconButton');
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
@@ -112,12 +118,14 @@ class PlayerItem extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: -45,
+                bottom: 4,
                 left: 8,
                 right: 8,
-                child: WaveFormItem(
-                  waveform: Waveform(tune.audioFile.waveformResponse),
-                  bloc: _playerBloc,
+                child: Container(
+                  child: WaveFormItem(
+                    waveform: Waveform(tune.audioFile.waveformResponse),
+                    bloc: _playerBloc,
+                  ),
                 ),
               ),
             ],
