@@ -107,11 +107,11 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `.symlinks/flutter/ios-release`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Crashlytics
     - Fabric
     - Firebase
@@ -138,7 +138,7 @@ EXTERNAL SOURCES:
   firebase_performance:
     :path: ".symlinks/plugins/firebase_performance/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: ".symlinks/flutter/ios-release"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
 
@@ -167,4 +167,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: fd7301bac662cd7e3e4d8a5eba241df746fa3160
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.8.4

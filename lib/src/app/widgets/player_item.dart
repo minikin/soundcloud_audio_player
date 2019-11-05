@@ -24,16 +24,17 @@ class PlayerItem extends StatelessWidget {
     return BlocBuilder<PlayerBloc, PlayerState>(
       bloc: _playerBloc,
       builder: (context, state) {
+        final _screenWidth = screenWidth(context);
         return Container(
           padding: const EdgeInsets.all(8),
           width: double.infinity,
-          height: screenWidth(context),
+          height: _screenWidth,
           child: Stack(
             children: <Widget>[
               Image.network(
                 tune.artwork,
                 fit: BoxFit.cover,
-                height: screenWidth(context),
+                height: _screenWidth,
                 width: double.infinity,
                 color: Colors.black38,
                 colorBlendMode: BlendMode.hardLight,
@@ -41,7 +42,7 @@ class PlayerItem extends StatelessWidget {
               Positioned(
                 top: 0,
                 child: Container(
-                  width: screenWidth(context),
+                  width: _screenWidth,
                   child: Row(
                     children: <Widget>[
                       PlayButton(
@@ -50,7 +51,7 @@ class PlayerItem extends StatelessWidget {
                         onPressed: () => _playerBloc.toggle(tune),
                       ),
                       Container(
-                        width: screenWidth(context) - 135,
+                        width: _screenWidth - 135,
                         child: Column(
                           children: <Widget>[
                             Container(
@@ -68,16 +69,13 @@ class PlayerItem extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    child: IconButton(
-                                      iconSize: 30,
-                                      color: Colors.orange,
-                                      icon: Icon(Icons.cloud_download),
-                                      onPressed: () {
-                                        print(
-                                            'IconButton IconButton IconButton');
-                                      },
-                                    ),
+                                  IconButton(
+                                    iconSize: 30,
+                                    color: Colors.orange,
+                                    icon: Icon(Icons.cloud_download),
+                                    onPressed: () {
+                                      print('IconButton IconButton IconButton');
+                                    },
                                   ),
                                 ],
                               ),
@@ -96,16 +94,13 @@ class PlayerItem extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    child: IconButton(
-                                      iconSize: 30,
-                                      color: Colors.orange,
-                                      icon: Icon(Icons.share),
-                                      onPressed: () {
-                                        print(
-                                            'IconButton IconButton IconButton');
-                                      },
-                                    ),
+                                  IconButton(
+                                    iconSize: 30,
+                                    color: Colors.orange,
+                                    icon: Icon(Icons.share),
+                                    onPressed: () {
+                                      print('IconButton IconButton IconButton');
+                                    },
                                   ),
                                 ],
                               ),
