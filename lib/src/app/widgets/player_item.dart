@@ -5,6 +5,7 @@ import 'package:audio/src/app/widgets/waveform_item.dart';
 import 'package:audio/src/services/audio_player_service.dart';
 import 'package:audio/src/services/bloc/bloc.dart';
 import 'package:audio/src/services/models/models.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,7 +72,9 @@ class PlayerItem extends StatelessWidget {
                                   ),
                                   ActionButton(
                                     icon: Icon(Icons.cloud_download),
-                                    onPressed: () => print,
+                                    onPressed: () {
+                                      Crashlytics.instance.log('baz');
+                                    },
                                   ),
                                 ],
                               ),
@@ -92,7 +95,10 @@ class PlayerItem extends StatelessWidget {
                                   ),
                                   ActionButton(
                                     icon: Icon(Icons.share),
-                                    onPressed: () => print,
+                                    onPressed: () {
+                                      throw StateError(
+                                          'Uncaught error thrown by app.');
+                                    },
                                   ),
                                 ],
                               ),
