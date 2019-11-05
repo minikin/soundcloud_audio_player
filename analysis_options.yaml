@@ -54,4 +54,3 @@ linter:
     - unnecessary_parenthesis
     - unnecessary_statements
     - use_to_and_as_if_applicable
-    # - avoid_types_on_closure_parameters

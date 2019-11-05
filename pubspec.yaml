@@ -12,9 +12,9 @@ dependencies:
 
   audioplayers: ^0.13.2
   built_collection: ^4.2.2
-  built_value: ^6.8.1
+  built_value: ^6.8.2
   cupertino_icons: ^0.1.2
-  flutter_bloc: ^1.0.0
+  flutter_bloc: ^2.0.0
 
 dev_dependencies:
   flutter_test:
