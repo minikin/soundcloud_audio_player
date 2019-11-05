@@ -6,8 +6,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const TunesList(),
+    return const MaterialApp(
+      home: TunesList(),
     );
   }
 }
