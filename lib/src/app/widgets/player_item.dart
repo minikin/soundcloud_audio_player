@@ -31,13 +31,16 @@ class PlayerItem extends StatelessWidget {
           height: _screenWidth,
           child: Stack(
             children: <Widget>[
-              Image.network(
-                tune.artwork,
-                fit: BoxFit.cover,
-                height: _screenWidth,
-                width: double.infinity,
-                color: Colors.black38,
-                colorBlendMode: BlendMode.hardLight,
+              Container(
+                color: Colors.grey[200],
+                child: Image.network(
+                  tune.artwork,
+                  fit: BoxFit.cover,
+                  height: _screenWidth,
+                  width: double.infinity,
+                  color: Colors.black38,
+                  colorBlendMode: BlendMode.hardLight,
+                ),
               ),
               Positioned(
                 top: 0,
