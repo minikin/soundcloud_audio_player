@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>899824677417-rb0ijkrsd8ocj054bjrtnedbpjp5fome.apps.googleusercontent.com</string>
+	<string>899824677417-miludua8gc82tp1elcc53oqf2td4l3rh.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.899824677417-rb0ijkrsd8ocj054bjrtnedbpjp5fome</string>
+	<string>com.googleusercontent.apps.899824677417-miludua8gc82tp1elcc53oqf2td4l3rh</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAHpQ7Xa0QaXxN5XhN77y7HzCq9SC8uX7k</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>me.minikin.flutter.demo.alpha</string>
+	<string>me.minikin.firebase.alpha</string>
 	<key>PROJECT_ID</key>
 	<string>flutter-template-7b07a</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:899824677417:ios:16d5ef447399b1e68fa238</string>
+	<string>1:899824677417:ios:72ea335f3c6ab1d58fa238</string>
 	<key>DATABASE_URL</key>
 	<string>https://flutter-template-7b07a.firebaseio.com</string>
 </dict>

@@ -1,6 +1,10 @@
-# app_identifier("[[APP_IDENTIFIER]]") # The bundle identifier of your app
-# apple_id("[[APPLE_ID]]") # Your Apple email address
+# Team
+apple_id "developer@fernarzt.com"
+team_id "6BQ9S8287B"
 
-
-# For more information about the Appfile, see:
-#     https://docs.fastlane.tools/advanced/#appfile
+# Use different bundle identifiers per lane
+for_platform :ios do
+  for_lane :develop do
+    app_identifier 'me.minikin.firebase.alpha'
+  end
+end
