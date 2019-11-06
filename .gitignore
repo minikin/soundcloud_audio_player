@@ -7,6 +7,7 @@ key.properties
 ios/fastlane/report.xml
 android/fastlane/report.xml
 coverage/output/*
+GoogleService-Info.plist
 
 # Miscellaneous
 *.class

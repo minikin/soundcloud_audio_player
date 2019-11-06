@@ -34,11 +34,13 @@ platform :ios do
       workspace: 'Runner.xcworkspace',
       scheme: 'Runner',
       export_method: 'development',
+      output_name: 'SoundPlayer.ipa',
+      clean: true,
     )
 
     # Upload to Firebase
-    # firebase appdistribution:distribute ../Runner.ipa --app 1:899824677417:ios:72ea335f3c6ab1d58fa238
-    sh('firebase', 'appdistribution:distribute', '../Runner.ipa', "--app=#{app_id}")
+    # firebase appdistribution:distribute ../SoundPlayer.ipa --app 1:899824677417:ios:72ea335f3c6ab1d58fa238
+    sh('firebase', 'appdistribution:distribute', '../SoundPlayer.ipa', "--app=#{app_id}")
 
     # Make sure our directory is clean, except for changes Fastlane has made
     clean_build_artifacts
