@@ -11,6 +11,8 @@ platform :ios do
 
   desc 'Upload a developer build to Firebase.'
   lane :develop do
+    app_id = '1:899824677417:ios:72ea335f3c6ab1d58fa238';
+
     build_number = number_of_commits()
 
     disable_automatic_code_signing
@@ -21,8 +23,6 @@ platform :ios do
       sh('flutter', 'clean')
       sh('flutter', 'build', 'ios', '--release', '--no-codesign', "--build-number=#{build_number}")
     end
-
-    # flutter build ios --release --no-codesign
 
     update_info_plist(
       plist_path: 'Runner/Info.plist',
@@ -37,11 +37,8 @@ platform :ios do
     )
 
     # Upload to Firebase
-    # sh("firebase appdistribution:distribute test.ipa --app 1:899824677417:ios:72ea335f3c6ab1d58fa238 --release-notes 'Lots of amazing new features to test out!'")
-    firebase_app_distribution(
-              app: "1:899824677417:ios:72ea335f3c6ab1d58fa238",
-              firebase_cli_path: "/usr/local/bin/firebase",
-          )
+    # firebase appdistribution:distribute ../Runner.ipa --app 1:899824677417:ios:72ea335f3c6ab1d58fa238
+    sh('firebase', 'appdistribution:distribute', '../Runner.ipa', "--app=#{app_id}")
 
     # Make sure our directory is clean, except for changes Fastlane has made
     clean_build_artifacts
