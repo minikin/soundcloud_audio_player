@@ -6,5 +6,5 @@ export "FLUTTER_TARGET=/Users/developer/Documents/Developer/Personal/flutter-aud
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
 export "FLUTTER_FRAMEWORK_DIR=/Users/developer/flutter/bin/cache/artifacts/engine/ios-release"
-export "FLUTTER_BUILD_NAME=0.0.1"
+export "FLUTTER_BUILD_NAME=0.0.2"
 export "FLUTTER_BUILD_NUMBER=1"
