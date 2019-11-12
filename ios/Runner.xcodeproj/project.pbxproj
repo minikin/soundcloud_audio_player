@@ -17,7 +17,6 @@
 		8BC9809123732BB10078BE13 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		8BC9809323732BB10078BE13 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; };
 		8BC9809423732BB10078BE13 /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; };
-		8BC9809523732BB10078BE13 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5990D2E9B9EEE3BF82CF0981 /* libPods-Runner.a */; };
 		8BC9809723732BB10078BE13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		8BC9809823732BB10078BE13 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		8BC9809A23732BB10078BE13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
@@ -30,7 +29,6 @@
 		8BC980B523732C7D0078BE13 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		8BC980B723732C7D0078BE13 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; };
 		8BC980B823732C7D0078BE13 /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; };
-		8BC980B923732C7D0078BE13 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5990D2E9B9EEE3BF82CF0981 /* libPods-Runner.a */; };
 		8BC980BB23732C7D0078BE13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		8BC980BC23732C7D0078BE13 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		8BC980BD23732C7D0078BE13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
@@ -44,6 +42,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		B1B54DFF5C198C9BF0420F74 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5990D2E9B9EEE3BF82CF0981 /* libPods-Runner.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -120,7 +119,6 @@
 			files = (
 				8BC9809323732BB10078BE13 /* Flutter.framework in Frameworks */,
 				8BC9809423732BB10078BE13 /* App.framework in Frameworks */,
-				8BC9809523732BB10078BE13 /* libPods-Runner.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +128,6 @@
 			files = (
 				8BC980B723732C7D0078BE13 /* Flutter.framework in Frameworks */,
 				8BC980B823732C7D0078BE13 /* App.framework in Frameworks */,
-				8BC980B923732C7D0078BE13 /* libPods-Runner.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +138,7 @@
 				9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */,
 				3B80C3941E831B6300D905FE /* App.framework in Frameworks */,
 				101D54014EC79346A967186D /* libPods-Runner.a in Frameworks */,
+				B1B54DFF5C198C9BF0420F74 /* libPods-Runner.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,14 +263,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BC980A223732BB10078BE13 /* Build configuration list for PBXNativeTarget "Waves Develop" */;
 			buildPhases = (
-				8BC9808C23732BB10078BE13 /* [CP] Check Pods Manifest.lock */,
 				8BC9808D23732BB10078BE13 /* Run Script */,
 				8BC9808E23732BB10078BE13 /* Sources */,
 				8BC9809223732BB10078BE13 /* Frameworks */,
 				8BC9809623732BB10078BE13 /* Resources */,
 				8BC9809C23732BB10078BE13 /* Embed Frameworks */,
 				8BC9809F23732BB10078BE13 /* Thin Binary */,
-				8BC980A023732BB10078BE13 /* [CP] Embed Pods Frameworks */,
 				8BC980A123732BB10078BE13 /* Fabric */,
 			);
 			buildRules = (
@@ -288,14 +284,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BC980C523732C7D0078BE13 /* Build configuration list for PBXNativeTarget "Waves Stagging" */;
 			buildPhases = (
-				8BC980B023732C7D0078BE13 /* [CP] Check Pods Manifest.lock */,
 				8BC980B123732C7D0078BE13 /* Run Script */,
 				8BC980B223732C7D0078BE13 /* Sources */,
 				8BC980B623732C7D0078BE13 /* Frameworks */,
 				8BC980BA23732C7D0078BE13 /* Resources */,
 				8BC980BF23732C7D0078BE13 /* Embed Frameworks */,
 				8BC980C223732C7D0078BE13 /* Thin Binary */,
-				8BC980C323732C7D0078BE13 /* [CP] Embed Pods Frameworks */,
 				8BC980C423732C7D0078BE13 /* Fabric */,
 			);
 			buildRules = (
@@ -444,28 +438,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
 		};
-		8BC9808C23732BB10078BE13 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8BC9808D23732BB10078BE13 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -494,21 +466,6 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" thin";
 		};
-		8BC980A023732BB10078BE13 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8BC980A123732BB10078BE13 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -526,28 +483,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
-		};
-		8BC980B023732C7D0078BE13 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		8BC980B123732C7D0078BE13 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -576,21 +511,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" thin";
-		};
-		8BC980C323732C7D0078BE13 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		8BC980C423732C7D0078BE13 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
