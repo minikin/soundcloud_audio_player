@@ -1,4 +1,4 @@
-import 'package:audio/src/services/bloc/bloc.dart';
+import 'package:audio/src/app/bloc/bloc.dart';
 import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/material.dart';
 
