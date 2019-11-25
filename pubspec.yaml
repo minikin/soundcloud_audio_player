@@ -1,7 +1,7 @@
 name: audio
 description: SoundCloud style audio player in Flutter.
 
-version: 0.0.4+1
+version: 0.0.5+1
 
 environment:
   sdk: '>=2.7.0 <3.0.0'

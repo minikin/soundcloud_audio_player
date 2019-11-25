@@ -1,2 +1,0 @@
-Device ID	Device Name
-00008020-001d34da0ed8002e	Sasha Prokhorenko iPhone XS
