@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:audio/src/services/audio_player_service.dart';
-import 'package:audio/src/services/bloc/bloc.dart';
+import 'package:audio/src/app/bloc/bloc.dart';
 import 'package:audio/src/services/models/models.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';

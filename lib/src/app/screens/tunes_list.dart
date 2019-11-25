@@ -13,13 +13,16 @@ class TunesList extends StatelessWidget {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         elevation: 1,
-        title: const Text('Music'),
+        title: Text(
+          'Music',
+          style: TextStyle(color: Colors.black, fontSize: 24),
+        ),
       ),
       body: SafeArea(
         child: Center(
           child: Container(
             padding: const EdgeInsets.all(8),
-            color: Colors.grey[100],
+            color: Colors.white,
             child: FutureBuilder<BuiltList<Tune>>(
               future: Tune.loadListOfTunes('tunes'),
               builder: (context, AsyncSnapshot<BuiltList<Tune>> snapshot) {
