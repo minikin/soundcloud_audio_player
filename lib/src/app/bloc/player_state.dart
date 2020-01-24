@@ -13,7 +13,8 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
 
   PlayerState._();
 
-  factory PlayerState([updates(PlayerStateBuilder b)]) = _$PlayerState;
+  factory PlayerState([void Function(PlayerStateBuilder) updates]) =
+      _$PlayerState;
 
   factory PlayerState.playing(int position) {
     return PlayerState(
