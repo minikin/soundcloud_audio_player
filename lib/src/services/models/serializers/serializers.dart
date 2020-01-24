@@ -27,4 +27,4 @@ T deserialize<T>(dynamic value) =>
     serializers.deserializeWith<T>(serializers.serializerForType(T), value);
 
 BuiltList<T> deserializeListOf<T>(dynamic items) => BuiltList.from(
-    items.map((item) => deserialize<T>(item)).toList(growable: false));
+    items.map((dynamic item) => deserialize<T>(item)).toList(growable: false));

@@ -10,7 +10,9 @@ part 'audio_file.g.dart';
 
 abstract class AudioFile implements Built<AudioFile, AudioFileBuilder> {
   static Serializer<AudioFile> get serializer => _$audioFileSerializer;
-  factory AudioFile([updates(AudioFileBuilder b)]) = _$AudioFile;
+
+  factory AudioFile([void Function(AudioFileBuilder) updates]) = _$AudioFile;
+
   AudioFile._();
 
   String get id;

@@ -15,7 +15,9 @@ part 'tune.g.dart';
 
 abstract class Tune implements Built<Tune, TuneBuilder> {
   static Serializer<Tune> get serializer => _$tuneSerializer;
-  factory Tune([updates(TuneBuilder b)]) = _$Tune;
+
+  factory Tune([void Function(TuneBuilder) updates]) = _$Tune;
+
   Tune._();
 
   String get artist;

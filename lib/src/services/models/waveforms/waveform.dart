@@ -80,8 +80,8 @@ class Waveform {
     final middle = size.height / 2;
     var i = 0;
 
-    final minPoints = [];
-    final maxPoints = [];
+    final minPoints = <Offset>[];
+    final maxPoints = <Offset>[];
 
     final t = size.width / samples.length;
     for (var j = 0; j < samples.length; j++) {
