@@ -1,7 +1,6 @@
 //
 // Generated file. Do not edit.
 //
-import 'dart:ui';
 
 import 'package:audioplayers/audioplayers_web.dart';
 
