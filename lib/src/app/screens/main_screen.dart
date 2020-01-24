@@ -6,15 +6,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'SoundCloud Player in Flutter/Dart',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routes: {
-        '/': (context) => TunesList(),
-      },
-    );
+    return const TunesList();
   }
 }

@@ -1,14 +1,12 @@
-// ignore_for_file: omit_local_variable_types
 library waveform_response;
 
 import 'dart:convert';
 
-import 'package:audio/src/services/serializers/serializers.dart';
+import 'package:audio/src/services/models/models.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 
 part 'waveform_response.g.dart';
 
@@ -17,7 +15,7 @@ abstract class WaveformResponse
   static Serializer<WaveformResponse> get serializer =>
       _$waveformResponseSerializer;
 
-  factory WaveformResponse([updates(WaveformResponseBuilder b)]) =
+  factory WaveformResponse([void Function(WaveformResponseBuilder) updates]) =
       _$WaveformResponse;
 
   WaveformResponse._();
@@ -48,20 +46,7 @@ abstract class WaveformResponse
         WaveformResponse.serializer, json.decode(jsonString));
   }
 
-  static Future<String> loadWaveformDataItem(String filename) async {
-    return rootBundle.loadString('assets/waveforms/$filename');
-  }
-
-  static Future<List<WaveformResponse>> loadWaveformDataList(
-      List<String> fileList) async {
-    final List<WaveformResponse> waveformList = [];
-
-    for (final fileName in fileList) {
-      final itemString = await loadWaveformDataItem(fileName);
-      final item = await compute(WaveformResponse.fromJson, itemString);
-      waveformList.add(item);
-    }
-
-    return waveformList;
+  static Future<WaveformResponse> fromJsonItem(String jsonString) async {
+    return compute(WaveformResponse.fromJson, jsonString);
   }
 }

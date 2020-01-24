@@ -1,15 +1,17 @@
 // ignore_for_file: omit_local_variable_types
 import 'dart:math';
 
-import 'package:audio/src/services/models/waveform_response.dart';
+import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 
 class Waveform {
   final WaveformResponse waveformResponse;
-  List<double> _scaledData;
+  List<double> _scaledData = [];
 
-  Waveform(this.waveformResponse, this._scaledData);
+  Waveform(
+    this.waveformResponse,
+  );
 
   int frameIdxFromPercent(double percent) {
     if (percent == null) {
@@ -28,16 +30,19 @@ class Waveform {
 
     var idx = ((waveformResponse.data.length.toDouble() / 2) * (percent / 100))
         .floor();
+
     final maxIdx = (waveformResponse.data.length.toDouble() / 2 * 0.98).floor();
+
     if (idx > maxIdx) {
       idx = maxIdx;
     }
+
     return idx;
   }
 
   Path path(
     Size size, {
-    double zoomLevel = 1.0,
+    double zoomLevel = 1,
     int fromFrame = 0,
   }) {
     if (!_isDataScaled()) {
@@ -79,10 +84,10 @@ class Waveform {
     final maxPoints = [];
 
     final t = size.width / samples.length;
-    for (var _i = 0; _i < samples.length; _i++) {
-      final d = samples[_i];
+    for (var j = 0; j < samples.length; j++) {
+      final d = samples[j];
 
-      if (_i % 2 != 0) {
+      if (j % 2 != 0) {
         minPoints.add(Offset(t * i, middle - middle * d));
       } else {
         maxPoints.add(Offset(t * i, middle - middle * d));
@@ -92,11 +97,11 @@ class Waveform {
 
     final path = Path();
     path.moveTo(0, middle);
-    maxPoints.forEach((o) => path.lineTo(o.dx, o.dy));
+    maxPoints.forEach((point) => path.lineTo(point.dx, point.dy));
     path.lineTo(size.width, middle);
-    minPoints.reversed
-        .forEach((o) => path.lineTo(o.dx, middle - (middle - o.dy)));
-
+    minPoints.reversed.forEach(
+      (point) => path.lineTo(point.dx, middle - (middle - point.dy)),
+    );
     path.close();
     return path;
   }
@@ -121,7 +126,7 @@ class Waveform {
     final List<Waveform> waveformList = [];
 
     for (final item in items) {
-      final waveform = Waveform(item, []);
+      final waveform = Waveform(item);
       waveformList.add(waveform);
     }
 

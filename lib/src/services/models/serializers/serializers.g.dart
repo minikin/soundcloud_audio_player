@@ -7,6 +7,8 @@ part of serializers;
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(AudioFile.serializer)
+      ..add(Tune.serializer)
       ..add(WaveformResponse.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
