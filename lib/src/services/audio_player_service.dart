@@ -8,9 +8,7 @@ class AudioPlayerService {
 
   final Tune tune;
 
-  AudioPlayerService({
-    @required this.tune,
-  }) {
+  AudioPlayerService({@required this.tune}) {
     onProgress();
   }
 
