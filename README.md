@@ -61,8 +61,8 @@ audiowaveform -i Setec_-_01_-_Ill_Be_Good.mp3 -o Setec_-_01_-_Ill_Be_Good.json -
 
 ## License
 
-This project is licensed under the mixed license.
+This project is licensed under the mixed license. 
 
-Audio files and artworks are distribute under Attribution-Noncommercial-No Derivative Works. Check [LICENSE](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/LICENSE_MUSIC)
+Audio files and artworks are distribute under Attribution-Noncommercial-No Derivative Works.Foe more info check [LICENSE](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/LICENSE_MUSIC)
 
-Source code distribute under [MIT](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/License_Source_Code).
+Source code distribute under [MIT](https://github.com/minikin/flutter-audio/blob/develop/License_Source_Code).
