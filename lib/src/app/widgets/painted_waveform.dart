@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 class PaintedWaveform extends StatefulWidget {
   final Waveform sampleData;
 
-  PaintedWaveform({
-    Key key,
-    @required this.sampleData,
-  }) : super(key: key);
+  PaintedWaveform({@required this.sampleData, Key key}) : super(key: key);
 
   @override
   _PaintedWaveformState createState() => _PaintedWaveformState();

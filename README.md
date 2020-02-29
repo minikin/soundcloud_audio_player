@@ -5,14 +5,11 @@
 - [SoundCloud style audio player in Flutter](#soundcloud-style-audio-player-in-flutter)
   - [Features](#features)
   - [Requirements](#requirements)
-  - [Develop](#develop)
   - [FAQ](#faq)
   - [Helpers](#helpers)
   - [License](#license)
 
 ## Features
-
-_WIP_
 
 ## Requirements
 
@@ -25,10 +22,6 @@ _WIP_
 - Flutter & Dart plugins:
   - [Visual Studio Code](https://flutter.dev/docs/get-started/editor?tab=androidstudio)
   - [Android Studio / IntelliJ](https://flutter.dev/docs/get-started/editor?tab=vscode)
-
-## Develop
-
-_WIP_
 
 ## FAQ
 
