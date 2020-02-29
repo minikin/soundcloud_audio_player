@@ -1,22 +1,37 @@
-# SoundCloud style audio player in Flutter
+<h1 align="center">
+  <a href="https://github.com/minikin/flutter-audio">
+  SoundCloud audio player in Flutter
+  </a>
+</h1>
 
-[![Build Status](https://app.bitrise.io/app/474b5771151802eb/status.svg?token=4s7obPnI_yciJHHVwQG_Bg&branch=develop)](https://app.bitrise.io/app/474b5771151802eb)
+<p align="center">
+   SoundCloud style audio player in Flutter and Dart.
+</p>
+
+<p align="center">
+  <a href="https://github.com/minikin/flutter-audio/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIXED-blue.svg" alt="SoundCloud audio player is released under the MIT license." />
+  </a>
+  <a href="https://app.bitrise.io/app/474b5771151802eb">
+    <img src="https://app.bitrise.io/app/474b5771151802eb/status.svg?token=4s7obPnI_yciJHHVwQG_Bg&branch=develop" alt="Current Build Status." />
+  </a>
+  <a href="https://github.com/minikin/flutter-audio/blob/master/CONTRIBUTING.md">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
+  </a>
+</p>
 
 - [SoundCloud style audio player in Flutter](#soundcloud-style-audio-player-in-flutter)
   - [Features](#features)
   - [Requirements](#requirements)
-  - [Develop](#develop)
   - [FAQ](#faq)
   - [Helpers](#helpers)
   - [License](#license)
 
 ## Features
 
-_WIP_
-
 ## Requirements
 
-- Flutter: the latest version on `flutter stable channel`
+- Flutter: the latest version on `flutter beta channel`
 - Dart: 2.8.0+
 - Xcode: 11.0+
 - Androind Studio 3.3.1+
@@ -25,10 +40,6 @@ _WIP_
 - Flutter & Dart plugins:
   - [Visual Studio Code](https://flutter.dev/docs/get-started/editor?tab=androidstudio)
   - [Android Studio / IntelliJ](https://flutter.dev/docs/get-started/editor?tab=vscode)
-
-## Develop
-
-_WIP_
 
 ## FAQ
 
@@ -48,14 +59,10 @@ audiowaveform -i ambient_c_motion.mp3 -o ambient_c_motion.json -z 8112
 audiowaveform -i Setec_-_01_-_Ill_Be_Good.mp3 -o Setec_-_01_-_Ill_Be_Good.json -z 16224
 ```
 
-```sh
-flutter create --org me.minikin.flutter .
-```
-
 ## License
 
-This project is licensed under the MIT.
+This project is licensed under the mixed license.
 
-Audio assets are distribute under [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+Audio files and artworks are distribute under Attribution-Noncommercial-No Derivative Works. Check [LICENSE](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/LICENSE_MUSIC)
 
-Images for artworks are from [Unsplash](https://unsplash.com).
+Source code distribute under [MIT](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/License_Source_Code).

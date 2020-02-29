@@ -77,7 +77,7 @@ class PlayerItem extends StatelessWidget {
                                     color: Colors.orange,
                                     icon: Icon(Icons.cloud_download),
                                     onPressed: () {
-                                      print('IconButton IconButton IconButton');
+                                      print('IconButton Pressed');
                                     },
                                   ),
                                 ],
@@ -102,7 +102,7 @@ class PlayerItem extends StatelessWidget {
                                     color: Colors.orange,
                                     icon: Icon(Icons.share),
                                     onPressed: () {
-                                      print('IconButton IconButton IconButton');
+                                      print('IconButton Pressed');
                                     },
                                   ),
                                 ],
