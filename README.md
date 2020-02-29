@@ -49,6 +49,6 @@ flutter create --org me.minikin.flutter .
 
 This project is licensed under the mixed license.
 
-Audio files and artworks are distribute under Attribution-Noncommercial-No Derivative Works. Check [License_Source_Code]()
+Audio files and artworks are distribute under Attribution-Noncommercial-No Derivative Works. Check [LICENSE](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/LICENSE_MUSIC)
 
-Source code distribute under [MIT]().
+Source code distribute under [MIT](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/License_Source_Code).
