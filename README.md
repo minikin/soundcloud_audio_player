@@ -9,6 +9,10 @@
 </p>
 
 <p align="center">
+<a href="https://github.com/minikin/flutter-audio"><img src="https://i.ibb.co/5chqVzQ/soundcloud-2.png" alt="soundcloud-2" border="0"></a>
+</p>
+
+<p align="center">
   <a href="https://github.com/minikin/flutter-audio/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIXED-blue.svg" alt="SoundCloud audio player is released under the MIT license." />
   </a>
@@ -61,7 +65,7 @@ audiowaveform -i Setec_-_01_-_Ill_Be_Good.mp3 -o Setec_-_01_-_Ill_Be_Good.json -
 
 ## License
 
-This project is licensed under the mixed license. 
+This project is licensed under the mixed license.
 
 Audio files and artworks are distribute under Attribution-Noncommercial-No Derivative Works.Foe more info check [LICENSE](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/LICENSE_MUSIC)
 

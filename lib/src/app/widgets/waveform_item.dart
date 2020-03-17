@@ -16,10 +16,11 @@ class WaveFormItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTapDown: (details) => bloc.seekTo(
-          touchPosition: details.globalPosition.dx,
+        onTapDown: (position) => bloc.seekTo(
+          touchPosition: position.globalPosition.dx,
           widgetWidth: context.size.width,
         ),
+        onTapUp: (value) => bloc.resume(),
         child: ClipPath(
           clipper: WaveformClipper(waveform),
           child: Container(
@@ -28,7 +29,7 @@ class WaveFormItem extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                stops: [bloc.gradientStart, 0],
+                stops: [bloc.trackPosition, 0],
                 colors: [
                   Colors.orange,
                   Colors.grey,
