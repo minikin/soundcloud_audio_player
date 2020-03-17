@@ -5,16 +5,19 @@ import 'package:built_value/built_value.dart';
 part 'player_state.g.dart';
 
 abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
-  bool get isPlaying;
-  bool get isPaused;
-  bool get isStopped;
-  bool get isResumed;
-  int get position;
-
-  PlayerState._();
-
   factory PlayerState([void Function(PlayerStateBuilder) updates]) =
       _$PlayerState;
+
+  factory PlayerState.paused(int position) {
+    return PlayerState(
+      (b) => b
+        ..isPlaying = false
+        ..isPaused = true
+        ..isStopped = false
+        ..isResumed = false
+        ..position = position,
+    );
+  }
 
   factory PlayerState.playing(int position) {
     return PlayerState(
@@ -27,13 +30,13 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
     );
   }
 
-  factory PlayerState.paused(int position) {
+  factory PlayerState.resumed(int position) {
     return PlayerState(
       (b) => b
-        ..isPlaying = false
-        ..isPaused = true
+        ..isPlaying = true
+        ..isPaused = false
         ..isStopped = false
-        ..isResumed = false
+        ..isResumed = true
         ..position = position,
     );
   }
@@ -49,14 +52,19 @@ abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
     );
   }
 
-  factory PlayerState.resumed(int position) {
-    return PlayerState(
-      (b) => b
-        ..isPlaying = true
-        ..isPaused = false
-        ..isStopped = false
-        ..isResumed = true
-        ..position = position,
-    );
-  }
+  PlayerState._();
+
+  bool get isPaused;
+
+  bool get isPlaying;
+
+  bool get isResumed;
+
+  bool get isStopped;
+
+  int get position;
+
+  bool get paused => !isPlaying && isPaused;
+
+  bool get stopped => isStopped && (position == 0);
 }
