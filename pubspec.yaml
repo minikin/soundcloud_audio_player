@@ -1,5 +1,5 @@
 name: audio
-description: SoundCloud style audio player in Flutter.
+description: SoundCloud Style Audio Player for Flutter.
 
 version: 0.0.6+1
 
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  audioplayers: ^0.14.0
+  audioplayers: ^0.15.1
   built_collection: ^4.3.2
   built_value: ^7.0.9
   cupertino_icons: ^0.1.3
