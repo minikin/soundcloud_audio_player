@@ -1,9 +1,9 @@
-import 'package:audio/src/app/utils/free_functions.dart';
 import 'package:audio/src/app/widgets/play_button.dart';
 import 'package:audio/src/app/widgets/waveform_item.dart';
 import 'package:audio/src/services/audio_player_service.dart';
 import 'package:audio/src/app/bloc/bloc.dart';
 import 'package:audio/src/services/models/models.dart';
+import 'package:audio/src/services/utils/free_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,7 +65,7 @@ class PlayerItem extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       tune.artist,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 32,
                                         fontWeight: FontWeight.w400,
@@ -75,7 +75,7 @@ class PlayerItem extends StatelessWidget {
                                   IconButton(
                                     iconSize: 30,
                                     color: Colors.orange,
-                                    icon: Icon(Icons.cloud_download),
+                                    icon: const Icon(Icons.cloud_download),
                                     onPressed: () {
                                       print('IconButton Pressed');
                                     },
@@ -100,7 +100,7 @@ class PlayerItem extends StatelessWidget {
                                   IconButton(
                                     iconSize: 30,
                                     color: Colors.orange,
-                                    icon: Icon(Icons.share),
+                                    icon: const Icon(Icons.share),
                                     onPressed: () {
                                       print('IconButton Pressed');
                                     },

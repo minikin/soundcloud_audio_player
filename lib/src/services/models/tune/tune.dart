@@ -5,7 +5,7 @@ library tune;
 import 'dart:convert';
 
 import 'package:audio/src/services/models/models.dart';
-import 'package:audio/src/services/utils/utils.dart';
+import 'package:audio/src/services/utils/free_functions.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
