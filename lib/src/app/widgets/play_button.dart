@@ -10,13 +10,13 @@ class PlayButton<S> extends StatelessWidget {
   final VoidCallback onPressed;
 
   PlayButton({
-    Key key,
     @required this.playerState,
     @required this.onPressed,
     this.consumeStream = true,
     this.activeColor = Colors.orange,
     this.disabledColor = Colors.grey,
     this.stream,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -39,15 +39,15 @@ class PlayButton<S> extends StatelessWidget {
 
   Icon _configureIcon() {
     if (playerState == PlayerState.stopped()) {
-      return Icon(Icons.play_circle_filled);
+      return const Icon(Icons.play_circle_filled);
     } else if (playerState == PlayerState.playing(playerState.position)) {
-      return Icon(Icons.pause);
+      return const Icon(Icons.pause);
     } else if (playerState == PlayerState.paused(playerState.position)) {
-      return Icon(Icons.play_circle_filled);
+      return const Icon(Icons.play_circle_filled);
     } else if (playerState == PlayerState.resumed(playerState.position)) {
-      return Icon(Icons.pause);
+      return const Icon(Icons.pause);
     } else {
-      return Icon(Icons.stop);
+      return const Icon(Icons.stop);
     }
   }
 

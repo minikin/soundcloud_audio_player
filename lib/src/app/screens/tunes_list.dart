@@ -13,7 +13,7 @@ class TunesList extends StatelessWidget {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         elevation: 1,
-        title: Text(
+        title: const Text(
           'Music',
           style: TextStyle(color: Colors.black, fontSize: 24),
         ),
@@ -37,7 +37,7 @@ class TunesList extends StatelessWidget {
                 } else if (snapshot.hasError) {
                   return Text(
                     'Error ${snapshot.error}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.red,
                       fontSize: 24,
                     ),

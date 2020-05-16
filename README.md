@@ -1,11 +1,11 @@
 <h1 align="center">
   <a href="https://github.com/minikin/flutter-audio">
-  SoundCloud audio player in Flutter
+  SoundCloud Style Audio Player for Flutter
   </a>
 </h1>
 
 <p align="center">
-   SoundCloud style audio player in Flutter and Dart.
+   SoundCloud style audio player for Flutter & Dart.
 </p>
 
 <p align="center">
@@ -36,8 +36,8 @@
 ## Requirements
 
 - Flutter: the latest version on `flutter beta channel`
-- Dart: 2.8.0+
-- Xcode: 11.0+
+- Dart: 2.8.2+
+- Xcode: 11.4+
 - Androind Studio 3.3.1+
 - Ruby: 2.4+
 - CocoaPods: 1.8.0+
@@ -49,24 +49,10 @@
 
 If you have any questions ping me on twitter: [@minikin](https://twitter.com/minikin)
 
-## Helpers
-
-Audio to json
-
-```sh
-audiowaveform -i minikin_raw.mp3 -o minikin_raw.json -z 2028
-
-audiowaveform -i ambient_c_motion.mp3 -o ambient_c_motion.json -z 4056
-
-audiowaveform -i ambient_c_motion.mp3 -o ambient_c_motion.json -z 8112
-
-audiowaveform -i Setec_-_01_-_Ill_Be_Good.mp3 -o Setec_-_01_-_Ill_Be_Good.json -z 16224
-```
-
 ## License
 
-This project is licensed under the mixed license.
+This project is licensed under a mixed license.
 
-Audio files and artworks are distribute under Attribution-Noncommercial-No Derivative Works.Foe more info check [LICENSE](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/LICENSE_MUSIC)
+Audio files and artworks are distributed under different types of licenses, see [LICENSE_MUSIC_ARTWORK](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/LICENSE_MUSIC)
 
-Source code distribute under [MIT](https://github.com/minikin/flutter-audio/blob/develop/License_Source_Code).
+Source code is distributed under [MIT](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/License_Source_Code).
