@@ -36,7 +36,7 @@
 ## Requirements
 
 - Flutter: the latest version on `flutter beta channel`
-- Dart: 2.8.0+
+- Dart: 2.8.2+
 - Xcode: 11.4+
 - Androind Studio 3.3.1+
 - Ruby: 2.4+

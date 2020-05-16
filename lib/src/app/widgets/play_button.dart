@@ -10,13 +10,13 @@ class PlayButton<S> extends StatelessWidget {
   final VoidCallback onPressed;
 
   PlayButton({
-    Key key,
     @required this.playerState,
     @required this.onPressed,
     this.consumeStream = true,
     this.activeColor = Colors.orange,
     this.disabledColor = Colors.grey,
     this.stream,
+    Key key,
   }) : super(key: key);
 
   @override
