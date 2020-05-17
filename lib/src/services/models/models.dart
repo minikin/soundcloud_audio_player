@@ -1,7 +1,7 @@
-export 'package:audio/src/services/models/audio_file/audio_file.dart';
-export 'package:audio/src/services/models/serializers/serializers.dart';
-export 'package:audio/src/services/models/tune/tune.dart';
-export 'package:audio/src/services/models/waveforms/waveform.dart';
-export 'package:audio/src/services/models/waveforms/waveform_clipper.dart';
-export 'package:audio/src/services/models/waveforms/waveform_painter.dart';
-export 'package:audio/src/services/models/waveforms/waveform_response.dart';
+export 'package:audio/src/services/models/audio_file.dart';
+export 'package:audio/src/services/models/serializers.dart';
+export 'package:audio/src/services/models/tune.dart';
+export 'package:audio/src/services/models/waveform.dart';
+export 'package:audio/src/services/models/waveform_clipper.dart';
+export 'package:audio/src/services/models/waveform_painter.dart';
+export 'package:audio/src/services/models/waveform_response.dart';
