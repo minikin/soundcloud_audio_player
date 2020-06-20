@@ -11,6 +11,7 @@ part 'serializers.g.dart';
   AudioFile,
   Tune,
   WaveformResponse,
+  
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(StandardJsonPlugin())
