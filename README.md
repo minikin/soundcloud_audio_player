@@ -35,10 +35,10 @@
 
 ## Requirements
 
-- Flutter: the latest version on `flutter beta channel`
-- Dart: 2.8.2+
-- Xcode: 11.4+
-- Androind Studio 3.3.1+
+- Flutter: the latest version on `flutter master channel`
+- Dart: 2.9.0+
+- Xcode: 11.5+
+- Androind Studio 4.0.0+
 - Ruby: 2.4+
 - CocoaPods: 1.8.0+
 - Flutter & Dart plugins:
