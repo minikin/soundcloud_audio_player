@@ -44,7 +44,7 @@ class PlayerItem extends StatelessWidget {
               ),
               Positioned(
                 top: 0,
-                child: Container(
+                child: SizedBox(
                   width: _screenWidth,
                   child: Row(
                     children: <Widget>[
@@ -53,11 +53,11 @@ class PlayerItem extends StatelessWidget {
                         playerState: state,
                         onPressed: () => _playerBloc.toggle(tune),
                       ),
-                      Container(
+                      SizedBox(
                         width: _screenWidth - 135,
                         child: Column(
                           children: <Widget>[
-                            Container(
+                            SizedBox(
                               height: rowHeight,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -83,7 +83,7 @@ class PlayerItem extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               height: rowHeight,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
