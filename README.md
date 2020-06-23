@@ -33,9 +33,11 @@
 
 ## Features
 
+s
+
 ## Requirements
 
-- Flutter: the latest version on `flutter master channel`
+- Flutter: the latest version on `flutter dev channel`
 - Dart: 2.9.0+
 - Xcode: 11.5+
 - Androind Studio 4.0.0+
