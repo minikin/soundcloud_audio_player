@@ -16,6 +16,9 @@ jobs:
         with:
           channel: "dev"
 
+      - name: Upgrade flutter
+        run: flutter upgrade
+
       - name: Install dependencies
         run: flutter pub get
 
