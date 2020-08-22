@@ -33,14 +33,14 @@
 
 ## Features
 
-s
+
 
 ## Requirements
 
 - Flutter: the latest version on `flutter dev channel`
 - Dart: 2.9.0+
 - Xcode: 11.5+
-- Androind Studio 4.0.0+
+- Android Studio 4.0.0+
 - Ruby: 2.4+
 - CocoaPods: 1.8.0+
 - Flutter & Dart plugins:
