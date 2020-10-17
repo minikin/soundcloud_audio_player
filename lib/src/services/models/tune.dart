@@ -45,7 +45,7 @@ abstract class Tune implements Built<Tune, TuneBuilder> {
 
   static Future<BuiltList<Tune>> loadListOfTunes(String fileName) async {
     final responseBody = await loadLocalJson(fileName: fileName);
-    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    final parsed = json.decode(responseBody).cast<Map<String, Object>>();
     return deserializeListOf<Tune>(parsed);
   }
 }

@@ -51,7 +51,7 @@ class PlayButton<S> extends StatelessWidget {
     }
   }
 
-  VoidCallback _configureState(AsyncSnapshot<dynamic> snapshot) {
+  VoidCallback _configureState(AsyncSnapshot<Object> snapshot) {
     if (consumeStream) {
       return (snapshot.hasData) ? onPressed : null;
     } else {

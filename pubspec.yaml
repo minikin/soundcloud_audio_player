@@ -1,16 +1,16 @@
 name: audio
 description: SoundCloud Audio Player for Flutter.
 
-version: 0.0.7+1
+version: 0.0.8+1
 
 environment:
-  sdk: ">=2.9.0-16.0.dev <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  audioplayers: ^0.15.1
+  audioplayers: ^0.16.1
   built_collection: ^4.3.2
   built_value: ^7.1.0
   flutter_bloc: ^4.0.1
