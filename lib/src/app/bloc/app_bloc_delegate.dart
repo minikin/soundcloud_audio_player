@@ -3,28 +3,26 @@ import 'package:bloc/bloc.dart';
 class AppBlocDelegate extends BlocDelegate {
   @override
   void onEvent(
-    Bloc<dynamic, dynamic> bloc,
+    Bloc<Object, Object> bloc,
     Object event,
   ) {
     super.onEvent(bloc, event);
-    print(event);
   }
 
   @override
   void onTransition(
-    Bloc<dynamic, dynamic> bloc,
-    Transition<dynamic, dynamic> transition,
+    Bloc<Object, Object> bloc,
+    Transition<Object, Object> transition,
   ) {
     super.onTransition(bloc, transition);
   }
 
   @override
   void onError(
-    Bloc<dynamic, dynamic> bloc,
+    Bloc<Object, Object> bloc,
     Object error,
     StackTrace stacktrace,
   ) {
     super.onError(bloc, error, stacktrace);
-    print(error);
   }
 }

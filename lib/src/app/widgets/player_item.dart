@@ -14,8 +14,11 @@ class PlayerItem extends StatelessWidget {
   PlayerItem({
     @required this.tune,
     Key key,
-  })  : _playerBloc =
-            PlayerBloc(audioPlayerService: AudioPlayerService(tune: tune)),
+  })  : _playerBloc = PlayerBloc(
+          audioPlayerService: AudioPlayerService(
+            tune: tune,
+          ),
+        ),
         super(key: key);
 
   @override
@@ -30,7 +33,7 @@ class PlayerItem extends StatelessWidget {
           width: double.infinity,
           height: _screenWidth,
           child: Stack(
-            children: <Widget>[
+            children: [
               Container(
                 color: Colors.grey[200],
                 child: Image.network(
@@ -47,7 +50,7 @@ class PlayerItem extends StatelessWidget {
                 child: SizedBox(
                   width: _screenWidth,
                   child: Row(
-                    children: <Widget>[
+                    children: [
                       PlayButton(
                         stream: _playerBloc,
                         playerState: state,
@@ -56,7 +59,7 @@ class PlayerItem extends StatelessWidget {
                       SizedBox(
                         width: _screenWidth - 135,
                         child: Column(
-                          children: <Widget>[
+                          children: [
                             SizedBox(
                               height: rowHeight,
                               child: Row(
@@ -76,9 +79,7 @@ class PlayerItem extends StatelessWidget {
                                     iconSize: 30,
                                     color: Colors.orange,
                                     icon: const Icon(Icons.cloud_download),
-                                    onPressed: () {
-                                      print('IconButton Pressed');
-                                    },
+                                    onPressed: () => print,
                                   ),
                                 ],
                               ),
@@ -87,7 +88,7 @@ class PlayerItem extends StatelessWidget {
                               height: rowHeight,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
+                                children: [
                                   Expanded(
                                     child: Text(
                                       tune.title,
@@ -101,9 +102,7 @@ class PlayerItem extends StatelessWidget {
                                     iconSize: 30,
                                     color: Colors.orange,
                                     icon: const Icon(Icons.share),
-                                    onPressed: () {
-                                      print('IconButton Pressed');
-                                    },
+                                    onPressed: () => print,
                                   ),
                                 ],
                               ),
