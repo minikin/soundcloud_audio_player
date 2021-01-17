@@ -24,7 +24,6 @@
   - [Features](#features)
   - [Requirements](#requirements)
   - [FAQ](#faq)
-  - [Helpers](#helpers)
   - [License](#license)
 
 ## Features
