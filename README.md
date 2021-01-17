@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/minikin/flutter-audio">
-  SoundCloud Style Audio Player for Flutter
+  SoundCloud Audio Player for Flutter
   </a>
 </h1>
 
