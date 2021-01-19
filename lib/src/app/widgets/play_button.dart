@@ -1,5 +1,5 @@
-import 'package:audio/src/app/bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
 
 class PlayButton<S> extends StatelessWidget {
   final bool consumeStream;

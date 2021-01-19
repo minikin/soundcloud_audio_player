@@ -1,35 +1,21 @@
-library player_event;
-
-import 'package:audio/src/services/models/models.dart';
-import 'package:built_value/built_value.dart';
-
-part 'player_event.g.dart';
-
-abstract class PauseEvent extends PlayerEvent
-    implements Built<PauseEvent, PauseEventBuilder> {
-  factory PauseEvent([void Function(PauseEventBuilder) updates]) = _$PauseEvent;
-
-  PauseEvent._();
-}
+import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 abstract class PlayerEvent {}
 
-abstract class PlayEvent extends PlayerEvent
-    implements Built<PlayEvent, PlayEventBuilder> {
-  factory PlayEvent([void Function(PlayEventBuilder) updates]) = _$PlayEvent;
+class PauseEvent extends PlayerEvent {}
 
-  PlayEvent._();
+class PlayEvent extends PlayerEvent {
+  final Tune tune;
 
-  Tune get tune;
+  PlayEvent(this.tune);
 }
 
-abstract class ResumeEvent extends PlayerEvent
-    implements Built<ResumeEvent, ResumeEventBuilder> {
-  factory ResumeEvent([void Function(ResumeEventBuilder) updates]) =
-      _$ResumeEvent;
-
-  ResumeEvent._();
+class TickEvent extends PlayerEvent {
+  final int position;
+  TickEvent({this.position = 0});
 }
+
+class ResumeEvent extends PlayerEvent {}
 
 class SeekEvent extends PlayerEvent {
   final int seekToPosition;
@@ -37,14 +23,4 @@ class SeekEvent extends PlayerEvent {
   SeekEvent({this.seekToPosition});
 }
 
-abstract class StopEvent extends PlayerEvent
-    implements Built<StopEvent, StopEventBuilder> {
-  factory StopEvent([void Function(StopEventBuilder) updates]) = _$StopEvent;
-
-  StopEvent._();
-}
-
-class TickEvent extends PlayerEvent {
-  final int position;
-  TickEvent({this.position = 0});
-}
+class StopEvent extends PlayerEvent {}

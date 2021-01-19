@@ -9,12 +9,18 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/minikin/flutter-audio/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIXED-blue.svg" alt="SoundCloud audio player is released under the MIT license." />
-  </a>
   <a href="https://app.bitrise.io/app/474b5771151802eb">
     <img src="https://app.bitrise.io/app/474b5771151802eb/status.svg?token=4s7obPnI_yciJHHVwQG_Bg&branch=develop" alt="Current Build Status." />
   </a>
+
+<a href="https://github.com/minikin/flutter-audio/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIXED-blue.svg" alt="SoundCloud audio player is released under the MIT license." />
+  </a>
+
+  <a href="https://github.com/tenhobi/effective_dart">
+    <img src="https://img.shields.io/badge/style-effective_dart-40c4ff.svg" alt="Effective Dart" />
+  </a>
+
   <a href="https://github.com/minikin/flutter-audio/blob/master/CONTRIBUTING.md">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
   </a>
@@ -28,7 +34,10 @@
 
 ## Features
 
-
+- SoundCloud Audio Player
+- Value types powered by [built_value](https://pub.dev/packages/built_value) and [built_collection](https://pub.dev/packages/built_collection)
+- State management by [bloc](https://pub.dev/packages/bloc)
+- Load data from local assets
 
 ## Requirements
 
@@ -37,7 +46,7 @@
 - Xcode: 11.5+
 - Android Studio 4.0.0+
 - Ruby: 2.4+
-- CocoaPods: 1.8.0+
+- CocoaPods: 1.10.0+
 - Flutter & Dart plugins:
   - [Visual Studio Code](https://flutter.dev/docs/get-started/editor?tab=androidstudio)
   - [Android Studio / IntelliJ](https://flutter.dev/docs/get-started/editor?tab=vscode)

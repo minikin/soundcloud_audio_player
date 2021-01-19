@@ -1,6 +1,6 @@
-import 'package:audio/src/app/bloc/bloc.dart';
-import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
+import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 class WaveFormItem extends StatelessWidget {
   final Waveform waveform;
@@ -30,10 +30,7 @@ class WaveFormItem extends StatelessWidget {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 stops: [bloc.trackPosition, 0],
-                colors: [
-                  Colors.orange,
-                  Colors.grey,
-                ],
+                colors: [Colors.orange, Colors.grey],
               ),
             ),
           ),

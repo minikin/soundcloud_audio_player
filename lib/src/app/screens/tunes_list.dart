@@ -1,7 +1,7 @@
-import 'package:audio/src/app/widgets/player_item.dart';
-import 'package:audio/src/services/models/models.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
+import 'package:soundcloud_audio_player/src/app/widgets/player_item.dart';
+import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 class TunesList extends StatelessWidget {
   const TunesList({Key key}) : super(key: key);
@@ -25,7 +25,7 @@ class TunesList extends StatelessWidget {
             color: Colors.white,
             child: FutureBuilder<BuiltList<Tune>>(
               future: Tune.loadListOfTunes('tunes'),
-              builder: (context, AsyncSnapshot<BuiltList<Tune>> snapshot) {
+              builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final tunes = snapshot.data.toList();
                   return ListView.builder(

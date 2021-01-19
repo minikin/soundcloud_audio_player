@@ -1,11 +1,11 @@
-import 'package:audio/src/app/widgets/play_button.dart';
-import 'package:audio/src/app/widgets/waveform_item.dart';
-import 'package:audio/src/services/audio_player_service.dart';
-import 'package:audio/src/app/bloc/bloc.dart';
-import 'package:audio/src/services/models/models.dart';
-import 'package:audio/src/services/utils/free_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
+import 'package:soundcloud_audio_player/src/app/widgets/play_button.dart';
+import 'package:soundcloud_audio_player/src/app/widgets/waveform/waveform_item.dart';
+import 'package:soundcloud_audio_player/src/services/audio_player_service.dart';
+import 'package:soundcloud_audio_player/src/services/models/models.dart';
+import 'package:soundcloud_audio_player/src/services/utils/free_functions.dart';
 
 class PlayerItem extends StatelessWidget {
   final Tune tune;

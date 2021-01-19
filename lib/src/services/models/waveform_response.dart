@@ -2,11 +2,11 @@ library waveform_response;
 
 import 'dart:convert';
 
-import 'package:audio/src/services/models/models.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter/foundation.dart';
+import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 part 'waveform_response.g.dart';
 

@@ -1,17 +1,14 @@
-// ignore_for_file: omit_local_variable_types
 import 'dart:math';
 
-import 'package:audio/src/services/models/models.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
+import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 class Waveform {
   final WaveformResponse waveformResponse;
   List<double> _scaledData = [];
 
-  Waveform(
-    this.waveformResponse,
-  );
+  Waveform(this.waveformResponse);
 
   int frameIdxFromPercent(double percent) {
     if (percent == null) {
@@ -109,6 +106,7 @@ class Waveform {
   void _scaleData() {
     final max = pow(2, waveformResponse.bits - 1).toDouble();
     final dataSize = waveformResponse.data.length;
+    // ignore: deprecated_member_use
     _scaledData = List<double>(dataSize);
 
     for (var i = 0; i < dataSize; i++) {
@@ -123,7 +121,7 @@ class Waveform {
   }
 
   static List<Waveform> toWaveformList(List<WaveformResponse> items) {
-    final List<Waveform> waveformList = [];
+    final waveformList = <Waveform>[];
 
     for (final item in items) {
       final waveform = Waveform(item);

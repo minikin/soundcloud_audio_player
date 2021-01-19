@@ -1,6 +1,6 @@
 {
-  "workbench.editor.highlightModifiedTabs": true,
-  "files.exclude": {
-    "**/*.g.dart": true
+    "workbench.editor.highlightModifiedTabs": true,
+    "files.exclude": {
+      "**/*.g.dart": true
+    }
   }
-}

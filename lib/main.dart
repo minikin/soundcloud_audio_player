@@ -1,7 +1,7 @@
-import 'package:audio/src/app/app.dart';
-import 'package:audio/src/app/bloc/bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:soundcloud_audio_player/src/app/app.dart';
+import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
 
 void main() {
   BlocSupervisor.delegate = AppBlocDelegate();

@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:audio/src/app/bloc/bloc.dart';
-import 'package:audio/src/services/audio_player_service.dart';
-import 'package:audio/src/services/models/models.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
+import 'package:soundcloud_audio_player/src/services/audio_player_service.dart';
+import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   final AudioPlayerService _audioPlayerService;
@@ -29,7 +29,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   @override
   Future<void> close() {
-    add(StopEvent((b) => b));
+    add(StopEvent());
     _audioPlayerService.dispose();
     return super.close();
   }
@@ -53,7 +53,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   void resume() {
     if (_isPlayed) {
-      add(ResumeEvent((b) => b));
+      add(ResumeEvent());
     }
   }
 
@@ -66,16 +66,16 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     add(SeekEvent(seekToPosition: seekToPosition));
   }
 
-  void stop() => add(StopEvent((b) => b));
+  void stop() => add(StopEvent());
 
   void toggle(Tune tune) {
     if (state.stopped) {
       _isPlayed = false;
-      add(PlayEvent((b) => b..tune.replace(tune)));
+      add(PlayEvent(tune));
     } else if (state.paused) {
-      add(ResumeEvent((b) => b));
+      add(ResumeEvent());
     } else {
-      add(PauseEvent((b) => b));
+      add(PauseEvent());
       _isPlayed = false;
     }
   }
@@ -120,7 +120,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
     } else if (state.paused) {
       yield PlayerState.paused(_trackPosition);
     } else if (state.isPlaying) {
-      add(PauseEvent((b) => b));
+      add(PauseEvent());
       _isPlayed = true;
     }
   }

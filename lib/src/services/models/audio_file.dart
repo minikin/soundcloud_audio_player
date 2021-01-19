@@ -2,9 +2,9 @@ library audio_file;
 
 import 'dart:convert';
 
-import 'package:audio/src/services/models/models.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 part 'audio_file.g.dart';
 
