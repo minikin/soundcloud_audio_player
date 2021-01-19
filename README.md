@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://app.bitrise.io/app/474b5771151802eb">
-    <img src="https://app.bitrise.io/app/474b5771151802eb/status.svg?token=4s7obPnI_yciJHHVwQG_Bg&branch=develop" alt="Current Build Status." />
+  <a href="https://github.com/minikin/soundcloud_audio_player/actions">
+    <img src="https://github.com/minikin/soundcloud_audio_player/workflows/CI/badge.svg" alt="Current Build Status." />
   </a>
 
 <a href="https://github.com/minikin/flutter-audio/blob/master/LICENSE">
