@@ -59,6 +59,10 @@ If you have any questions ping me on twitter: [@minikin](https://twitter.com/min
 
 This project is licensed under a mixed license.
 
-Audio files and artworks are distributed under different types of licenses, see [LICENSE_MUSIC_ARTWORK](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/LICENSE_MUSIC)
+# License
 
-Source code is distributed under [MIT](https://github.com/minikin/flutter-audio/blob/feature/update_03_2020/License_Source_Code).
+This project is licensed under a mixed license.
+
+Audio files and artworks are distributed under different types of licenses, for more details see: [LICENSE_MUSIC_AND_ARTWORKS](https://github.com/minikin/soundcloud_audio_player/blob/main/LICENSE_MUSIC_AND_ARTWORKS)
+
+Source code is distributed under [MIT](https://github.com/minikin/soundcloud_audio_player/blob/main/License_Source_Code) license.
