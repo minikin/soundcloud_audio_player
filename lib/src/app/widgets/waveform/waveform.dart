@@ -10,38 +10,34 @@ class Waveform {
 
   Waveform(this.waveformResponse);
 
-  int frameIdxFromPercent(double percent) {
-    if (percent == null) {
-      return 0;
-    }
+  // int frameIdxFromPercent(double percent) {
+  //   if (percent == null) {
+  //     return 0;
+  //   }
 
-    if (percent < 0) {
-      percent = 0;
-    } else if (percent > 100) {
-      percent = 100;
-    }
+  //   if (percent < 0) {
+  //     percent = 0;
+  //   } else if (percent > 100) {
+  //     percent = 100;
+  //   }
 
-    if (percent > 0.0 && percent < 1) {
-      return ((waveformResponse.data.length.toDouble() / 2) * percent).floor();
-    }
+  //   if (percent > 0.0 && percent < 1) {
+  //     return ((waveformResponse.data.length.toDouble() / 2) * percent).floor();
+  //   }
 
-    var idx = ((waveformResponse.data.length.toDouble() / 2) * (percent / 100))
-        .floor();
+  //   var idx = ((waveformResponse.data.length.toDouble() / 2) * (percent / 100))
+  //       .floor();
 
-    final maxIdx = (waveformResponse.data.length.toDouble() / 2 * 0.98).floor();
+  //   final maxIdx = (waveformResponse.data.length.toDouble() / 2 * 0.98).floor();
 
-    if (idx > maxIdx) {
-      idx = maxIdx;
-    }
+  //   if (idx > maxIdx) {
+  //     idx = maxIdx;
+  //   }
 
-    return idx;
-  }
+  //   return idx;
+  // }
 
-  Path path(
-    Size size, {
-    double zoomLevel = 1,
-    int fromFrame = 0,
-  }) {
+  Path path(Size size, {double zoomLevel = 1, int fromFrame = 0}) {
     if (!_isDataScaled()) {
       _scaleData();
     }
@@ -81,6 +77,7 @@ class Waveform {
     final maxPoints = <Offset>[];
 
     final t = size.width / samples.length;
+
     for (var j = 0; j < samples.length; j++) {
       final d = samples[j];
 
@@ -120,14 +117,14 @@ class Waveform {
     }
   }
 
-  static List<Waveform> toWaveformList(List<WaveformResponse> items) {
-    final waveformList = <Waveform>[];
+  // static List<Waveform> toWaveformList(List<WaveformResponse> items) {
+  //   final waveformList = <Waveform>[];
 
-    for (final item in items) {
-      final waveform = Waveform(item);
-      waveformList.add(waveform);
-    }
+  //   for (final item in items) {
+  //     final waveform = Waveform(item);
+  //     waveformList.add(waveform);
+  //   }
 
-    return waveformList;
-  }
+  //   return waveformList;
+  // }
 }

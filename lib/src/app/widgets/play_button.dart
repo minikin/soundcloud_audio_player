@@ -9,7 +9,7 @@ class PlayButton<S> extends StatelessWidget {
   final Stream<S> stream;
   final VoidCallback onPressed;
 
-  PlayButton({
+  const PlayButton({
     @required this.playerState,
     @required this.onPressed,
     this.consumeStream = true,
