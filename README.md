@@ -37,7 +37,8 @@
 - SoundCloud Audio Player
 - Value types powered by [built_value](https://pub.dev/packages/built_value) and [built_collection](https://pub.dev/packages/built_collection)
 - State management by [bloc](https://pub.dev/packages/bloc)
-- Load data from local assets
+- Stream audio from a remote server
+- Load json data from local assets
 
 ## Requirements
 
