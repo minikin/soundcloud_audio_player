@@ -1,0 +1,15 @@
+[
+    {
+      "id": "1",
+      "artist": "",
+      "title": "",
+      "artwork": "",
+      "audioFile": {
+        "id": "1",
+        "name": "",
+        "audioUrl": "",
+        "duration": 1,
+        "waveformResponse": {}
+      }
+    }
+  ]
