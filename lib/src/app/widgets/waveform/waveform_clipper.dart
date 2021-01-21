@@ -2,16 +2,16 @@ import 'package:flutter/rendering.dart';
 import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 class WaveformClipper extends CustomClipper<Path> {
-  final Waveform data;
+  final Waveform waveform;
 
-  const WaveformClipper(this.data);
+  const WaveformClipper(this.waveform);
 
   @override
-  Path getClip(Size size) => data.path(size);
+  Path getClip(Size size) => waveform.path(size);
 
   @override
   bool shouldReclip(WaveformClipper oldClipper) {
-    if (data != oldClipper.data) {
+    if (waveform != oldClipper.waveform) {
       return true;
     }
     return false;

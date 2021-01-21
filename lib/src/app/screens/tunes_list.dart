@@ -31,7 +31,10 @@ class TunesList extends StatelessWidget {
                   return ListView.builder(
                     itemCount: tunes.length,
                     itemBuilder: (context, index) {
-                      return PlayerItem(tune: tunes[index]);
+                      return PlayerItem(
+                        tune: tunes[index],
+                        key: ValueKey(tunes[index].id),
+                      );
                     },
                   );
                 } else if (snapshot.hasError) {

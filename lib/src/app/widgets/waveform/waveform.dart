@@ -6,40 +6,39 @@ import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 class Waveform {
   final WaveformResponse waveformResponse;
-  List<double> _scaledData = [];
 
-  Waveform(this.waveformResponse);
+  const Waveform(this.waveformResponse);
 
-  Path path(Size size, {double zoomLevel = 1, int fromFrame = 0}) {
-    if (!_isDataScaled()) {
-      _scaleData();
-    }
-
-    if (zoomLevel == null || zoomLevel < 1) {
-      zoomLevel = 1;
-    } else if (zoomLevel > 100) {
-      zoomLevel = 100;
-    }
-
-    if (zoomLevel == 1.0 && fromFrame == 0) {
-      return _path(_scaledData, size);
-    }
+  Path path(Size size, {int fromFrame = 0}) {
+    final waveformData = _computeWaveformData();
 
     if (fromFrame * 2 > (waveformResponse.data.length * 0.98).floor()) {
       debugPrint('from frame is too far at $fromFrame');
       fromFrame = ((waveformResponse.data.length / 2) * 0.98).floor();
     }
 
-    final endFrame = (fromFrame * 2 +
-            ((_scaledData.length - fromFrame * 2) * (1 - (zoomLevel / 100))))
-        .floor();
+    final endFrame =
+        (fromFrame * 2 + (waveformData.length - fromFrame * 2)).floor();
 
-    return _path(_scaledData.sublist(fromFrame * 2, endFrame), size);
+    return _path(waveformData.sublist(fromFrame * 2, endFrame), size);
   }
 
-  bool _isDataScaled() {
-    return _scaledData != null &&
-        _scaledData.length == waveformResponse.data.length;
+  List<double> _computeWaveformData() {
+    final max = pow(2, waveformResponse.bits - 1).toDouble();
+    final dataSize = waveformResponse.data.length;
+    final waveformData = List<double>.filled(dataSize, 0);
+
+    for (var i = 0; i < dataSize; i++) {
+      waveformData[i] = waveformResponse.data[i].toDouble() / max;
+      if (waveformData[i] > 1) {
+        waveformData[i] = 1;
+      }
+      if (waveformData[i] < -1) {
+        waveformData[i] = -1;
+      }
+    }
+
+    return waveformData;
   }
 
   Path _path(List<double> samples, Size size) {
@@ -71,22 +70,5 @@ class Waveform {
     );
     path.close();
     return path;
-  }
-
-  void _scaleData() {
-    final max = pow(2, waveformResponse.bits - 1).toDouble();
-    final dataSize = waveformResponse.data.length;
-    // ignore: deprecated_member_use
-    _scaledData = List<double>(dataSize);
-
-    for (var i = 0; i < dataSize; i++) {
-      _scaledData[i] = waveformResponse.data[i].toDouble() / max;
-      if (_scaledData[i] > 1) {
-        _scaledData[i] = 1;
-      }
-      if (_scaledData[i] < -1) {
-        _scaledData[i] = -1;
-      }
-    }
   }
 }

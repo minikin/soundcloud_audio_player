@@ -16,10 +16,12 @@ class WaveFormItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTapDown: (position) => bloc.seekTo(
-          touchPosition: position.globalPosition.dx,
-          widgetWidth: context.size.width,
-        ),
+        onTapDown: (position) {
+          bloc.seekTo(
+            touchPosition: position.globalPosition.dx,
+            widgetWidth: context.size.width,
+          );
+        },
         onTapUp: (value) => bloc.resume(),
         child: ClipPath(
           clipper: WaveformClipper(waveform),

@@ -15,9 +15,7 @@ class PlayerItem extends StatelessWidget {
     @required this.tune,
     Key key,
   })  : _playerBloc = PlayerBloc(
-          audioPlayerService: AudioPlayerService(
-            tune: tune,
-          ),
+          audioPlayerService: AudioPlayerService(tune: tune),
         ),
         super(key: key);
 
