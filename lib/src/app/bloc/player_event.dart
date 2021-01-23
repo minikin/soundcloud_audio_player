@@ -20,7 +20,7 @@ class ResumeEvent extends PlayerEvent {}
 class SeekEvent extends PlayerEvent {
   final int seekToPosition;
 
-  SeekEvent({this.seekToPosition});
+  SeekEvent({required this.seekToPosition});
 }
 
 class StopEvent extends PlayerEvent {}

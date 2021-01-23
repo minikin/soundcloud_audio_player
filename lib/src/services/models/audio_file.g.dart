@@ -45,7 +45,7 @@ class _$AudioFileSerializer implements StructuredSerializer<AudioFile> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
@@ -87,27 +87,22 @@ class _$AudioFile extends AudioFile {
   @override
   final WaveformResponse waveformResponse;
 
-  factory _$AudioFile([void Function(AudioFileBuilder) updates]) =>
+  factory _$AudioFile([void Function(AudioFileBuilder)? updates]) =>
       (new AudioFileBuilder()..update(updates)).build();
 
   _$AudioFile._(
-      {this.id, this.name, this.audioUrl, this.duration, this.waveformResponse})
+      {required this.id,
+      required this.name,
+      required this.audioUrl,
+      required this.duration,
+      required this.waveformResponse})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('AudioFile', 'id');
-    }
-    if (name == null) {
-      throw new BuiltValueNullFieldError('AudioFile', 'name');
-    }
-    if (audioUrl == null) {
-      throw new BuiltValueNullFieldError('AudioFile', 'audioUrl');
-    }
-    if (duration == null) {
-      throw new BuiltValueNullFieldError('AudioFile', 'duration');
-    }
-    if (waveformResponse == null) {
-      throw new BuiltValueNullFieldError('AudioFile', 'waveformResponse');
-    }
+    BuiltValueNullFieldError.checkNotNull(id, 'AudioFile', 'id');
+    BuiltValueNullFieldError.checkNotNull(name, 'AudioFile', 'name');
+    BuiltValueNullFieldError.checkNotNull(audioUrl, 'AudioFile', 'audioUrl');
+    BuiltValueNullFieldError.checkNotNull(duration, 'AudioFile', 'duration');
+    BuiltValueNullFieldError.checkNotNull(
+        waveformResponse, 'AudioFile', 'waveformResponse');
   }
 
   @override
@@ -149,39 +144,40 @@ class _$AudioFile extends AudioFile {
 }
 
 class AudioFileBuilder implements Builder<AudioFile, AudioFileBuilder> {
-  _$AudioFile _$v;
+  _$AudioFile? _$v;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _audioUrl;
-  String get audioUrl => _$this._audioUrl;
-  set audioUrl(String audioUrl) => _$this._audioUrl = audioUrl;
+  String? _audioUrl;
+  String? get audioUrl => _$this._audioUrl;
+  set audioUrl(String? audioUrl) => _$this._audioUrl = audioUrl;
 
-  int _duration;
-  int get duration => _$this._duration;
-  set duration(int duration) => _$this._duration = duration;
+  int? _duration;
+  int? get duration => _$this._duration;
+  set duration(int? duration) => _$this._duration = duration;
 
-  WaveformResponseBuilder _waveformResponse;
+  WaveformResponseBuilder? _waveformResponse;
   WaveformResponseBuilder get waveformResponse =>
       _$this._waveformResponse ??= new WaveformResponseBuilder();
-  set waveformResponse(WaveformResponseBuilder waveformResponse) =>
+  set waveformResponse(WaveformResponseBuilder? waveformResponse) =>
       _$this._waveformResponse = waveformResponse;
 
   AudioFileBuilder();
 
   AudioFileBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
-      _name = _$v.name;
-      _audioUrl = _$v.audioUrl;
-      _duration = _$v.duration;
-      _waveformResponse = _$v.waveformResponse?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _name = $v.name;
+      _audioUrl = $v.audioUrl;
+      _duration = $v.duration;
+      _waveformResponse = $v.waveformResponse.toBuilder();
       _$v = null;
     }
     return this;
@@ -189,14 +185,12 @@ class AudioFileBuilder implements Builder<AudioFile, AudioFileBuilder> {
 
   @override
   void replace(AudioFile other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AudioFile;
   }
 
   @override
-  void update(void Function(AudioFileBuilder) updates) {
+  void update(void Function(AudioFileBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -206,13 +200,16 @@ class AudioFileBuilder implements Builder<AudioFile, AudioFileBuilder> {
     try {
       _$result = _$v ??
           new _$AudioFile._(
-              id: id,
-              name: name,
-              audioUrl: audioUrl,
-              duration: duration,
+              id: BuiltValueNullFieldError.checkNotNull(id, 'AudioFile', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, 'AudioFile', 'name'),
+              audioUrl: BuiltValueNullFieldError.checkNotNull(
+                  audioUrl, 'AudioFile', 'audioUrl'),
+              duration: BuiltValueNullFieldError.checkNotNull(
+                  duration, 'AudioFile', 'duration'),
               waveformResponse: waveformResponse.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'waveformResponse';
         waveformResponse.build();

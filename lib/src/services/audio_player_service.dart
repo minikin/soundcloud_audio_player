@@ -1,5 +1,5 @@
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/foundation.dart';
 
 import 'models/models.dart';
 
@@ -8,7 +8,7 @@ class AudioPlayerService {
 
   final Tune tune;
 
-  AudioPlayerService({@required this.tune}) {
+  AudioPlayerService({required this.tune}) {
     onProgress();
   }
 

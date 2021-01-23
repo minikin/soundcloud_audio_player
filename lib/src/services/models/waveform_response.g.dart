@@ -54,7 +54,7 @@ class _$WaveformResponseSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'bits':
           result.bits = serializers.deserialize(value,
@@ -110,39 +110,29 @@ class _$WaveformResponse extends WaveformResponse {
   final int version;
 
   factory _$WaveformResponse(
-          [void Function(WaveformResponseBuilder) updates]) =>
+          [void Function(WaveformResponseBuilder)? updates]) =>
       (new WaveformResponseBuilder()..update(updates)).build();
 
   _$WaveformResponse._(
-      {this.bits,
-      this.channels,
-      this.data,
-      this.length,
-      this.sampleRate,
-      this.sampleSize,
-      this.version})
+      {required this.bits,
+      required this.channels,
+      required this.data,
+      required this.length,
+      required this.sampleRate,
+      required this.sampleSize,
+      required this.version})
       : super._() {
-    if (bits == null) {
-      throw new BuiltValueNullFieldError('WaveformResponse', 'bits');
-    }
-    if (channels == null) {
-      throw new BuiltValueNullFieldError('WaveformResponse', 'channels');
-    }
-    if (data == null) {
-      throw new BuiltValueNullFieldError('WaveformResponse', 'data');
-    }
-    if (length == null) {
-      throw new BuiltValueNullFieldError('WaveformResponse', 'length');
-    }
-    if (sampleRate == null) {
-      throw new BuiltValueNullFieldError('WaveformResponse', 'sampleRate');
-    }
-    if (sampleSize == null) {
-      throw new BuiltValueNullFieldError('WaveformResponse', 'sampleSize');
-    }
-    if (version == null) {
-      throw new BuiltValueNullFieldError('WaveformResponse', 'version');
-    }
+    BuiltValueNullFieldError.checkNotNull(bits, 'WaveformResponse', 'bits');
+    BuiltValueNullFieldError.checkNotNull(
+        channels, 'WaveformResponse', 'channels');
+    BuiltValueNullFieldError.checkNotNull(data, 'WaveformResponse', 'data');
+    BuiltValueNullFieldError.checkNotNull(length, 'WaveformResponse', 'length');
+    BuiltValueNullFieldError.checkNotNull(
+        sampleRate, 'WaveformResponse', 'sampleRate');
+    BuiltValueNullFieldError.checkNotNull(
+        sampleSize, 'WaveformResponse', 'sampleSize');
+    BuiltValueNullFieldError.checkNotNull(
+        version, 'WaveformResponse', 'version');
   }
 
   @override
@@ -196,47 +186,48 @@ class _$WaveformResponse extends WaveformResponse {
 
 class WaveformResponseBuilder
     implements Builder<WaveformResponse, WaveformResponseBuilder> {
-  _$WaveformResponse _$v;
+  _$WaveformResponse? _$v;
 
-  int _bits;
-  int get bits => _$this._bits;
-  set bits(int bits) => _$this._bits = bits;
+  int? _bits;
+  int? get bits => _$this._bits;
+  set bits(int? bits) => _$this._bits = bits;
 
-  int _channels;
-  int get channels => _$this._channels;
-  set channels(int channels) => _$this._channels = channels;
+  int? _channels;
+  int? get channels => _$this._channels;
+  set channels(int? channels) => _$this._channels = channels;
 
-  ListBuilder<int> _data;
+  ListBuilder<int>? _data;
   ListBuilder<int> get data => _$this._data ??= new ListBuilder<int>();
-  set data(ListBuilder<int> data) => _$this._data = data;
+  set data(ListBuilder<int>? data) => _$this._data = data;
 
-  int _length;
-  int get length => _$this._length;
-  set length(int length) => _$this._length = length;
+  int? _length;
+  int? get length => _$this._length;
+  set length(int? length) => _$this._length = length;
 
-  int _sampleRate;
-  int get sampleRate => _$this._sampleRate;
-  set sampleRate(int sampleRate) => _$this._sampleRate = sampleRate;
+  int? _sampleRate;
+  int? get sampleRate => _$this._sampleRate;
+  set sampleRate(int? sampleRate) => _$this._sampleRate = sampleRate;
 
-  int _sampleSize;
-  int get sampleSize => _$this._sampleSize;
-  set sampleSize(int sampleSize) => _$this._sampleSize = sampleSize;
+  int? _sampleSize;
+  int? get sampleSize => _$this._sampleSize;
+  set sampleSize(int? sampleSize) => _$this._sampleSize = sampleSize;
 
-  int _version;
-  int get version => _$this._version;
-  set version(int version) => _$this._version = version;
+  int? _version;
+  int? get version => _$this._version;
+  set version(int? version) => _$this._version = version;
 
   WaveformResponseBuilder();
 
   WaveformResponseBuilder get _$this {
-    if (_$v != null) {
-      _bits = _$v.bits;
-      _channels = _$v.channels;
-      _data = _$v.data?.toBuilder();
-      _length = _$v.length;
-      _sampleRate = _$v.sampleRate;
-      _sampleSize = _$v.sampleSize;
-      _version = _$v.version;
+    final $v = _$v;
+    if ($v != null) {
+      _bits = $v.bits;
+      _channels = $v.channels;
+      _data = $v.data.toBuilder();
+      _length = $v.length;
+      _sampleRate = $v.sampleRate;
+      _sampleSize = $v.sampleSize;
+      _version = $v.version;
       _$v = null;
     }
     return this;
@@ -244,14 +235,12 @@ class WaveformResponseBuilder
 
   @override
   void replace(WaveformResponse other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$WaveformResponse;
   }
 
   @override
-  void update(void Function(WaveformResponseBuilder) updates) {
+  void update(void Function(WaveformResponseBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -261,15 +250,21 @@ class WaveformResponseBuilder
     try {
       _$result = _$v ??
           new _$WaveformResponse._(
-              bits: bits,
-              channels: channels,
+              bits: BuiltValueNullFieldError.checkNotNull(
+                  bits, 'WaveformResponse', 'bits'),
+              channels: BuiltValueNullFieldError.checkNotNull(
+                  channels, 'WaveformResponse', 'channels'),
               data: data.build(),
-              length: length,
-              sampleRate: sampleRate,
-              sampleSize: sampleSize,
-              version: version);
+              length: BuiltValueNullFieldError.checkNotNull(
+                  length, 'WaveformResponse', 'length'),
+              sampleRate: BuiltValueNullFieldError.checkNotNull(
+                  sampleRate, 'WaveformResponse', 'sampleRate'),
+              sampleSize: BuiltValueNullFieldError.checkNotNull(
+                  sampleSize, 'WaveformResponse', 'sampleSize'),
+              version: BuiltValueNullFieldError.checkNotNull(
+                  version, 'WaveformResponse', 'version'));
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'data';
         data.build();

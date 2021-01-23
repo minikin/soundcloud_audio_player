@@ -7,19 +7,25 @@ class WaveFormItem extends StatelessWidget {
   final PlayerBloc bloc;
 
   const WaveFormItem({
-    @required this.waveform,
-    @required this.bloc,
-    Key key,
+    required this.waveform,
+    required this.bloc,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var width = 0.0;
+    final maybeWidth = context.size?.width;
+    if (maybeWidth != null) {
+      width = maybeWidth;
+    }
+
     return Container(
       child: GestureDetector(
         onTapDown: (position) {
           bloc.seekTo(
             touchPosition: position.globalPosition.dx,
-            widgetWidth: context.size.width,
+            widgetWidth: width,
           );
         },
         onTapUp: (value) => bloc.resume(),

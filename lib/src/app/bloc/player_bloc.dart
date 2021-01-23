@@ -1,7 +1,7 @@
 import 'dart:async';
 
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
 import 'package:soundcloud_audio_player/src/services/audio_player_service.dart';
 import 'package:soundcloud_audio_player/src/services/models/models.dart';
@@ -16,9 +16,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   bool _isDisposed = false;
 
   PlayerBloc({
-    @required AudioPlayerService audioPlayerService,
-  })  : assert(audioPlayerService != null),
-        _audioPlayerService = audioPlayerService;
+    required AudioPlayerService audioPlayerService,
+  }) : _audioPlayerService = audioPlayerService;
 
   @override
   PlayerState get initialState => PlayerState.stopped();
@@ -58,8 +57,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   }
 
   void seekTo({
-    @required double touchPosition,
-    @required double widgetWidth,
+    required double touchPosition,
+    required double widgetWidth,
   }) {
     final dx = _trackDuration / widgetWidth;
     final seekToPosition = (dx * touchPosition).toInt();

@@ -31,11 +31,15 @@ final _specifiedType = const FullType(
   ],
 );
 
-T deserialize<T>(Object value) =>
-    serializers.deserializeWith<T>(serializers.serializerForType(T), value);
+T deserialize<T extends Object>(Object value) {
+  final serializerFor = serializers.serializerForType(T) as Serializer<T>;
+  return serializers.deserializeWith<T>(serializerFor, value);
+}
 
-BuiltList<T> deserializeListOf<T>(Iterable<Object> items) {
+BuiltList<T> deserializeListOf<T extends Object>(Iterable<Object> items) {
   return BuiltList.from(
-    items.map((item) => deserialize<T>(item)).toList(growable: false),
+    items.map((item) => deserialize<T>(item)).toList(
+          growable: false,
+        ),
   );
 }

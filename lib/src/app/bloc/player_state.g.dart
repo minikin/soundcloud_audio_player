@@ -18,31 +18,24 @@ class _$PlayerState extends PlayerState {
   @override
   final int position;
 
-  factory _$PlayerState([void Function(PlayerStateBuilder) updates]) =>
+  factory _$PlayerState([void Function(PlayerStateBuilder)? updates]) =>
       (new PlayerStateBuilder()..update(updates)).build();
 
   _$PlayerState._(
-      {this.isPaused,
-      this.isPlaying,
-      this.isResumed,
-      this.isStopped,
-      this.position})
+      {required this.isPaused,
+      required this.isPlaying,
+      required this.isResumed,
+      required this.isStopped,
+      required this.position})
       : super._() {
-    if (isPaused == null) {
-      throw new BuiltValueNullFieldError('PlayerState', 'isPaused');
-    }
-    if (isPlaying == null) {
-      throw new BuiltValueNullFieldError('PlayerState', 'isPlaying');
-    }
-    if (isResumed == null) {
-      throw new BuiltValueNullFieldError('PlayerState', 'isResumed');
-    }
-    if (isStopped == null) {
-      throw new BuiltValueNullFieldError('PlayerState', 'isStopped');
-    }
-    if (position == null) {
-      throw new BuiltValueNullFieldError('PlayerState', 'position');
-    }
+    BuiltValueNullFieldError.checkNotNull(isPaused, 'PlayerState', 'isPaused');
+    BuiltValueNullFieldError.checkNotNull(
+        isPlaying, 'PlayerState', 'isPlaying');
+    BuiltValueNullFieldError.checkNotNull(
+        isResumed, 'PlayerState', 'isResumed');
+    BuiltValueNullFieldError.checkNotNull(
+        isStopped, 'PlayerState', 'isStopped');
+    BuiltValueNullFieldError.checkNotNull(position, 'PlayerState', 'position');
   }
 
   @override
@@ -86,37 +79,38 @@ class _$PlayerState extends PlayerState {
 }
 
 class PlayerStateBuilder implements Builder<PlayerState, PlayerStateBuilder> {
-  _$PlayerState _$v;
+  _$PlayerState? _$v;
 
-  bool _isPaused;
-  bool get isPaused => _$this._isPaused;
-  set isPaused(bool isPaused) => _$this._isPaused = isPaused;
+  bool? _isPaused;
+  bool? get isPaused => _$this._isPaused;
+  set isPaused(bool? isPaused) => _$this._isPaused = isPaused;
 
-  bool _isPlaying;
-  bool get isPlaying => _$this._isPlaying;
-  set isPlaying(bool isPlaying) => _$this._isPlaying = isPlaying;
+  bool? _isPlaying;
+  bool? get isPlaying => _$this._isPlaying;
+  set isPlaying(bool? isPlaying) => _$this._isPlaying = isPlaying;
 
-  bool _isResumed;
-  bool get isResumed => _$this._isResumed;
-  set isResumed(bool isResumed) => _$this._isResumed = isResumed;
+  bool? _isResumed;
+  bool? get isResumed => _$this._isResumed;
+  set isResumed(bool? isResumed) => _$this._isResumed = isResumed;
 
-  bool _isStopped;
-  bool get isStopped => _$this._isStopped;
-  set isStopped(bool isStopped) => _$this._isStopped = isStopped;
+  bool? _isStopped;
+  bool? get isStopped => _$this._isStopped;
+  set isStopped(bool? isStopped) => _$this._isStopped = isStopped;
 
-  int _position;
-  int get position => _$this._position;
-  set position(int position) => _$this._position = position;
+  int? _position;
+  int? get position => _$this._position;
+  set position(int? position) => _$this._position = position;
 
   PlayerStateBuilder();
 
   PlayerStateBuilder get _$this {
-    if (_$v != null) {
-      _isPaused = _$v.isPaused;
-      _isPlaying = _$v.isPlaying;
-      _isResumed = _$v.isResumed;
-      _isStopped = _$v.isStopped;
-      _position = _$v.position;
+    final $v = _$v;
+    if ($v != null) {
+      _isPaused = $v.isPaused;
+      _isPlaying = $v.isPlaying;
+      _isResumed = $v.isResumed;
+      _isStopped = $v.isStopped;
+      _position = $v.position;
       _$v = null;
     }
     return this;
@@ -124,14 +118,12 @@ class PlayerStateBuilder implements Builder<PlayerState, PlayerStateBuilder> {
 
   @override
   void replace(PlayerState other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$PlayerState;
   }
 
   @override
-  void update(void Function(PlayerStateBuilder) updates) {
+  void update(void Function(PlayerStateBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -139,11 +131,16 @@ class PlayerStateBuilder implements Builder<PlayerState, PlayerStateBuilder> {
   _$PlayerState build() {
     final _$result = _$v ??
         new _$PlayerState._(
-            isPaused: isPaused,
-            isPlaying: isPlaying,
-            isResumed: isResumed,
-            isStopped: isStopped,
-            position: position);
+            isPaused: BuiltValueNullFieldError.checkNotNull(
+                isPaused, 'PlayerState', 'isPaused'),
+            isPlaying: BuiltValueNullFieldError.checkNotNull(
+                isPlaying, 'PlayerState', 'isPlaying'),
+            isResumed: BuiltValueNullFieldError.checkNotNull(
+                isResumed, 'PlayerState', 'isResumed'),
+            isStopped: BuiltValueNullFieldError.checkNotNull(
+                isStopped, 'PlayerState', 'isStopped'),
+            position: BuiltValueNullFieldError.checkNotNull(
+                position, 'PlayerState', 'position'));
     replace(_$result);
     return _$result;
   }

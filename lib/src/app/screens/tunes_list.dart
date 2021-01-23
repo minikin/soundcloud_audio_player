@@ -4,7 +4,7 @@ import 'package:soundcloud_audio_player/src/app/widgets/player_item.dart';
 import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 class TunesList extends StatelessWidget {
-  const TunesList({Key key}) : super(key: key);
+  const TunesList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,12 @@ class TunesList extends StatelessWidget {
               future: Tune.loadListOfTunes('tunes'),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  final tunes = snapshot.data.toList();
+                  var tunes = <Tune>[];
+                  final maybeTunes = snapshot.data?.toList();
+                  if (maybeTunes != null) {
+                    tunes = maybeTunes;
+                  }
+
                   return ListView.builder(
                     itemCount: tunes.length,
                     itemBuilder: (context, index) {

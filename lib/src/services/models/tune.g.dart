@@ -46,7 +46,7 @@ class _$TuneSerializer implements StructuredSerializer<Tune> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'artist':
           result.artist = serializers.deserialize(value,
@@ -87,26 +87,21 @@ class _$Tune extends Tune {
   @override
   final String title;
 
-  factory _$Tune([void Function(TuneBuilder) updates]) =>
+  factory _$Tune([void Function(TuneBuilder)? updates]) =>
       (new TuneBuilder()..update(updates)).build();
 
-  _$Tune._({this.artist, this.artwork, this.audioFile, this.id, this.title})
+  _$Tune._(
+      {required this.artist,
+      required this.artwork,
+      required this.audioFile,
+      required this.id,
+      required this.title})
       : super._() {
-    if (artist == null) {
-      throw new BuiltValueNullFieldError('Tune', 'artist');
-    }
-    if (artwork == null) {
-      throw new BuiltValueNullFieldError('Tune', 'artwork');
-    }
-    if (audioFile == null) {
-      throw new BuiltValueNullFieldError('Tune', 'audioFile');
-    }
-    if (id == null) {
-      throw new BuiltValueNullFieldError('Tune', 'id');
-    }
-    if (title == null) {
-      throw new BuiltValueNullFieldError('Tune', 'title');
-    }
+    BuiltValueNullFieldError.checkNotNull(artist, 'Tune', 'artist');
+    BuiltValueNullFieldError.checkNotNull(artwork, 'Tune', 'artwork');
+    BuiltValueNullFieldError.checkNotNull(audioFile, 'Tune', 'audioFile');
+    BuiltValueNullFieldError.checkNotNull(id, 'Tune', 'id');
+    BuiltValueNullFieldError.checkNotNull(title, 'Tune', 'title');
   }
 
   @override
@@ -150,38 +145,39 @@ class _$Tune extends Tune {
 }
 
 class TuneBuilder implements Builder<Tune, TuneBuilder> {
-  _$Tune _$v;
+  _$Tune? _$v;
 
-  String _artist;
-  String get artist => _$this._artist;
-  set artist(String artist) => _$this._artist = artist;
+  String? _artist;
+  String? get artist => _$this._artist;
+  set artist(String? artist) => _$this._artist = artist;
 
-  String _artwork;
-  String get artwork => _$this._artwork;
-  set artwork(String artwork) => _$this._artwork = artwork;
+  String? _artwork;
+  String? get artwork => _$this._artwork;
+  set artwork(String? artwork) => _$this._artwork = artwork;
 
-  AudioFileBuilder _audioFile;
+  AudioFileBuilder? _audioFile;
   AudioFileBuilder get audioFile =>
       _$this._audioFile ??= new AudioFileBuilder();
-  set audioFile(AudioFileBuilder audioFile) => _$this._audioFile = audioFile;
+  set audioFile(AudioFileBuilder? audioFile) => _$this._audioFile = audioFile;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
-  String _title;
-  String get title => _$this._title;
-  set title(String title) => _$this._title = title;
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
 
   TuneBuilder();
 
   TuneBuilder get _$this {
-    if (_$v != null) {
-      _artist = _$v.artist;
-      _artwork = _$v.artwork;
-      _audioFile = _$v.audioFile?.toBuilder();
-      _id = _$v.id;
-      _title = _$v.title;
+    final $v = _$v;
+    if ($v != null) {
+      _artist = $v.artist;
+      _artwork = $v.artwork;
+      _audioFile = $v.audioFile.toBuilder();
+      _id = $v.id;
+      _title = $v.title;
       _$v = null;
     }
     return this;
@@ -189,14 +185,12 @@ class TuneBuilder implements Builder<Tune, TuneBuilder> {
 
   @override
   void replace(Tune other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Tune;
   }
 
   @override
-  void update(void Function(TuneBuilder) updates) {
+  void update(void Function(TuneBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -206,13 +200,16 @@ class TuneBuilder implements Builder<Tune, TuneBuilder> {
     try {
       _$result = _$v ??
           new _$Tune._(
-              artist: artist,
-              artwork: artwork,
+              artist: BuiltValueNullFieldError.checkNotNull(
+                  artist, 'Tune', 'artist'),
+              artwork: BuiltValueNullFieldError.checkNotNull(
+                  artwork, 'Tune', 'artwork'),
               audioFile: audioFile.build(),
-              id: id,
-              title: title);
+              id: BuiltValueNullFieldError.checkNotNull(id, 'Tune', 'id'),
+              title: BuiltValueNullFieldError.checkNotNull(
+                  title, 'Tune', 'title'));
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'audioFile';
         audioFile.build();
