@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
 
 class PlayButton<S> extends StatelessWidget {
-  final bool consumeStream;
-  final Color activeColor;
-  final Color disabledColor;
   final PlayerState playerState;
   final Stream<S> stream;
+  final Color disabledColor;
   final VoidCallback onPressed;
+  final Color activeColor;
 
   const PlayButton({
     @required this.playerState,
+    @required this.stream,
     @required this.onPressed,
-    this.consumeStream = true,
     this.activeColor = Colors.orange,
     this.disabledColor = Colors.grey,
-    this.stream,
     Key key,
   }) : super(key: key);
 
@@ -30,7 +28,7 @@ class PlayButton<S> extends StatelessWidget {
             icon: _configureIcon(),
             color: activeColor,
             disabledColor: disabledColor,
-            onPressed: _configureState(snapshot),
+            onPressed: (snapshot.hasData) ? onPressed : null,
           ),
         );
       },
@@ -48,14 +46,6 @@ class PlayButton<S> extends StatelessWidget {
       return const Icon(Icons.pause);
     } else {
       return const Icon(Icons.stop);
-    }
-  }
-
-  VoidCallback _configureState(AsyncSnapshot<Object> snapshot) {
-    if (consumeStream) {
-      return (snapshot.hasData) ? onPressed : null;
-    } else {
-      return onPressed;
     }
   }
 }

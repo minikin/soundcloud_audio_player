@@ -3,21 +3,18 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
-import 'package:soundcloud_audio_player/src/services/audio_player_service.dart';
-import 'package:soundcloud_audio_player/src/services/models/models.dart';
+import 'package:soundcloud_audio_player/src/services/services.dart';
 
 class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
-  final AudioPlayerService _audioPlayerService;
+  final AudioService _audioPlayerService;
 
   int _trackDuration = 0;
   int _trackPosition = 0;
-
   bool _isPlayed = false;
   bool _isDisposed = false;
 
-  PlayerBloc({
-    @required AudioPlayerService audioPlayerService,
-  })  : assert(audioPlayerService != null),
+  PlayerBloc(AudioService audioPlayerService)
+      : assert(audioPlayerService != null),
         _audioPlayerService = audioPlayerService;
 
   @override
@@ -69,6 +66,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
   void stop() => add(StopEvent());
 
   void toggle(Tune tune) {
+    _isDisposed = false;
     if (state.stopped) {
       _isPlayed = false;
       add(PlayEvent(tune));
@@ -87,7 +85,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
   Stream<PlayerState> _playTune(PlayEvent event) async* {
     _trackDuration = event.tune.audioFile.duration;
-    _audioPlayerService.playAudio();
+    _audioPlayerService.playAudio(tune: event.tune);
     _audioPlayerService.onProgress().listen((p) {
       _trackPosition = p.inMilliseconds;
       if (!_isDisposed) {
