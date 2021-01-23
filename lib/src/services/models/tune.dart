@@ -1,5 +1,3 @@
-// ignore_for_file: omit_local_variable_types
-
 library tune;
 
 import 'dart:convert';
@@ -9,7 +7,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:soundcloud_audio_player/src/services/models/models.dart';
-import 'package:soundcloud_audio_player/src/services/utils/free_functions.dart';
+import 'package:soundcloud_audio_player/src/services/utils/utils.dart';
 
 part 'tune.g.dart';
 

@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
 import 'package:soundcloud_audio_player/src/app/widgets/play_button.dart';
 import 'package:soundcloud_audio_player/src/app/widgets/waveform/waveform_item.dart';
-import 'package:soundcloud_audio_player/src/services/audio_player_service.dart';
-import 'package:soundcloud_audio_player/src/services/models/models.dart';
-import 'package:soundcloud_audio_player/src/services/utils/free_functions.dart';
+import 'package:soundcloud_audio_player/src/services/services.dart';
 
 class PlayerItem extends StatelessWidget {
   final Tune tune;
@@ -14,9 +12,7 @@ class PlayerItem extends StatelessWidget {
   PlayerItem({
     @required this.tune,
     Key key,
-  })  : _playerBloc = PlayerBloc(
-          audioPlayerService: AudioPlayerService(tune: tune),
-        ),
+  })  : _playerBloc = PlayerBloc(AudioService.init()),
         super(key: key);
 
   @override
@@ -25,11 +21,10 @@ class PlayerItem extends StatelessWidget {
     return BlocBuilder<PlayerBloc, PlayerState>(
       bloc: _playerBloc,
       builder: (context, state) {
-        final _screenWidth = screenWidth(context);
         return Container(
           padding: const EdgeInsets.all(8),
           width: double.infinity,
-          height: _screenWidth,
+          height: context.screenWidth,
           child: Stack(
             children: [
               Container(
@@ -37,7 +32,7 @@ class PlayerItem extends StatelessWidget {
                 child: Image.network(
                   tune.artwork,
                   fit: BoxFit.cover,
-                  height: _screenWidth,
+                  height: context.screenWidth,
                   width: double.infinity,
                   color: Colors.black38,
                   colorBlendMode: BlendMode.hardLight,
@@ -46,7 +41,7 @@ class PlayerItem extends StatelessWidget {
               Positioned(
                 top: 0,
                 child: SizedBox(
-                  width: _screenWidth,
+                  width: context.screenWidth,
                   child: Row(
                     children: [
                       PlayButton(
@@ -55,7 +50,7 @@ class PlayerItem extends StatelessWidget {
                         onPressed: () => _playerBloc.toggle(tune),
                       ),
                       SizedBox(
-                        width: _screenWidth - 135,
+                        width: context.screenWidth - 135,
                         child: Column(
                           children: [
                             SizedBox(

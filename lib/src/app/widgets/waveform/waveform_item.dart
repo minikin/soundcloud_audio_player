@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundcloud_audio_player/src/app/bloc/bloc.dart';
-import 'package:soundcloud_audio_player/src/services/models/models.dart';
+import 'package:soundcloud_audio_player/src/services/services.dart';
 
 class WaveFormItem extends StatelessWidget {
   final Waveform waveform;
@@ -22,7 +22,7 @@ class WaveFormItem extends StatelessWidget {
             widgetWidth: context.size.width,
           );
         },
-        onTapUp: (value) => bloc.resume(),
+        onTapUp: (_) => bloc.resume(),
         child: ClipPath(
           clipper: WaveformClipper(waveform),
           child: Container(
