@@ -26,11 +26,18 @@ abstract class AudioFile implements Built<AudioFile, AudioFileBuilder> {
   WaveformResponse get waveformResponse;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(AudioFile.serializer, this));
+    return json.encode(
+      serializers.serializeWith(
+        AudioFile.serializer,
+        this,
+      ),
+    );
   }
 
   static AudioFile fromJson(String jsonString) {
     return serializers.deserializeWith(
-        AudioFile.serializer, json.decode(jsonString));
+      AudioFile.serializer,
+      json.decode(jsonString),
+    );
   }
 }

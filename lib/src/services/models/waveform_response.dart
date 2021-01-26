@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:flutter/foundation.dart';
 import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
 part 'waveform_response.g.dart';
@@ -37,16 +36,18 @@ abstract class WaveformResponse
   int get version;
 
   String toJson() {
-    return json
-        .encode(serializers.serializeWith(WaveformResponse.serializer, this));
+    return json.encode(
+      serializers.serializeWith(
+        WaveformResponse.serializer,
+        this,
+      ),
+    );
   }
 
   static WaveformResponse fromJson(String jsonString) {
     return serializers.deserializeWith(
-        WaveformResponse.serializer, json.decode(jsonString));
-  }
-
-  static Future<WaveformResponse> fromJsonItem(String jsonString) async {
-    return compute(WaveformResponse.fromJson, jsonString);
+      WaveformResponse.serializer,
+      json.decode(jsonString),
+    );
   }
 }

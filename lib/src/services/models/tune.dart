@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:flutter/foundation.dart';
 import 'package:soundcloud_audio_player/src/services/models/models.dart';
 import 'package:soundcloud_audio_player/src/services/utils/utils.dart';
 
@@ -29,16 +28,19 @@ abstract class Tune implements Built<Tune, TuneBuilder> {
   String get title;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(Tune.serializer, this));
+    return json.encode(
+      serializers.serializeWith(
+        Tune.serializer,
+        this,
+      ),
+    );
   }
 
   static Tune fromJson(String jsonString) {
     return serializers.deserializeWith(
-        Tune.serializer, json.decode(jsonString));
-  }
-
-  static Future<Tune> fromJsonItem(String jsonString) async {
-    return compute(Tune.fromJson, jsonString);
+      Tune.serializer,
+      json.decode(jsonString),
+    );
   }
 
   static Future<BuiltList<Tune>> loadListOfTunes(String fileName) async {
