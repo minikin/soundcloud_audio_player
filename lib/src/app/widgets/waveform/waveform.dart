@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:soundcloud_audio_player/src/services/models/models.dart';
 
@@ -13,7 +12,6 @@ class Waveform {
     final waveformData = _computeWaveformData();
 
     if (fromFrame * 2 > (waveformResponse.data.length * 0.98).floor()) {
-      debugPrint('from frame is too far at $fromFrame');
       fromFrame = ((waveformResponse.data.length / 2) * 0.98).floor();
     }
 

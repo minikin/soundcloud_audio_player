@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-<a href="https://github.com/minikin/soundcloud_audio_player"><img src="https://i.ibb.co/5chqVzQ/soundcloud-2.png" alt="soundcloud-2" border="0"></a>
+<a href="https://github.com/minikin/soundcloud_audio_player"><img src="https://i.ibb.co/98KqLXx/soundcloud.png" alt="soundcloud-2" border="0"></a>
 </p>
 
 <p align="center">
