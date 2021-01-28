@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-<a href="https://github.com/minikin/soundcloud_audio_player"><img src="https://i.ibb.co/98KqLXx/soundcloud.png" alt="soundcloud-2" border="0"></a>
+<a href="https://github.com/minikin/soundcloud_audio_player"><img src="https://i.ibb.co/XYkZM8m/soundcloud.png" alt="soundcloud" border="0"></a>
 </p>
 
 <p align="center">
@@ -42,7 +42,7 @@
 
 ## Requirements
 
-- Flutter: the latest version on `flutter dev channel`
+- Flutter: the latest version on `flutter beta channel`
 - Dart: 2.10.0+
 - Xcode: 11.5+
 - Android Studio 4.0.0+
