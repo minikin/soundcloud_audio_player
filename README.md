@@ -26,6 +26,12 @@
   </a>
 </p>
 
+<h1 align="center">
+  <a href="https://youtu.be/szAhXoPwHd0" target="_blank">
+  Demo on Youtube
+  </a>
+</h1
+
 - [SoundCloud style audio player in Flutter](#soundcloud-style-audio-player-in-flutter)
   - [Features](#features)
   - [Requirements](#requirements)
