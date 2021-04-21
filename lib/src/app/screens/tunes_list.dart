@@ -4,7 +4,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 
 class TunesList extends StatelessWidget {
-  const TunesList({Key key}) : super(key: key);
+  const TunesList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

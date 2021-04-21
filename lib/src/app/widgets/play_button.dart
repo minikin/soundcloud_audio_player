@@ -6,17 +6,17 @@ class PlayButton<S> extends StatelessWidget {
   final Color activeColor;
   final Color disabledColor;
   final PlayerState playerState;
-  final Stream<S> stream;
+  final Stream<S>? stream;
   final VoidCallback onPressed;
 
   PlayButton({
-    @required this.playerState,
-    @required this.onPressed,
+    required this.playerState,
+    required this.onPressed,
     this.consumeStream = true,
     this.activeColor = Colors.orange,
     this.disabledColor = Colors.grey,
     this.stream,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

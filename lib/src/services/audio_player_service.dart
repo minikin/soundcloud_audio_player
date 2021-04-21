@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/foundation.dart';
 
 import 'models/models.dart';
 
@@ -8,7 +7,7 @@ class AudioPlayerService {
 
   final Tune tune;
 
-  AudioPlayerService({@required this.tune}) {
+  AudioPlayerService({required this.tune}) {
     onProgress();
   }
 

@@ -9,14 +9,15 @@ class WaveformPainter extends CustomPainter {
   final int startingFrame;
   final Waveform data;
   Paint painter;
+
   static const _defaultColor = Color.fromRGBO(69, 162, 158, 1);
 
   WaveformPainter({
+    required this.data,
     this.color = _defaultColor,
     this.strokeWidth = 1,
     this.zoomLevel = 1,
     this.startingFrame = 0,
-    this.data,
   }) {
     painter = Paint()
       ..style = PaintingStyle.fill
