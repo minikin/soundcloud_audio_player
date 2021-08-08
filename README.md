@@ -35,7 +35,7 @@
 - [SoundCloud style audio player in Flutter](#soundcloud-style-audio-player-in-flutter)
   - [Features](#features)
   - [Requirements](#requirements)
-  - [FAQ](#faq)
+  - [Support](#support)
   - [License](#license)
 
 ## Features
@@ -58,9 +58,9 @@
   - [Visual Studio Code](https://flutter.dev/docs/get-started/editor?tab=androidstudio)
   - [Android Studio / IntelliJ](https://flutter.dev/docs/get-started/editor?tab=vscode)
 
-## FAQ
+## Support
 
-If you have any questions ping me on twitter: [@minikin](https://twitter.com/minikin)
+Post issues and feature requests on the GitHub [issue tracker](https://github.com/minikin/soundcloud_audio_player/issues).
 
 ## License
 
