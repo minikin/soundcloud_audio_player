@@ -52,10 +52,6 @@
 
 - Flutter: the latest version on `flutter beta channel`
 - Dart: 2.10.0+
-- Xcode: 11.5+
-- Android Studio 4.0.0+
-- Ruby: 2.4+
-- CocoaPods: 1.10.0+
 - Flutter & Dart plugins:
   - [Visual Studio Code](https://flutter.dev/docs/get-started/editor?tab=androidstudio)
   - [Android Studio / IntelliJ](https://flutter.dev/docs/get-started/editor?tab=vscode)
